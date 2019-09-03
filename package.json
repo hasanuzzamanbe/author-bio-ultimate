@@ -1,0 +1,21 @@
+{
+  "name": "Author-bio-by-shortcode",
+  "version": "1.0.0",
+  "description": "show author bio anywhere on your site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "dependencies": {
+    "@wordpress/hooks": "^2.4.0",
+    "element-ui": "^2.10.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "laravel-mix": "^4.0.16",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
