@@ -62,7 +62,7 @@ if (!defined('AUTHORBIO_VERSION')) {
                 $adminApp = new \AuthorBio\Classes\AdminApp();
                 $adminApp->bootView();
             });
-
+            wp_enqueue_style('authorbio_admin_app', AUTHORBIO_URL.'dist/admin/css/author-bio-admin.css', array(), AUTHORBIO_VERSION);
           
             wp_enqueue_script(
                 'chart_maker_vue_loaded',
