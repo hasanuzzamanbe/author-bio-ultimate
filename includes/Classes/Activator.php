@@ -43,16 +43,19 @@ class Activator
     {
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
-        $table_name = $wpdb->prefix . 'chart_maker';
+        $table_name = $wpdb->prefix . 'author_bio';
         $sql = "CREATE TABLE $table_name (
-                                             chart_id int(10) NOT NULL AUTO_INCREMENT,
-                                             chart_name varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-                                             chart_values varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-                                             user_id int(10) DEFAULT NULL,
-                                             created_at timestamp NULL DEFAULT NULL,
-                                             updated_at timestamp NULL DEFAULT NULL,
-                                             PRIMARY KEY (chart_id)
-                                            ) $charset_collate;";
+                                          `id` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                          `author_id` int(10) NULL,
+                                          `author_name` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_email` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_fb` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_tw` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_ln` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_img` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_gravatar` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_bio` varchar(255) COLLATE 'utf8mb4_general_ci' NULL
+                                        ) $charset_collate;";
 
         $this->runSQL($sql, $table_name);
     }
