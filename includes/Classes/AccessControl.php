@@ -25,4 +25,22 @@ class AccessControl
         }
         return false;
     }
+
+    public static function checkAndPresponseError($endpoint = false, $group = false, $message = '')
+    {
+        if(self::hasEndPointPermission($endpoint, $group)) {
+            return true;
+        }
+        wp_send_json_error(array(
+            'message' => ($message) ? $message : __('Sorry, You do not have permission to do this action: ', 'authorbio').$endpoint,
+            'action' => $endpoint
+        ), 423);
+    }
+
+    public static function hasEndPointPermission($endpoint = false, $group = false)
+    {
+        if ($grandAccess = self::hasGrandAccess()) {
+            return apply_filters('authorbio/has_endpoint_access', $grandAccess, $endpoint, $group);
+        }
+    }
 }

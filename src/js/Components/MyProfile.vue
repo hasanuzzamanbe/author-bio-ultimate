@@ -1,176 +1,269 @@
 <template>
     <div class="main-profile-container">
-        <el-row class="users_details_row" style="display: flex;">
+        <el-row class="update_button_row">
             <el-col>
-               <h3 class="users_details_row_header">Author Basic info:</h3>
-            </el-col>
-            <el-col style="flex: 1;">
                 <el-button type="primary" size="mini">update profile</el-button>
             </el-col>
-
         </el-row>
         <el-row class="users_details_row">
-            <el-col :sm=22 :lg=12>
-                <span class="users_name_label"><strong>Full Name*</strong></span>
-                <el-input
-                        placeholder="Input Your Name"
-                        v-model="authorDetails.name"
-                        size="small"
-                ></el-input>
+            <el-col>
+                <h3 class="users_details_row_header">Author Basic info:</h3>
             </el-col>
         </el-row>
+        <div class="inner_box">
+            <el-row class="users_details_row">
+                <el-col :sm=22 :lg=12>
+                    <span class="users_name_label"><strong>Full Name*</strong></span>
+                    <el-input
+                            placeholder="Input Your Name"
+                            v-model="authorDetails.name"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
 
-        <el-row class="users_details_row">
-            <el-col :sm=22 :lg=12>
-                <span class="users_name_label"><strong>Email Address*</strong></span>
-                <el-input
-                        placeholder="Input Your email address"
-                        v-model="authorDetails.email"
-                        size="small"
-                ></el-input>
-            </el-col>
-        </el-row>
+            <el-row class="users_details_row">
+                <el-col :sm=22 :lg=12>
+                    <span class="users_name_label"><strong>Email Address*</strong></span>
+                    <el-input
+                            placeholder="Input Your email address"
+                            v-model="authorDetails.email"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
+            <el-row class="users_details_row">
+                <el-col :sm=22 :lg=12>
+                    <span class="users_bio_label"><strong>Your Bio Here</strong></span>
+                    <el-input
+                            type="textarea"
+                            :rows="4"
+                            placeholder="Input Your email address"
+                            v-model="authorDetails.email"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
+        </div>
+
         <!--socials-->
-        <h3 class="users_details_row_header">Author Socials:</h3>
+        <h3 class="users_details_row_header"> Author Socials:
+            <el-tooltip class="item" placement="bottom-start" effect="light">
+                <div slot="content">
+                    <p>
+                        Select socials to show frontent, and put your profile link.
+                    </p>
+                </div>
+                <i style="float: right;" class="el-icon-info el-text-info"/>
+            </el-tooltip>
+        </h3>
 
-        <el-row class="users_details_row">
-            <el-col :sm=22 :lg=12>
-               <h4 style="margin-bottom:7px;">Select socials to show frontent:</h4>
-                <el-checkbox-group @change="atChange" v-model="socials">
-                    <el-checkbox label="Facebook"></el-checkbox>
-                    <el-checkbox label="Twitter"></el-checkbox>
-                    <el-checkbox label="Linkedin"></el-checkbox>
-                </el-checkbox-group>
-            </el-col>
-        </el-row>
+        <!--<h4>Select socials to show frontent:</h4>-->
+        <div class="inner_box">
+            <el-row class="users_details_row">
+                <el-col :sm=22 :lg=12>
+                    <el-checkbox-group @change="atChange" v-model="socials">
+                        <el-checkbox label="Facebook"></el-checkbox>
+                        <el-checkbox label="Twitter"></el-checkbox>
+                        <el-checkbox label="Linkedin"></el-checkbox>
+                    </el-checkbox-group>
+                </el-col>
+            </el-row>
 
-        <el-row class="users_details_row" v-if="isShow.facebook">
-            <el-col :sm=22 :lg=12>
-                <span class="users_name_label"><strong>Facebook</strong></span>
-                <el-input
-                        placeholder="Your facebook profile link"
-                        v-model="authorDetails.facebook"
-                        size="small"
-                ></el-input>
-            </el-col>
-        </el-row>
-        <el-row class="users_details_row" v-if="isShow.twitter">
-            <el-col :sm=22 :lg=12>
-                <span class="users_name_label"><strong>Twitter</strong></span>
-                <el-input
-                        placeholder="Your twitter profile link"
-                        v-model="authorDetails.twitter"
-                        size="small"
-                ></el-input>
-            </el-col>
-        </el-row>
+            <el-row class="users_details_row" v-if="isShow.facebook">
+                <el-col :sm=22 :lg=12>
+                    <span class="users_name_label"><strong>Facebook</strong></span>
+                    <el-input
+                            placeholder="Your facebook profile link"
+                            v-model="authorDetails.facebook"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
+            <el-row class="users_details_row" v-if="isShow.twitter">
+                <el-col :sm=22 :lg=12>
+                    <span class="users_name_label"><strong>Twitter</strong></span>
+                    <el-input
+                            placeholder="Your twitter profile link"
+                            v-model="authorDetails.twitter"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
+            <el-row class="users_details_row" v-if="isShow.linkedin">
+                <el-col :sm=22 :lg=12>
+                    <span class="users_name_label"><strong>Linkedin</strong></span>
+                    <el-input
+                            placeholder="Your linkedin profile link"
+                            v-model="authorDetails.linkedin"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
+        </div>
+        <!--image-->
+        <h3 class="users_details_row_header">Author Profile image:
+            <el-tooltip class="item" placement="bottom-start" effect="light">
+                <div slot="content">
+                    <p>
+                        use gravatar image: will show your profile image from gravatar.<br>
+                        or you can upload your own.
+                    </p>
+                </div>
+                <i style="float: right;" class="el-icon-info el-text-info"/>
+            </el-tooltip>
+        </h3>
+        <div class="inner_box">
+            <el-row>
+                <el-col :span="12">
+                    <el-radio v-model="imageFrom" label="gravatar">Use Gravatar image</el-radio>
+                    <el-radio v-model="imageFrom" label="upload">Upload image</el-radio>
+                </el-col>
+            </el-row>
 
-        <el-row class="users_details_row" v-if="isShow.linkedin">
-            <el-col :sm=22 :lg=12>
-                <span class="users_name_label"><strong>Linkedin</strong></span>
-                <el-input
-                        placeholder="Your linkedin profile link"
-                        v-model="authorDetails.linkedin"
-                        size="small"
-                ></el-input>
-            </el-col>
-        </el-row>
 
-<!--image-->
-        <h3 class="users_details_row_header">Author Profile image:</h3>
+            <el-row class="users_details_row">
 
-        <el-row class="users_details_row">
-            <el-col>
-                <el-radio v-model="useGravatar" label="1">Use Gravatar image</el-radio>
-                <el-radio v-model="uploadPic" label="2">Upload image</el-radio>
-            </el-col>
-            <el-col>
-                <h4>Upload your profile picture</h4>
-                <el-upload
-                        class="avatar-uploader"
-                        :action="uploadUrl"
-                        :show-file-list="false"
-                        accept_x="image/png, image/jpeg"
-                        :on-error="handleUploadError"
-                        :on-success="handleUploadSuccess"
-                >
-                    <img
-                            v-if="profile.image"
-                            :src="profile.image"
-                            class="avatar"
-                    />
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-            </el-col>
-        </el-row>
+                <el-col :span="8" v-if="imageFrom === 'upload'" class="uploadPane">
+                    <el-upload
+                            class="avatar-uploader"
+                            :action="uploadUrl"
+                            :show-file-list="false"
+                            accept_x="image/png, image/jpeg"
+                            :on-error="handleUploadError"
+                            :on-success="handleUploadSuccess"
+                    >
+                        <img
+                                v-if="profile.image"
+                                :src="profile.image"
+                                class="avatar"
+                        />
+                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
+                    <h4>Upload your profile picture</h4>
+                </el-col>
+
+                <el-col :span="8" v-if="imageFrom === 'gravatar'">
+                    <img :src="profile.gravatar" alt="profile pic not loaded">
+                    <br>
+                    <span>NB: Be sure, your email address has gravatar</span>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 <script>
-export default {
-    name: 'MyProfile',
-    data() {
-        return {
-            authorDetails: {
-                name: '',
-                email: '',
-                facebook: '',
-                twitter: '',
-                linkedin:'',
-            },
-            useGravatar:'',
-            uploadPic: '',
-            uploadUrl:'',
-            profile:{
-              image: ''
-            },
-            socials: [],
-            isShow: {
-                facebook: false,
-                twitter: false,
-                linkedin: false,
+    export default {
+        name: 'MyProfile',
+        data() {
+            return {
+                authorDetails: {
+                    name: '',
+                    email: '',
+                    facebook: '',
+                    twitter: '',
+                    linkedin: '',
+                },
+                imageFrom: 'gravatar',
+                uploadPic: '',
+                uploadUrl: window.authorBioAdmin.image_upload_url,
+                profile: {
+                    image: '',
+                    gravatar: window.authorBioAdmin.avatar
+                },
+                socials: [],
+                isShow: {
+                    facebook: false,
+                    twitter: false,
+                    linkedin: false,
+                }
             }
-        }
-    },
-    methods: {
-        atChange(e) {
-            this.isShow = {
-                facebook: false,
-                twitter: false,
-                linkedin: false,
-            }
-            if(this.socials.includes('Facebook')){
-                this.isShow.facebook = true
-            }
-            if(this.socials.includes('Twitter')){
-                this.isShow.twitter = true
-            }
-            if(this.socials.includes('Linkedin')){
-                this.isShow.linkedin = true
-            }
+        },
+        methods: {
+            atChange(e) {
+                this.isShow = {
+                    facebook: false,
+                    twitter: false,
+                    linkedin: false,
+                }
+                if (this.socials.includes('Facebook')) {
+                    this.isShow.facebook = true
+                }
+                if (this.socials.includes('Twitter')) {
+                    this.isShow.twitter = true
+                }
+                if (this.socials.includes('Linkedin')) {
+                    this.isShow.linkedin = true
+                }
 
-            // authorDetails.socials.includes('facebook')
-        },
-        handleUploadSuccess(response) {
-            this.profile.image = response.data.file.url;
-        },
-        handleUploadError(error) {
-            this.$message.error(error.toString());
-        },
+                // authorDetails.socials.includes('facebook')
+            },
+            handleUploadSuccess(response) {
+                this.profile.image = response.data.file.url;
+                console.log(this.profile.image)
+            },
+            handleUploadError(error) {
+                this.$message.error(error.toString());
+            },
+        }
     }
-}
 </script>
 <style lang="scss">
-    .main-profile-container{
+    .main-profile-container {
         padding: 36px;
+
+        .inner_box {
+            background: #ffffff87;
+            padding: 23px;
+            border: 1px solid #cec6c64d;
+        }
+
+        .update_button_row {
+            text-align: right;
+            margin-bottom: -13px;
+            margin-top: -28px;
+        }
     }
-    .users_details_row{
-        margin-top:12px;
+
+    .users_details_row {
+        margin-top: 12px;
+
         &_header {
-            margin-top:23px;
-            text-decoration: underline;
-         }
+            margin-top: 23px;
+            background: #7c787833;
+            padding: 7px 23px;
+            margin-bottom: 0px;
+        }
+
         .avatar-uploader {
             font-size: 47px;
+        }
+
+        .avatar-uploader .el-upload {
+            border: 1px dashed #d9d9d9;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar-uploader .el-upload:hover {
+            border-color: #409EFF;
+        }
+
+        .avatar-uploader-icon {
+            font-size: 28px;
+            color: #8c939d;
+            width: 178px;
+            height: 178px;
+            line-height: 178px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 178px;
+            height: 178px;
+            display: block;
         }
     }
 

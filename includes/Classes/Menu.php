@@ -8,6 +8,7 @@ class Menu
     public function register()
     {
         add_action( 'admin_menu', array($this, 'addMenus') );
+        add_action('admin_enqueue_scripts', array($this, 'enqueueAssets'));
     }
 
     public function addMenus()
@@ -45,6 +46,24 @@ class Menu
             'admin.php?page=authorbio.php#/supports',
         );
     }
+
+    public function enqueueAssets()
+    {
+        $user_id = get_current_user_id();
+        $avatar_link = get_avatar_url( $user_id, 128 );
+        $authorBioAdminVars = apply_filters('authorbio/admin_app_vars', array(
+            'i18n'                => array(
+                'All Events' => __('All Events', 'authorbio')
+            ),
+            'assets_url'          => AUTHORBIO_URL . 'dist/',
+            'ajaxurl'             => admin_url('admin-ajax.php'),
+            'avatar'              => $avatar_link,
+            'image_upload_url'    => admin_url('admin-ajax.php?action=author_bio_global_settings_handler&route=author_bio_upload_image')
+        ));
+        wp_localize_script('author_bio_settings_boot', 'authorBioAdmin', $authorBioAdminVars);
+
+    }
+
 
     public function render() {
         do_action('authorbio/render_admin_app');

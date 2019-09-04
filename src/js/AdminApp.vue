@@ -72,7 +72,7 @@
     }
     /* Add a color to the active/current link */
     .topnav a.ninja-tab-active {
-        background-color: #438922;
+        background-color: #0173aa;
         color: white;
     }
     .chartmaker_main_nav {
