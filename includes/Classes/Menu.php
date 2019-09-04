@@ -50,7 +50,7 @@ class Menu
     public function enqueueAssets()
     {
         $user_id = get_current_user_id();
-        $avatar_link = get_avatar_url( $user_id, 128 );
+        $avatar_link = get_avatar_url( $user_id, ['size' => '178'] );
         $authorBioAdminVars = apply_filters('authorbio/admin_app_vars', array(
             'i18n'                => array(
                 'All Events' => __('All Events', 'authorbio')

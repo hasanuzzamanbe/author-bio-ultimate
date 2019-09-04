@@ -34,12 +34,22 @@
             </el-row>
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
+                    <span class="users_designation_label"><strong>Your Designation*</strong></span>
+                    <el-input
+                            placeholder="Input your designation"
+                            v-model="authorDetails.designation"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
+            <el-row class="users_details_row">
+                <el-col :sm=22 :lg=12>
                     <span class="users_bio_label"><strong>Your Bio Here</strong></span>
                     <el-input
                             type="textarea"
                             :rows="4"
-                            placeholder="Input Your email address"
-                            v-model="authorDetails.email"
+                            placeholder="Input your bio here"
+                            v-model="authorDetails.bio"
                             size="small"
                     ></el-input>
                 </el-col>
@@ -146,7 +156,9 @@
                 <el-col :span="8" v-if="imageFrom === 'gravatar'">
                     <img :src="profile.gravatar" alt="profile pic not loaded">
                     <br>
-                    <span>NB: Be sure, your email address has gravatar</span>
+                    <p>NB: Be sure, your email address has gravatar.
+                        also You can change your profile picture on
+                        <a href="https://en.gravatar.com" target="_blank">Gravatar</a>.</p>
                 </el-col>
             </el-row>
         </div>
@@ -160,6 +172,8 @@
                 authorDetails: {
                     name: '',
                     email: '',
+                    designation:'',
+                    bio: '',
                     facebook: '',
                     twitter: '',
                     linkedin: '',
