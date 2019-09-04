@@ -44,14 +44,11 @@
             </el-row>
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_bio_label"><strong>Your Bio Here</strong></span>
-                    <el-input
-                            type="textarea"
-                            :rows="4"
-                            placeholder="Input your bio here"
-                            v-model="authorDetails.bio"
-                            size="small"
-                    ></el-input>
+                    <span class="users_bio_label"><strong>Your Bio Data Here</strong></span>
+                        <wp-editor
+                                :editor_id="'wp_email_editor'"
+                                v-model="authorDetails.bio"
+                        />
                 </el-col>
             </el-row>
         </div>
@@ -165,15 +162,22 @@
     </div>
 </template>
 <script>
+    import wpEditor from "./Common/_wp_editor";
+    import popover from "./Common/input-popover-dropdown.vue";
+
     export default {
         name: 'MyProfile',
+        components: {
+            wpEditor,
+            popover,
+        },
         data() {
             return {
                 authorDetails: {
                     name: '',
                     email: '',
                     designation:'',
-                    bio: '',
+                    bio: 'Hello from shamim, This is a bio content',
                     facebook: '',
                     twitter: '',
                     linkedin: '',

@@ -61,12 +61,17 @@ if (!defined('AUTHORBIO_VERSION')) {
             $globalSettingHandler = new \AuthorBio\Classes\GlobalSettingsHandler();
             $globalSettingHandler->registerHooks();
 
+            $tinyMCE = new \AuthorBio\Classes\Integrations\TinyMceBlock();
+            $tinyMCE->register();
+
             add_action('authorbio/render_admin_app', function () {
                 $adminApp = new \AuthorBio\Classes\AdminApp();
                 $adminApp->bootView();
             });
-            wp_enqueue_style('authorbio_admin_app', AUTHORBIO_URL.'dist/admin/css/author-bio-admin.css', array(), AUTHORBIO_VERSION);
-          
+            wp_enqueue_style('authorbio_admin_app',
+                AUTHORBIO_URL.'dist/admin/css/author-bio-admin.css',
+                array(), AUTHORBIO_VERSION
+            );
             wp_enqueue_script(
                 'author_bio_settings_boot',
                 AUTHORBIO_URL . 'dist/js/boot.js',

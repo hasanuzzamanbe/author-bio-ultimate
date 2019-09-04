@@ -21,10 +21,10 @@ const router = new window.AuthorBio.Router({
 });
 
 import App from './AdminApp'
-
-new window.AuthorBio.Vue({
-    el: '#authorbioapp',
-    render: h => h(App),
-    router: router
-});
-
+if(document.getElementById("authorbioapp")) {
+    new window.AuthorBio.Vue({
+        el: '#authorbioapp',
+        render: h => h(App),
+        router: router
+    });
+}

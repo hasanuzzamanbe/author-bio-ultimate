@@ -49,6 +49,34 @@ class Menu
 
     public function enqueueAssets()
     {
+        if (function_exists('wp_enqueue_editor')) {
+            wp_enqueue_editor();
+            wp_enqueue_script('thickbox');
+        }
+        if (function_exists('wp_enqueue_media')) {
+            wp_enqueue_media();
+        }
+
+        wp_enqueue_script(
+            'author_bio_settings_boot',
+            AUTHORBIO_URL . 'dist/js/boot.js',
+            array( 'jquery' ),
+            AUTHORBIO_VERSION,
+            true
+        );
+        wp_enqueue_script(
+            'author-bio',
+            AUTHORBIO_URL . 'dist/js/author-bio.js',
+            array( 'author_bio_settings_boot' ),
+            AUTHORBIO_VERSION,
+            true
+        );
+        wp_enqueue_style('authorbio_admin_app',
+            AUTHORBIO_URL.'dist/admin/css/author-bio-admin.css',
+            array(), AUTHORBIO_VERSION
+        );
+
+
         $user_id = get_current_user_id();
         $avatar_link = get_avatar_url( $user_id, ['size' => '178'] );
         $authorBioAdminVars = apply_filters('authorbio/admin_app_vars', array(
@@ -67,13 +95,6 @@ class Menu
 
     public function render() {
         do_action('authorbio/render_admin_app');
-        wp_enqueue_script(
-            'chart-maker',
-            AUTHORBIO_URL . 'dist/js/author-bio.js',
-            array( 'jquery' ),
-            AUTHORBIO_VERSION,
-            true
-        );
     }
 
 }
