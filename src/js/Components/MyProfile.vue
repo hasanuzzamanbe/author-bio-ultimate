@@ -42,13 +42,18 @@
                     ></el-input>
                 </el-col>
             </el-row>
-            <el-row class="users_details_row">
+            <el-row class="users_details_row" :rules="rules">
                 <el-col :sm=22 :lg=12>
                     <span class="users_bio_label"><strong>Your Bio Data Here</strong></span>
+
+                    <div prop="email_body" label="Email Body">
                         <wp-editor
-                                :editor_id="'wp_email_editor'"
-                                v-model="authorDetails.bio"
+                                :editor_id="'wp_email_editor_'"
+                                v-model="authorDetails.email_body"
                         />
+                    </div>
+
+
                 </el-col>
             </el-row>
         </div>
@@ -162,17 +167,24 @@
     </div>
 </template>
 <script>
-    import wpEditor from "./Common/_wp_editor";
-    import popover from "./Common/input-popover-dropdown.vue";
+    import wpEditor from '../components/Common/_wp_editor';
+    import popover from '../components/Common/input-popover-dropdown.vue'
 
     export default {
         name: 'MyProfile',
         components: {
             wpEditor,
-            popover,
+            popover
         },
         data() {
             return {
+                rules: {
+                    email_body: [
+                        {
+                            required: true, message: 'Please Provide Notification Title',
+                        }
+                    ]
+                },
                 authorDetails: {
                     name: '',
                     email: '',
@@ -181,6 +193,7 @@
                     facebook: '',
                     twitter: '',
                     linkedin: '',
+                    email_body:''
                 },
                 imageFrom: 'gravatar',
                 uploadPic: '',
@@ -213,8 +226,6 @@
                 if (this.socials.includes('Linkedin')) {
                     this.isShow.linkedin = true
                 }
-
-                // authorDetails.socials.includes('facebook')
             },
             handleUploadSuccess(response) {
                 this.profile.image = response.data.file.url;
@@ -223,6 +234,9 @@
             handleUploadError(error) {
                 this.$message.error(error.toString());
             },
+        },
+        mounted() {
+            console.log(this.email_body)
         }
     }
 </script>

@@ -1,97 +1,84 @@
 <template>
     <div>
         <el-popover
-                ref="input-popover1"
-                placement="right"
-                popper-class="el-dropdown-list-wrapper"
-                v-model="visible"
-                trigger="click"
-        >
+            ref="input-popover1"
+            placement="right"
+            popper-class="el-dropdown-list-wrapper"
+            v-model="visible"
+            trigger="click">
             <div class="el_pop_data_group">
-                <div class="el_pop_data_headings">
+                <div  class="el_pop_data_headings">
                     <ul>
                         <li
-                                v-for="(item, item_index) in data"
-                                :key="item_index"
-                                :data-item_index="item_index"
-                                :class="activeIndex == item_index ? 'active_item_selected' : ''"
-                                @click="activeIndex = item_index"
-                        >
-                            {{ item.title }}
+                            v-for="(item,item_index) in data"
+                            :data-item_index="item_index"
+                            :class="(activeIndex == item_index) ? 'active_item_selected' : ''"
+                            @click="activeIndex = item_index">
+                            {{item.title}}
                         </li>
                     </ul>
                 </div>
                 <div class="el_pop_data_body">
-                    <ul
-                            v-for="(item, current_index) in data"
-                            :key="current_index"
-                            v-show="activeIndex == current_index"
-                            :class="'el_pop_body_item_' + current_index"
-                    >
-                        <li
-                                @click="insertShortcode(code.tag)"
-                                v-for="(code, code_index) in item.placeholders"
-                                :key="code_index"
-                        >
-                            {{ code.label }} <span>{{ code.tag }}</span>
-                        </li>
+                    <ul v-for="(item,current_index) in data" v-show="activeIndex == current_index" :class="'el_pop_body_item_'+current_index">
+                        <li @click="insertShortcode(code.tag)" v-for="code in item.placeholders">{{code.label}} <span>{{code.tag}}</span></li>
                     </ul>
                 </div>
             </div>
         </el-popover>
-        <el-button
-                class="editor-add-shortcode"
-                size="mini"
-                v-popover:input-popover1
-                :type="btnType"
-                v-html="buttonText"
+        <el-button class="editor-add-shortcode"
+                   size="mini"
+                   v-popover:input-popover1
+                   :type="btnType"
+                   v-html="buttonText"
         />
     </div>
 </template>
 
 <script>
     export default {
-        name: "inputPopoverDropdown",
+        name: 'inputPopoverDropdown',
         props: {
             data: Array,
             close_on_insert: {
                 type: Boolean,
                 default() {
                     return true;
-                },
+                }
             },
             buttonText: {
                 type: String,
                 default() {
                     return 'Add Shortcodes <i class="el-icon-arrow-down el-icon--right"></i>';
-                },
+                }
             },
             btnType: {
                 type: String,
                 default() {
-                    return "success";
-                },
-            },
+                    return 'success';
+                }
+            }
         },
         data() {
-            return {
-                activeIndex: 0,
-                visible: false,
-            };
+          return {
+              activeIndex: 0,
+              visible: false
+          }
         },
         methods: {
             insertShortcode(code) {
-                this.$emit("command", code);
-                if (this.close_on_insert) {
+                this.$emit('command', code);
+                if(this.close_on_insert) {
                     this.visible = false;
                 }
-            },
+            }
         },
-        mounted() {},
-    };
+        mounted() {
+         }
+    }
 </script>
 
 <style lang="scss">
+
     .el-dropdown-list-wrapper {
         padding: 0;
 
@@ -164,4 +151,5 @@
             }
         }
     }
+
 </style>

@@ -2,5 +2,6 @@
     "/dist/js/author-bio.js": "/dist/js/author-bio.js",
     "/dist/js/boot.js": "/dist/js/boot.js",
     "/dist/admin/css/author-bio-admin.css": "/dist/admin/css/author-bio-admin.css",
-    "/dist/js/tinymce.js": "/dist/js/tinymce.js"
+    "/dist/js/tinymce.js": "/dist/js/tinymce.js",
+    "/dist/js/tinymce_icon.png": "/dist/js/tinymce_icon.png"
 }

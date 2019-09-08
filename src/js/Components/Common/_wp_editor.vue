@@ -1,11 +1,10 @@
 <template>
     <div class="wp_vue_editor_wrapper">
-        <textarea v-if="hasWpEditor" class="wp_vue_editor" :id="editor_id" v-model="value"></textarea>
-        <textarea
-                v-else
-                class="wp_vue_editor wp_vue_editor_plain"
-                v-model="plain_content"
-                @click="updateCursorPos">
+        <textarea v-if="hasWpEditor" class="wp_vue_editor" :id="editor_id">{{value}}</textarea>
+        <textarea v-else
+                  class="wp_vue_editor wp_vue_editor_plain"
+                  v-model="plain_content"
+                  @click="updateCursorPos">
         </textarea>
     </div>
 </template>
@@ -108,8 +107,8 @@
         mounted() {
             if (this.hasWpEditor) {
                 this.initEditor();
+                console.log('1')
             }
-            console.log(this.value)
         }
     }
 </script>
