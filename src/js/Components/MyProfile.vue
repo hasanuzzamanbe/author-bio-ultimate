@@ -2,7 +2,7 @@
     <div class="main-profile-container">
         <el-row class="update_button_row">
             <el-col>
-                <el-button type="primary" size="mini">update profile</el-button>
+                <el-button type="primary" size="mini" @click="update">update profile</el-button>
             </el-col>
         </el-row>
         <el-row class="users_details_row">
@@ -42,18 +42,50 @@
                     ></el-input>
                 </el-col>
             </el-row>
-            <el-row class="users_details_row" :rules="rules">
+        </div>
+
+        <h3 class="users_details_row_header"> Author Bio Details:
+            <el-tooltip class="item" placement="bottom-start" effect="light">
+                <div slot="content">
+                    <p>
+                        You can use your bio which is already
+                        <br>
+                        updated on your user profile page.
+                        Or Add new bio using editor.
+                    </p>
+                </div>
+                <i style="float: right;" class="el-icon-info el-text-info"/>
+            </el-tooltip>
+        </h3>
+        <div class="inner_box">
+
+            <el-row>
+                <el-col :span="12">
+                    <el-radio default v-model="authorDetails.useBioFrom" label="userProfileBio">Use bio from user profile
+                    </el-radio>
+                    <el-radio v-model="authorDetails.useBioFrom" label="newAddedBio">Update your bio with Editor</el-radio>
+                </el-col>
+            </el-row>
+            <el-row v-if="authorDetails.useBioFrom ==='newAddedBio'" class="users_details_row" :rules="rules">
                 <el-col :sm=22 :lg=12>
                     <span class="users_bio_label"><strong>Your Bio Data Here</strong></span>
 
-                    <div prop="email_body" label="Email Body">
+                    <div prop="email_body" label="Author bio">
                         <wp-editor
                                 :editor_id="'wp_email_editor_'"
-                                v-model="authorDetails.email_body"
+                                v-model="authorDetails.bio"
                         />
                     </div>
-
-
+                </el-col>
+            </el-row>
+            <el-row class="users_details_row" v-else>
+                <el-col :sm=22 :lg=12>
+                    <el-input
+                            type="textarea"
+                            :rows=4
+                            disabled
+                            v-model="bioFromUser">
+                    </el-input>
                 </el-col>
             </el-row>
         </div>
@@ -185,15 +217,16 @@
                         }
                     ]
                 },
+                bioFromUser: '',
                 authorDetails: {
                     name: '',
                     email: '',
-                    designation:'',
+                    designation: '',
                     bio: 'Hello from shamim, This is a bio content',
                     facebook: '',
                     twitter: '',
                     linkedin: '',
-                    email_body:''
+                    useBioFrom: 'userProfileBio',
                 },
                 imageFrom: 'gravatar',
                 uploadPic: '',
@@ -211,6 +244,12 @@
             }
         },
         methods: {
+            get_the_author_meta() {
+
+            },
+            update() {
+                console.log(this.authorDetails);
+            },
             atChange(e) {
                 this.isShow = {
                     facebook: false,
@@ -235,7 +274,7 @@
             },
         },
         mounted() {
-
+            this.get_the_author_meta()
         }
     }
 </script>
