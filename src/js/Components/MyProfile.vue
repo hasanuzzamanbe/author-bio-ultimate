@@ -217,7 +217,7 @@
                         }
                     ]
                 },
-                bioFromUser: '',
+                bioFromUser: window.authorBioAdmin.author_des,
                 authorDetails: {
                     name: '',
                     email: '',
@@ -244,9 +244,6 @@
             }
         },
         methods: {
-            get_the_author_meta() {
-
-            },
             update() {
                 console.log(this.authorDetails);
             },
@@ -274,7 +271,6 @@
             },
         },
         mounted() {
-            this.get_the_author_meta()
         }
     }
 </script>

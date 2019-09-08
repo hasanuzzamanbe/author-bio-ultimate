@@ -78,6 +78,8 @@ class Menu
 
 
         $user_id = get_current_user_id();
+
+        $author_des = get_the_author_meta('user_description', $user_id);
         $avatar_link = get_avatar_url( $user_id, ['size' => '178'] );
         $authorBioAdminVars = apply_filters('authorbio/admin_app_vars', array(
             'i18n'                => array(
@@ -87,6 +89,7 @@ class Menu
             'ajaxurl'             => admin_url('admin-ajax.php'),
             'avatar'              => $avatar_link,
             'ace_path_url'        => AUTHORBIO_URL.'dist/libs/ace',
+            'author_des'          => $author_des,
             'image_upload_url'    => admin_url('admin-ajax.php?action=author_bio_global_settings_handler&route=author_bio_upload_image')
         ));
         wp_localize_script('author_bio_settings_boot', 'authorBioAdmin', $authorBioAdminVars);
