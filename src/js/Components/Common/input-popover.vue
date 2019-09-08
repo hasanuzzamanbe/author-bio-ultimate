@@ -60,8 +60,6 @@ export default {
             }
             this.model += codeString.replace(/param_name/, this.attrName);
         }
-    },
-    mounted(){
     }
 }
 </script>

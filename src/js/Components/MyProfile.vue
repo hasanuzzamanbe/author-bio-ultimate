@@ -229,14 +229,13 @@
             },
             handleUploadSuccess(response) {
                 this.profile.image = response.data.file.url;
-                console.log(this.profile.image)
             },
             handleUploadError(error) {
                 this.$message.error(error.toString());
             },
         },
         mounted() {
-            console.log(this.email_body)
+
         }
     }
 </script>

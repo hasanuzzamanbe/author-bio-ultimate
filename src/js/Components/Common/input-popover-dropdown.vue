@@ -71,9 +71,7 @@
                     this.visible = false;
                 }
             }
-        },
-        mounted() {
-         }
+        }
     }
 </script>
 

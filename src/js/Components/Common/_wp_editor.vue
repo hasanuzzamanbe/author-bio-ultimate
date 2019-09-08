@@ -107,7 +107,6 @@
         mounted() {
             if (this.hasWpEditor) {
                 this.initEditor();
-                console.log('1')
             }
         }
     }
