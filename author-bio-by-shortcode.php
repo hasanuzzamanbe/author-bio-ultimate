@@ -64,6 +64,9 @@ if (!defined('AUTHORBIO_VERSION')) {
             $tinyMCE = new \AuthorBio\Classes\Integrations\TinyMceBlock();
             $tinyMCE->register();
 
+            $adminAjax = new \AuthorBio\Classes\AdminAjaxHandler();
+            $adminAjax->registerEndpoints();
+
             add_action('authorbio/render_admin_app', function () {
                 $adminApp = new \AuthorBio\Classes\AdminApp();
                 $adminApp->bootView();

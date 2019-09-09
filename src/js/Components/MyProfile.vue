@@ -61,9 +61,11 @@
 
             <el-row>
                 <el-col :span="12">
-                    <el-radio default v-model="authorDetails.useBioFrom" label="userProfileBio">Use bio from user profile
+                    <el-radio default v-model="authorDetails.useBioFrom" label="userProfileBio">Use bio from user
+                        profile
                     </el-radio>
-                    <el-radio v-model="authorDetails.useBioFrom" label="newAddedBio">Update your bio with Editor</el-radio>
+                    <el-radio v-model="authorDetails.useBioFrom" label="newAddedBio">Update your bio with Editor
+                    </el-radio>
                 </el-col>
             </el-row>
             <el-row v-if="authorDetails.useBioFrom ==='newAddedBio'" class="users_details_row" :rules="rules">
@@ -219,10 +221,11 @@
                 },
                 bioFromUser: window.authorBioAdmin.author_des,
                 authorDetails: {
+                    authorId: null,
                     name: '',
                     email: '',
                     designation: '',
-                    bio: 'Hello from shamim, This is a bio content',
+                    bio: 'Hello from Shamim, This is a bio content',
                     facebook: '',
                     twitter: '',
                     linkedin: '',
@@ -245,7 +248,15 @@
         },
         methods: {
             update() {
-                console.log(this.authorDetails);
+                this.authorDetails.imageFrom = this.imageFrom
+                this.authorDetails.profile = this.profile
+
+                this.$adminPost({
+                    data: this.authorDetails,
+                    socials: this.socials,
+                    action: "author_bio_admin_ajax",
+                    route: "add_bio"
+                })
             },
             atChange(e) {
                 this.isShow = {
@@ -271,6 +282,21 @@
             },
         },
         mounted() {
+            this.$adminGet({
+                route: "get_bio"
+            }).then((res) => {
+                this.authorDetails.authorId = res.data.author_id,
+                this.authorDetails.name = res.data.author_name,
+                this.authorDetails.email = res.data.author_email,
+                this.authorDetails.designation = res.data.author_designation,
+                this.authorDetails.bio = res.data.author_bio,
+                this.authorDetails.facebook = res.data.author_fb,
+                this.authorDetails.twitter = res.data.author_tw,
+                this.authorDetails.linkedin = res.data.author_ln,
+                this.authorDetails.useBioFrom = res.data.useBioFrom,
+                this.profile.image = res.data.author_img
+
+            })
         }
     }
 </script>
