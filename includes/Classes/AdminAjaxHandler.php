@@ -38,7 +38,17 @@ class AdminAjaxHandler
     protected function addBio()
     {
         $data = $_REQUEST[data];
-      $authorId =   get_current_user_id();
+        $socials = $_REQUEST[socials];
+
+        $socialsVal = array(
+            'facebook' => $socials[facebook],
+            'twitter' => $socials[twitter],
+            'linkedin' => $socials[linkedin],
+        );
+
+        update_option( 'author_bio_social_option', $socialsVal, false );
+
+      $authorId = get_current_user_id();
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
@@ -46,35 +56,35 @@ class AdminAjaxHandler
             $wpdb->update(
                 $table_name,
                 array(
-                    "author_id"         => $authorId,
-                    "author_name"       => $data[name],
-                    "author_email"      => $data[email],
-                    "author_fb"         => $data[facebook],
-                    "author_tw"         => $data[twitter],
-                    "author_ln"         => $data[linkedin],
-                    "author_img"        => $data[profile][image],
-                    "author_gravatar"   => $data[profile][gravatar],
-                    "author_bio"        => $data[bio],
-                    "author_designation"=> $data[designation],
-                    "useBioFrom"        => $data[useBioFrom],
+                    "author_id" => $authorId,
+                    "author_name" => $data[name],
+                    "author_email" => $data[email],
+                    "author_fb" => $data[facebook],
+                    "author_tw" => $data[twitter],
+                    "author_ln" => $data[linkedin],
+                    "author_img" => $data[profile][image],
+                    "author_gravatar" => $data[profile][gravatar],
+                    "author_bio" => $data[bio],
+                    "author_designation" => $data[designation],
+                    "useBioFrom" => $data[useBioFrom],
                 ),
-                array('author_id'=>$authorId)
+                array('author_id' => $authorId)
             );
         } else {
             $wpdb->insert(
                 $table_name,
                 array(
-                    "author_id"             => $authorId,
-                    "author_name"           => $data[name],
-                    "author_email"          => $data[email],
-                    "author_fb"             => $data[facebook],
-                    "author_tw"             => $data[twitter],
-                    "author_ln"             => $data[linkedin],
-                    "author_img"            => $data[profile][img],
-                    "author_gravatar"       => $data[profile][gravatar],
-                    "author_bio"            => $data[bio],
-                    "author_designation"    => $data[designation],
-                    "useBioFrom"            => $data[useBioFrom],
+                    "author_id" => $authorId,
+                    "author_name" => $data[name],
+                    "author_email" => $data[email],
+                    "author_fb" => $data[facebook],
+                    "author_tw" => $data[twitter],
+                    "author_ln" => $data[linkedin],
+                    "author_img" => $data[profile][img],
+                    "author_gravatar" => $data[profile][gravatar],
+                    "author_bio" => $data[bio],
+                    "author_designation" => $data[designation],
+                    "useBioFrom" => $data[useBioFrom],
                 ),
                 array(
                     '%s',
@@ -95,7 +105,12 @@ class AdminAjaxHandler
         $table_name = $wpdb->prefix . 'author_bio';
         $authorId = get_current_user_id();
         $data = $wpdb->get_row("SELECT * FROM $table_name WHERE author_id = $authorId");
-        wp_send_json_success($data);
+        $socials = get_option('author_bio_social_option', true);
+
+        wp_send_json_success(array(
+            'data'        => $data,
+            'socials'        => $socials
+        ), 200);
 
     }
 

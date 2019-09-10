@@ -108,11 +108,9 @@
         <div class="inner_box">
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
-                    <el-checkbox-group @change="atChange" v-model="socials">
-                        <el-checkbox label="Facebook"></el-checkbox>
-                        <el-checkbox label="Twitter"></el-checkbox>
-                        <el-checkbox label="Linkedin"></el-checkbox>
-                    </el-checkbox-group>
+                        <el-checkbox v-model="isShow.facebook" true-label="true" label="Facebook"></el-checkbox>
+                        <el-checkbox v-model="isShow.twitter" true-label="true" label="Twitter"></el-checkbox>
+                        <el-checkbox v-model="isShow.linkedin" true-label="true" label="Linkedin"></el-checkbox>
                 </el-col>
             </el-row>
 
@@ -238,11 +236,10 @@
                     image: '',
                     gravatar: window.authorBioAdmin.avatar
                 },
-                socials: [],
                 isShow: {
-                    facebook: false,
-                    twitter: false,
-                    linkedin: false,
+                    facebook: true,
+                    twitter: true,
+                    linkedin: true,
                 }
             }
         },
@@ -253,26 +250,10 @@
 
                 this.$adminPost({
                     data: this.authorDetails,
-                    socials: this.socials,
+                    socials: this.isShow,
                     action: "author_bio_admin_ajax",
                     route: "add_bio"
                 })
-            },
-            atChange(e) {
-                this.isShow = {
-                    facebook: false,
-                    twitter: false,
-                    linkedin: false,
-                }
-                if (this.socials.includes('Facebook')) {
-                    this.isShow.facebook = true
-                }
-                if (this.socials.includes('Twitter')) {
-                    this.isShow.twitter = true
-                }
-                if (this.socials.includes('Linkedin')) {
-                    this.isShow.linkedin = true
-                }
             },
             handleUploadSuccess(response) {
                 this.profile.image = response.data.file.url;
@@ -285,17 +266,18 @@
             this.$adminGet({
                 route: "get_bio"
             }).then((res) => {
-                this.authorDetails.authorId = res.data.author_id,
-                this.authorDetails.name = res.data.author_name,
-                this.authorDetails.email = res.data.author_email,
-                this.authorDetails.designation = res.data.author_designation,
-                this.authorDetails.bio = res.data.author_bio,
-                this.authorDetails.facebook = res.data.author_fb,
-                this.authorDetails.twitter = res.data.author_tw,
-                this.authorDetails.linkedin = res.data.author_ln,
-                this.authorDetails.useBioFrom = res.data.useBioFrom,
-                this.profile.image = res.data.author_img
 
+                this.isShow= res.data.socials
+                this.authorDetails.authorId = res.data.data.author_id,
+                this.authorDetails.name = res.data.data.author_name,
+                this.authorDetails.email = res.data.data.author_email,
+                this.authorDetails.designation = res.data.data.author_designation,
+                this.authorDetails.bio = res.data.data.author_bio,
+                this.authorDetails.facebook = res.data.data.author_fb,
+                this.authorDetails.twitter = res.data.data.author_tw,
+                this.authorDetails.linkedin = res.data.data.author_ln,
+                this.authorDetails.useBioFrom = res.data.data.useBioFrom,
+                this.profile.image = res.data.data.author_img
             })
         }
     }
