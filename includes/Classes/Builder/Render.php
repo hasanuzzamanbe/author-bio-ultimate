@@ -22,6 +22,7 @@ class Render
         $info = AdminAjaxHandler::getUserInfos($post->post_author);
         $data = $info['data'];
         $socials = $info['socials'];
+        $image = "<img style='width:128px;' src='$data->author_img'>";
 //        $socials['facebook'];
 
 
@@ -35,7 +36,12 @@ class Render
 
         <div class="author_bio_main_wrap">
                 <div class="avater-image">
-                    <?php echo get_avatar( get_the_author_meta( 'ID' ), 128 ); ?>
+                    <?php if($info['imageFrom'] === 'upload'){
+                            echo $image;
+                          }else{
+                             echo get_avatar( get_the_author_meta( 'ID' ), 128 );
+                          }
+                    ?>
                 </div>
 
                 <div class="author_bio_content">
