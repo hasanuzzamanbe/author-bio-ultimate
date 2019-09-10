@@ -39,6 +39,7 @@ class AdminAjaxHandler
     {
         $data = $_REQUEST[data];
         $socials = $_REQUEST[socials];
+        $imageFrom = $_REQUEST[imageFrom];
 
         $socialsVal = array(
             'facebook' => $socials[facebook],
@@ -47,6 +48,7 @@ class AdminAjaxHandler
         );
 
         update_option( 'author_bio_social_option', $socialsVal, false );
+        update_option( 'author_bio_image_from_option', $imageFrom, false );
 
       $authorId = get_current_user_id();
 
@@ -106,10 +108,11 @@ class AdminAjaxHandler
         $authorId = get_current_user_id();
         $data = $wpdb->get_row("SELECT * FROM $table_name WHERE author_id = $authorId");
         $socials = get_option('author_bio_social_option', true);
-
+        $imageFrom = get_option('author_bio_image_from_option', true);
         wp_send_json_success(array(
             'data'        => $data,
-            'socials'        => $socials
+            'socials'     => $socials,
+            'imageFrom'   => $imageFrom
         ), 200);
 
     }

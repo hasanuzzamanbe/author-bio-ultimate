@@ -45,9 +45,11 @@ if (!defined('AUTHORBIO_VERSION')) {
     {
         public function boot()
         {
+            $this->loadDependecies();
             if (is_admin()) {
                 $this->adminHooks();
             }
+            $this->commonHooks();
         }
 
         public function adminHooks()
@@ -87,6 +89,15 @@ if (!defined('AUTHORBIO_VERSION')) {
         public function textDomain()
         {
             load_plugin_textdomain('authorbio', false, basename(dirname(__FILE__)) . '/languages');
+        }
+
+        public function commonHooks(){
+            $builder = new \AuthorBio\Classes\Builder\Render();
+            $builder->Render();
+        }
+        public function loadDependecies()
+        {
+            require_once(AUTHORBIO_DIR . 'includes/autoload.php');
         }
 
     }
