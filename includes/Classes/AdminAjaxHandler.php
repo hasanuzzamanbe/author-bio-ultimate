@@ -46,11 +46,13 @@ class AdminAjaxHandler
             'twitter' => $socials[twitter],
             'linkedin' => $socials[linkedin],
         );
-
+        $author_bio = wp_unslash($data[bio]);
+        $authorId = get_current_user_id();
         update_option( 'author_bio_social_option', $socialsVal, false );
         update_option( 'author_bio_image_from_option', $imageFrom, false );
+        update_post_meta($authorId, 'author_bio_editorbio', $author_bio);
 
-      $authorId = get_current_user_id();
+
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
@@ -66,7 +68,6 @@ class AdminAjaxHandler
                     "author_ln" => $data[linkedin],
                     "author_img" => $data[profile][image],
                     "author_gravatar" => $data[profile][gravatar],
-                    "author_bio" => $data[bio],
                     "author_designation" => $data[designation],
                     "useBioFrom" => $data[useBioFrom],
                 ),
@@ -84,7 +85,6 @@ class AdminAjaxHandler
                     "author_ln" => $data[linkedin],
                     "author_img" => $data[profile][img],
                     "author_gravatar" => $data[profile][gravatar],
-                    "author_bio" => $data[bio],
                     "author_designation" => $data[designation],
                     "useBioFrom" => $data[useBioFrom],
                 ),
@@ -101,7 +101,7 @@ class AdminAjaxHandler
 
     }
 
-    protected function getBio()
+    public function getBio()
     {
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
@@ -109,12 +109,30 @@ class AdminAjaxHandler
         $data = $wpdb->get_row("SELECT * FROM $table_name WHERE author_id = $authorId");
         $socials = get_option('author_bio_social_option', true);
         $imageFrom = get_option('author_bio_image_from_option', true);
+        $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
         wp_send_json_success(array(
             'data'        => $data,
             'socials'     => $socials,
-            'imageFrom'   => $imageFrom
+            'imageFrom'   => $imageFrom,
+            'bio'         => $bioFromeditor
         ), 200);
 
+    }
+
+    public static function getUserInfos($authorId)
+    {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'author_bio';
+        $data = $wpdb->get_row("SELECT * FROM $table_name WHERE author_id = $authorId");
+        $socials = get_option('author_bio_social_option', true);
+        $imageFrom = get_option('author_bio_image_from_option', true);
+        $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
+        return array(
+            'data'        => $data,
+            'socials'     => $socials,
+            'imageFrom'   => $imageFrom,
+            'bio'         => $bioFromeditor
+        );
     }
 
 }
