@@ -29,6 +29,7 @@ class Render
 
         $author = get_user_by('id', $post->post_author);
         $bio = get_user_meta($author->ID, 'description', true);
+        $template = get_post_meta($author->ID, 'author_bio_template', true);
 
         ob_start();
         ?>
@@ -43,30 +44,35 @@ class Render
                     }
                     ?>
                 </div>
-                <div class="author_bio_socials">
+                <?php if($template !== 'template1'){ ?>
+                    <div class="author_bio_socials">
 
-                <?php if ($socials['facebook'] === 'true') { ?>
-                    <a href="<?php echo $data->author_fb; ?>" target="_blank">
-                        <i class="authbio-facebook-circled"></i>
-                    </a>
+                    <?php if ($socials['facebook'] === 'true') { ?>
+                        <a href="<?php echo $data->author_fb; ?>" target="_blank">
+                            <i class="authbio-facebook-circled"></i>
+                        </a>
 
-                    <?php } if ($socials['twitter'] === 'true') { ?>
-                    <a href="<?php echo $data->author_tw; ?> " target="_blank">
-                        <i class="authbio-twitter-circled"></i>
-                    </a>
-                     <?php } if ($socials['linkedin'] === 'true') { ?>
+                    <?php }
+                    if ($socials['twitter'] === 'true') { ?>
+                        <a href="<?php echo $data->author_tw; ?> " target="_blank">
+                            <i class="authbio-twitter-circled"></i>
+                        </a>
+                    <?php }
+                    if ($socials['linkedin'] === 'true') { ?>
 
-                     <a href="<?php echo $data->author_ln; ?> " target="_blank">
-                        <i class="authbio-linkedin-circled"></i>
-                    </a>
+                        <a href="<?php echo $data->author_ln; ?> " target="_blank">
+                            <i class="authbio-linkedin-circled"></i>
+                        </a>
 
-                    <?php } if ($socials['instagram'] === 'true') { ?>
+                    <?php }
+                    if ($socials['instagram'] === 'true') { ?>
                         <a href="<?php echo $data->author_ins; ?> " target="_blank">
                             <i class="authbio-instagrem"></i>
                         </a>
                     <?php } ?>
 
-            </div>
+                </div>
+                 <?php } ?>
             </div>
 
             <div class="author_bio_content">
@@ -100,6 +106,35 @@ class Render
                     }
                     ?>
                 </div>
+                <?php if($template === 'template1'){ ?>
+                    <div class="author_bio_socials">
+
+                        <?php if ($socials['facebook'] === 'true') { ?>
+                            <a href="<?php echo $data->author_fb; ?>" target="_blank">
+                                <i class="authbio-facebook-circled"></i>
+                            </a>
+
+                        <?php }
+                        if ($socials['twitter'] === 'true') { ?>
+                            <a href="<?php echo $data->author_tw; ?> " target="_blank">
+                                <i class="authbio-twitter-circled"></i>
+                            </a>
+                        <?php }
+                        if ($socials['linkedin'] === 'true') { ?>
+
+                            <a href="<?php echo $data->author_ln; ?> " target="_blank">
+                                <i class="authbio-linkedin-circled"></i>
+                            </a>
+
+                        <?php }
+                        if ($socials['instagram'] === 'true') { ?>
+                            <a href="<?php echo $data->author_ins; ?> " target="_blank">
+                                <i class="authbio-instagrem"></i>
+                            </a>
+                        <?php } ?>
+
+                    </div>
+                <?php } ?>
 
             </div>
         </div>

@@ -20,6 +20,11 @@
   .author_bio_content {
     flex: 3 0 0;
     padding: 0 0 0 20px;
+    .author_bio_socials {
+      a {
+        margin-right:10px;
+      }
+    }
   }
   .author_email {
     text-decoration: none;
@@ -37,11 +42,16 @@
   .author_bio_desig {
     font-weight: bold;
   }
+  .author_bio_left_col{
+    .author_bio_socials {
+      justify-content: space-around;
+      padding: 13px 0px 0px 0px;
+    }
+  }
+
   .author_bio_socials {
-    padding: 13px 0px 0px 0px;
     text-align: center;
     display: flex;
-    justify-content: space-around;
     i.authbio-instagrem {
       border-radius: 17px;
       font-size: 17px;

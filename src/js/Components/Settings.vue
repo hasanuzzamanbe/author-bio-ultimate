@@ -22,7 +22,7 @@
                 </el-col>
             </el-row>
             <el-row class="users_template_row">
-                <el-col  class="inner_column" :sm=22 :lg=18>
+                <el-col class="inner_column" :sm=22 :lg=18>
                     <el-radio class="template_radio" v-model="useTemp" label="template2">Template 2</el-radio>
                     <img :src="assets_url + 'admin/templates/template2.png'"/>
                 </el-col>
@@ -36,16 +36,30 @@
         data() {
             return {
                 assets_url: window.authorBioAdmin.assets_url,
-                useTemp: ''
+                useTemp: 'template2'
             }
         },
         methods: {
             update() {
-                console.log(this.useTemp)
+                this.$adminPost({
+                    data: this.useTemp,
+                    action: "author_bio_admin_ajax",
+                    route: "update_settings"
+                }).then(
+                    this.$message({
+                        showClose: true,
+                        message: 'Congrats, Data updated successfully',
+                        type: 'success'
+                    })
+                )
             }
         },
         mounted() {
-            console.log(this.useTemp)
+            this.$adminGet({
+                route: "get_settings"
+            }).then((res) => {
+                this.useTemp = res.data.template;
+            })
         }
     }
 </script>
@@ -56,11 +70,13 @@
         .inner_column {
             position: relative;
         }
-        .template_radio{
+
+        .template_radio {
             position: absolute;
             top: 21px;
             right: 0px;
         }
+
         img {
             margin-bottom: 10px;
             max-width: 100%;

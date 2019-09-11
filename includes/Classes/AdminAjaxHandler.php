@@ -24,8 +24,10 @@ class AdminAjaxHandler
         $route = sanitize_text_field($_REQUEST['route']);
 
         $validRoutes = array(
-            'add_bio' => 'addBio',
-            'get_bio' => 'getBio',
+            'add_bio'           => 'addBio',
+            'get_bio'           => 'getBio',
+            'update_settings'   => 'updateSettings',
+            'get_settings'      => 'getSettings',
 
         );
         if (isset($validRoutes[$route])) {
@@ -150,6 +152,18 @@ class AdminAjaxHandler
             'imageFrom'   => $imageFrom,
             'bio'         => $bioFromeditor
         );
+    }
+
+    public static function updateSettings(){
+        $authorId = get_current_user_id();
+        update_post_meta($authorId, 'author_bio_template', $_REQUEST['data']);
+    }
+    public static function getSettings(){
+        $authorId = get_current_user_id();
+        $template = get_post_meta($authorId, 'author_bio_template', true);
+        wp_send_json_success(array(
+            'template'        => $template,
+        ), 200);
     }
 
 }
