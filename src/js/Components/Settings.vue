@@ -14,17 +14,20 @@
         <div class="inner_box">
             <el-row class="users_template_row">
             </el-row>
-            <el-row class="users_template_row">
-                <el-col class="inner_column" :sm=22 :lg=18>
+            <el-row class="users_template_row" :gutter="20">
+                <el-col class="inner_column" :sm=22 :lg=10>
                     <el-radio class="template_radio" v-model="useTemp" label="template1">Template 1</el-radio>
                     <img :src="assets_url + 'admin/templates/template1.png'"/>
-
+                </el-col>
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <el-radio class="template_radio" v-model="useTemp" label="template2">Template 2</el-radio>
+                    <img :src="assets_url + 'admin/templates/template2.png'"/>
                 </el-col>
             </el-row>
             <el-row class="users_template_row">
-                <el-col class="inner_column" :sm=22 :lg=18>
-                    <el-radio class="template_radio" v-model="useTemp" label="template2">Template 2</el-radio>
-                    <img :src="assets_url + 'admin/templates/template2.png'"/>
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <el-radio class="template_radio" v-model="useTemp" label="template3">Template 3</el-radio>
+                    <img :src="assets_url + 'admin/templates/template3.png'"/>
                 </el-col>
             </el-row>
         </div>
@@ -65,8 +68,6 @@
 </script>
 <style lang="scss">
     .users_template_row {
-        max-width: 700px;
-
         .inner_column {
             position: relative;
         }

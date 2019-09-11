@@ -6,52 +6,79 @@
   padding: 17px;
   display: flex;
   border-radius: 12px;
+
   h1.author_name {
     margin-bottom: 0px;
   }
+
   .author_bio_left_col {
     flex: 1 0 0px;
     padding: 7px 0 0 0;
-    img{
+
+    img {
       border-radius: 83px;
     }
 
   }
+
   .author_bio_content {
     flex: 3 0 0;
     padding: 0 0 0 20px;
+
+    .author_bio_content_inner {
+      position: relative;
+
+      .author_bio_socials {
+        text-align: center;
+        position: absolute;
+        right: -30px;
+        display: grid;
+      }
+    }
+
     .author_bio_socials {
       a {
-        margin-right:10px;
+        margin-right: 10px;
       }
     }
   }
+
   .author_email {
     text-decoration: none;
     font-size: 14px;
     margin: 0px;
     display: flex;
-    a{
+
+    a {
       color: black;
     }
-    .authbio-mail{
+
+    .authbio-mail {
       padding-top: 3px;
       padding-right: 7px;
     }
   }
+
   .author_bio_desig {
     font-weight: bold;
   }
-  .author_bio_left_col{
+
+  .author_bio_left_col {
     .author_bio_socials {
       justify-content: space-around;
       padding: 13px 0px 0px 0px;
+      display: flex;
+    }
+  }
+
+  .author_bio_socials_template1 {
+    .author_bio_socials {
+      display: flex;
     }
   }
 
   .author_bio_socials {
     text-align: center;
-    display: flex;
     i.authbio-instagrem {
       border-radius: 17px;
       font-size: 17px;
@@ -59,7 +86,8 @@
       color: white;
       padding: 6px 6px 3px 7px;
     }
-    a{
+
+    a {
       font-size: 32px;
       color: #7d7da5;
     }
