@@ -11,3 +11,4 @@ mix
     .sass('src/scss/admin/app.scss', 'dist/admin/css/author-bio-admin.css')
     .copy('src/libs', 'dist/libs')
     .copy('src/integrations/tinymce_icon.png', 'dist/js/tinymce_icon.png')
+    .copy('src/templates', 'dist/admin/templates')
