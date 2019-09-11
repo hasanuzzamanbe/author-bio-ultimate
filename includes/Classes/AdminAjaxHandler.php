@@ -161,6 +161,9 @@ class AdminAjaxHandler
     public static function getSettings(){
         $authorId = get_current_user_id();
         $template = get_post_meta($authorId, 'author_bio_template', true);
+        if($template === '' || null){
+            $template = 'template2';
+        }
         wp_send_json_success(array(
             'template'        => $template,
         ), 200);

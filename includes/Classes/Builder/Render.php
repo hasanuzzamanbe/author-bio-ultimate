@@ -30,6 +30,9 @@ class Render
         $author = get_user_by('id', $post->post_author);
         $bio = get_user_meta($author->ID, 'description', true);
         $template = get_post_meta($author->ID, 'author_bio_template', true);
+        if($template === '' || null){
+            $template = 'template2';
+        }
 
         ob_start();
         ?>
