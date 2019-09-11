@@ -41,16 +41,18 @@ class AdminAjaxHandler
         $socials = $_REQUEST[socials];
         $imageFrom = $_REQUEST[imageFrom];
 
-        $socialsVal = array(
+        $socialsVal = wp_unslash(array(
             'facebook' => $socials[facebook],
             'twitter' => $socials[twitter],
             'linkedin' => $socials[linkedin],
-        );
+        ));
         $author_bio = wp_unslash($data[bio]);
         $authorId = get_current_user_id();
-        update_option( 'author_bio_social_option', $socialsVal, false );
-        update_option( 'author_bio_image_from_option', $imageFrom, false );
+
+
         update_post_meta($authorId, 'author_bio_editorbio', $author_bio);
+        update_post_meta($authorId, 'author_bio_social_option', $socialsVal);
+        update_post_meta($authorId, 'author_bio_image_from_option', $imageFrom);
 
 
 
@@ -107,9 +109,20 @@ class AdminAjaxHandler
         $table_name = $wpdb->prefix . 'author_bio';
         $authorId = get_current_user_id();
         $data = $wpdb->get_row("SELECT * FROM $table_name WHERE author_id = $authorId");
-        $socials = get_option('author_bio_social_option', true);
-        $imageFrom = get_option('author_bio_image_from_option', true);
+
         $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
+        $socials = get_post_meta($authorId, 'author_bio_social_option', true);
+        if($socials === '') {
+            $socials = [
+                'facebook' => true,
+                'twitter' => true,
+                'linkedin' => true,
+                ];
+        };
+        $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
+        if($imageFrom === '') {
+            $imageFrom = 'gravatar';
+        };
         wp_send_json_success(array(
             'data'        => $data,
             'socials'     => $socials,
@@ -124,8 +137,8 @@ class AdminAjaxHandler
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
         $data = $wpdb->get_row("SELECT * FROM $table_name WHERE author_id = $authorId");
-        $socials = get_option('author_bio_social_option', true);
-        $imageFrom = get_option('author_bio_image_from_option', true);
+        $socials = get_post_meta($authorId, 'author_bio_social_option', true);
+        $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
         $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
         return array(
             'data'        => $data,

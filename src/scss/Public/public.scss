@@ -1,0 +1,51 @@
+@import "icons";
+
+
+.author_bio_main_wrap {
+  margin-top: 100px;
+  border: 1px solid #ededed70;
+  padding: 17px;
+  display: flex;
+  border-radius: 12px;
+  h1.author_name {
+    margin-bottom: 0px;
+  }
+  .author_bio_left_col {
+    flex: 1 0 0px;
+    padding: 7px 0 0 0;
+    img{
+      border-radius: 5px;
+    }
+
+  }
+  .author_bio_content {
+    flex: 3 0 0;
+    padding: 0 0 0 20px;
+  }
+  .author_email {
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0px;
+    display: flex;
+    a{
+      color: black;
+    }
+    .authbio-mail{
+      padding-top: 3px;
+      padding-right: 7px;
+    }
+  }
+  .author_bio_desig {
+    font-weight: bold;
+  }
+  .author_bio_socials {
+    padding: 26px 0px 0px 0px;
+    text-align: center;
+    a{
+      font-size: 32px;
+      color: #7d7da5;
+    }
+
+  }
+
+}

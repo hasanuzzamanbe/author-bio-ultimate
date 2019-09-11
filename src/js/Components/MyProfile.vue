@@ -254,7 +254,9 @@
                     imageFrom: this.imageFrom,
                     action: "author_bio_admin_ajax",
                     route: "add_bio"
-                })
+                }).then(
+                    this.success()
+                )
             },
             handleUploadSuccess(response) {
                 this.profile.image = response.data.file.url;
@@ -262,11 +264,19 @@
             handleUploadError(error) {
                 this.$message.error(error.toString());
             },
+            success() {
+                this.$message({
+                    showClose: true,
+                    message: 'Congrats, Data updated successfully',
+                    type: 'success'
+                });
+            },
         },
         mounted() {
             this.$adminGet({
                 route: "get_bio"
             }).then((res) => {
+
                 if(res.data.data){
                         this.isShow= res.data.socials
                         this.authorDetails.authorId = res.data.data.author_id,
