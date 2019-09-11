@@ -60,7 +60,12 @@ class Render
                         <i class="authbio-linkedin-circled"></i>
                     </a>
 
+                    <?php } if ($socials['instagram'] === 'true') { ?>
+                        <a href="<?php echo $data->author_ins; ?> " target="_blank">
+                            <i class="authbio-instagrem"></i>
+                        </a>
                     <?php } ?>
+
             </div>
             </div>
 

@@ -52,6 +52,7 @@ class Activator
                                           `author_fb` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
                                           `author_tw` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
                                           `author_ln` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
+                                          `author_ins` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
                                           `author_img` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
                                           `author_gravatar` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
                                           `author_designation` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,

@@ -45,6 +45,7 @@ class AdminAjaxHandler
             'facebook' => $socials[facebook],
             'twitter' => $socials[twitter],
             'linkedin' => $socials[linkedin],
+            'instagram' => $socials[instagram]
         ));
         $author_bio = wp_unslash($data[bio]);
         $authorId = get_current_user_id();
@@ -68,6 +69,7 @@ class AdminAjaxHandler
                     "author_fb" => $data[facebook],
                     "author_tw" => $data[twitter],
                     "author_ln" => $data[linkedin],
+                    "author_ins" => $data[instagram],
                     "author_img" => $data[profile][image],
                     "author_gravatar" => $data[profile][gravatar],
                     "author_designation" => $data[designation],
@@ -85,6 +87,7 @@ class AdminAjaxHandler
                     "author_fb" => $data[facebook],
                     "author_tw" => $data[twitter],
                     "author_ln" => $data[linkedin],
+                    "author_ins" => $data[instagram],
                     "author_img" => $data[profile][img],
                     "author_gravatar" => $data[profile][gravatar],
                     "author_designation" => $data[designation],
@@ -117,6 +120,7 @@ class AdminAjaxHandler
                 'facebook' => true,
                 'twitter' => true,
                 'linkedin' => true,
+                'instagram' => true,
                 ];
         };
         $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);

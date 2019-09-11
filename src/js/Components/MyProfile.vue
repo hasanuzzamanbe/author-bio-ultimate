@@ -111,6 +111,7 @@
                         <el-checkbox v-model="isShow.facebook" true-label="true" label="Facebook"></el-checkbox>
                         <el-checkbox v-model="isShow.twitter" true-label="true" label="Twitter"></el-checkbox>
                         <el-checkbox v-model="isShow.linkedin" true-label="true" label="Linkedin"></el-checkbox>
+                        <el-checkbox v-model="isShow.instagram" true-label="true" label="Instagram"></el-checkbox>
                 </el-col>
             </el-row>
 
@@ -140,6 +141,16 @@
                     <el-input
                             placeholder="Your linkedin profile link"
                             v-model="authorDetails.linkedin"
+                            size="small"
+                    ></el-input>
+                </el-col>
+            </el-row>
+            <el-row class="users_details_row" v-if="isShow.instagram">
+                <el-col :sm=22 :lg=12>
+                    <span class="users_name_label"><strong>Instagram</strong></span>
+                    <el-input
+                            placeholder="Your Instagram profile link"
+                            v-model="authorDetails.instagram"
                             size="small"
                     ></el-input>
                 </el-col>
@@ -227,6 +238,7 @@
                     facebook: '',
                     twitter: '',
                     linkedin: '',
+                    instagram:'',
                     useBioFrom: 'userProfileBio',
                 },
                 imageFrom: 'gravatar',
@@ -240,6 +252,7 @@
                     facebook: true,
                     twitter: true,
                     linkedin: true,
+                    instagram: true
                 }
             }
         },
@@ -278,6 +291,7 @@
             }).then((res) => {
 
                 if(res.data.data){
+                    console.log(res.data.socials)
                         this.isShow= res.data.socials
                         this.authorDetails.authorId = res.data.data.author_id,
                         this.authorDetails.name = res.data.data.author_name,
@@ -287,6 +301,7 @@
                         this.authorDetails.facebook = res.data.data.author_fb,
                         this.authorDetails.twitter = res.data.data.author_tw,
                         this.authorDetails.linkedin = res.data.data.author_ln,
+                        this.authorDetails.instagram = res.data.data.author_ins,
                         this.authorDetails.useBioFrom = res.data.data.useBioFrom,
                         this.profile.image = res.data.data.author_img
                         this.imageFrom = res.data.imageFrom
