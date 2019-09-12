@@ -4,8 +4,7 @@
   border: 1px solid #ededed70;
   padding: 17px;
   display: flex;
-  border-radius: 12px;
-  margin-bottom: 23px;
+  border-radius: 7px;
   flex-wrap: wrap;
 
   h1.author_name {
@@ -19,10 +18,6 @@
     a {
       box-shadow: none !important;
       text-decoration: none !important;
-    }
-
-    a.insta {
-      margin-top: -10px;
     }
 
     img {
@@ -55,10 +50,6 @@
         a {
           box-shadow: none !important;
           text-decoration: none !important;
-        }
-
-        a.insta {
-          margin-top: -10px;
         }
       }
     }
@@ -102,24 +93,18 @@
   .author_bio_socials_template1 {
     .author_bio_socials {
       display: flex;
-
-      a.insta {
-        margin-top: -10px;
-      }
     }
   }
 
   .author_bio_socials {
     text-align: center;
-
-    i.authbio-instagrem {
-      border-radius: 17px;
-      font-size: 17px;
+   i {
+      font-size: 20px;
       background: #7d7da5;
+      border-radius: 19px;
+      padding: 7px 7px 1px 6px;
       color: white;
-      padding: 6px 6px 3px 7px;
     }
-
     a {
       font-size: 32px;
       color: #7d7da5;
@@ -153,7 +138,7 @@ p.author_bio_more_post {
 /* Style the buttons inside the tab */
 .auth_bio_tab_main button {
   font-size: 12px;
-  padding: 3px 15px;
+  padding: 1px 12px;
   background-color: #ccc;
   float: left;
   border: none;
@@ -189,6 +174,7 @@ div#auth_recent_tab {
 /* Create an active/current tablink class */
 .auth_bio_tab_main button.active {
   background-color: #aaa;
+  color: #252525;
 }
 
 /* Style the tab content */
