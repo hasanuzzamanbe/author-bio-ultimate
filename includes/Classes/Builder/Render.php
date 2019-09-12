@@ -178,7 +178,17 @@ class Render
         if(true){
             $recentPosts .=   $this->getRecent($post, $data->author_name);
         }
-        return $content . $bio_content . $recentPosts;
+        $tab = "<div class='auth_bio_tab_main'>";
+        $tab .= "<button class='tablinks' data-tab_name='auth_bio_tab'>Bio</button>";
+        $tab .= "<button class='tablinks' data-tab_name='auth_recent_tab'>Recent post</button>";
+        $tab .= "</div>";
+        $tab .= "<div style='display: block;' id='auth_bio_tab' class='auth_bio_tabcontent'>";
+        $tab .= $bio_content;
+        $tab .= "</div>";
+        $tab .= "<div id='auth_recent_tab' class='auth_bio_tabcontent'>";
+        $tab .= $recentPosts;
+        $tab .= "</div>";
+        return $content . $tab;
     }
 
     private function word_count($string, $limit)
@@ -220,6 +230,13 @@ class Render
     public function addAssets()
     {
         wp_enqueue_style('author_bio_public', AUTHORBIO_URL . 'dist/admin/css/author-bio-public.css', array(), AUTHORBIO_VERSION);
+        wp_enqueue_script(
+            'author_bio_frontend_js',
+            AUTHORBIO_URL . 'dist/admin/js/author-bio-frontent.js',
+            array( 'jquery' ),
+            AUTHORBIO_VERSION,
+            true
+        );
     }
 
 

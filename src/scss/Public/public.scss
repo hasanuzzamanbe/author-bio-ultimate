@@ -1,7 +1,6 @@
 @import "icons";
 
 .author_bio_main_wrap {
-  margin-top: 100px;
   border: 1px solid #ededed70;
   padding: 17px;
   display: flex;
@@ -150,3 +149,40 @@ p.author_bio_more_post {
   }
 }
 
+//tab css
+/* Style the tab */
+.auth_bio_tab_main {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  margin-top: 100px;
+}
+
+/* Style the buttons inside the tab */
+.auth_bio_tab_main button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.auth_bio_tab_main button:hover {
+  color: #252525;
+}
+
+/* Create an active/current tablink class */
+.auth_bio_tab_main button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.auth_bio_tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}

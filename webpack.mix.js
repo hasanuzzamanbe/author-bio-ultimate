@@ -5,6 +5,7 @@ mix
     .js('src/js/Boot.js', 'dist/js/boot.js')
     .js('src/js/main.js', 'dist/js/author-bio.js')
     .js('src/integrations/tinymce.js', 'dist/js/tinymce.js')
+    .js('src/Frontend/author-bio.js', 'dist/admin/js/author-bio-frontent.js')
 
     // .js('src/admin/main.js', 'dist/admin/css/chart-maker-admin.css')
     .sass('src/scss/public/public.scss', 'dist/admin/css/author-bio-public.css')

@@ -31,6 +31,22 @@
                 </el-col>
             </el-row>
         </div>
+
+
+        <el-row class="users_details_row">
+            <el-col>
+                <h3 class="users_details_row_header">Recent Post Settings:</h3>
+            </el-col>
+        </el-row>
+        <div class="inner_box">
+            <el-row class="users_template_row">
+            </el-row>
+            <el-row class="users_template_row" :gutter="20">
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <el-radio class="template_radio" v-model="useTemp" label="template1">Template 1</el-radio>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 <script>
