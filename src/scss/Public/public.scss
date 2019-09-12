@@ -6,6 +6,8 @@
   padding: 17px;
   display: flex;
   border-radius: 12px;
+  margin-bottom: 23px;
+  flex-wrap: wrap;
 
   h1.author_name {
     margin-bottom: 0px;
@@ -14,6 +16,15 @@
   .author_bio_left_col {
     flex: 1 0 0px;
     padding: 7px 0 0 0;
+
+    a {
+      box-shadow: none !important;
+      text-decoration: none !important;
+    }
+
+    a.insta {
+      margin-top: -10px;
+    }
 
     img {
       border-radius: 83px;
@@ -25,6 +36,14 @@
     flex: 3 0 0;
     padding: 0 0 0 14px;
 
+    a {
+      box-shadow: none !important;
+      text-decoration: none !important;
+    }
+
+    box-shadow: none !important;
+    text-decoration: none !important;
+
     .author_bio_content_inner {
       position: relative;
 
@@ -33,6 +52,15 @@
         position: absolute;
         right: -30px;
         display: grid;
+
+        a {
+          box-shadow: none !important;
+          text-decoration: none !important;
+        }
+
+        a.insta {
+          margin-top: -10px;
+        }
       }
     }
 
@@ -74,11 +102,16 @@
   .author_bio_socials_template1 {
     .author_bio_socials {
       display: flex;
+
+      a.insta {
+        margin-top: -10px;
+      }
     }
   }
 
   .author_bio_socials {
     text-align: center;
+
     i.authbio-instagrem {
       border-radius: 17px;
       font-size: 17px;
@@ -95,3 +128,25 @@
   }
 
 }
+
+//recent content CSS
+p.author_bio_more_post {
+  font-weight: bold;
+}
+.author_bio_recent_main {
+  display: flex;
+  flex-wrap: wrap;
+
+  .author_bio_recent_inner_post {
+    width: 172px;
+    flex: 1;
+    margin-right: 15px;
+
+    .auth_post_recent_img {
+      min-width: 151px;
+      min-height: 102px;
+      background-size: cover;
+    }
+  }
+}
+

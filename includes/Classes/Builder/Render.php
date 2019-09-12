@@ -48,7 +48,7 @@ class Render
                     ?>
                 </div>
                 <?php if($template !== 'template1' && $template !== 'template3'){ ?>
-                    <div class="author_bio_socials">
+                    <div class="author_bio_socials socials_template2">
 
                     <?php if ($socials['facebook'] === 'true') { ?>
                         <a href="<?php echo $data->author_fb; ?>" target="_blank">
@@ -69,7 +69,7 @@ class Render
 
                     <?php }
                     if ($socials['instagram'] === 'true') { ?>
-                        <a href="<?php echo $data->author_ins; ?> " target="_blank">
+                        <a class="insta" href="<?php echo $data->author_ins; ?> " target="_blank">
                             <i class="authbio-instagrem"></i>
                         </a>
                     <?php } ?>
@@ -80,9 +80,9 @@ class Render
 
             <div class="author_bio_content">
             <div class="author_bio_content_inner">
-                <h1 class="author_name">
+                <h2 class="author_name">
                     <?php echo($data->author_name); ?>
-                </h1>
+                </h2>
                 <?php if($template === 'template3'){ ?>
                     <div class="author_bio_socials">
 
@@ -141,7 +141,7 @@ class Render
                 </div>
                 <?php if($template === 'template1'){ ?>
                     <div class="author_bio_socials_template1">
-                    <div class="author_bio_socials">
+                    <div class="author_bio_socials socials_template1">
                         <?php if ($socials['facebook'] === 'true') { ?>
                             <a href="<?php echo $data->author_fb; ?>" target="_blank">
                                 <i class="authbio-facebook-circled"></i>
@@ -161,7 +161,7 @@ class Render
 
                         <?php }
                         if ($socials['instagram'] === 'true') { ?>
-                            <a href="<?php echo $data->author_ins; ?> " target="_blank">
+                            <a class="insta" href="<?php echo $data->author_ins; ?> " target="_blank">
                                 <i class="authbio-instagrem"></i>
                             </a>
                         <?php } ?>
@@ -174,7 +174,47 @@ class Render
 
         <?php
         $bio_content = ob_get_clean();
-        return $content . $bio_content;
+        $recentPosts ='';
+        if(true){
+            $recentPosts .=   $this->getRecent($post, $data->author_name);
+        }
+        return $content . $bio_content . $recentPosts;
+    }
+
+    private function word_count($string, $limit)
+    {
+        $words = explode(' ', $string);
+        return implode(' ', array_slice($words, 0, $limit));
+    }
+
+    public function getRecent($post, $authorName){
+        $authorId=$post->post_author;
+        $html =   '<p class="author_bio_more_post">More Posts By '.$authorName.'</p>';
+
+        $html .= "<div class='author_bio_recent_main'>";
+        $query = array('author' => $authorId, 'showposts' => '3', 'post_type'=> 'post', 'post__not_in' => array( $post->ID ),'post_status' => 'publish');
+        $recent_posts = get_posts($query);
+
+        foreach ($recent_posts as $recent) {
+
+            $html .= "<div class='author_bio_recent_inner_post'>";
+            $image = wp_get_attachment_image_src(get_post_thumbnail_id($recent->ID), 'single-post-thumbnail');
+            $html .=  '<div class="auth_post_recent_img" style="background-image: url('.$image[0].');"></div>';
+            $html .= '<div class="auth_post_recent_title">';
+            $title = $this->word_count($recent->post_title, 8);
+            $html .="<p>$title</p>" ;
+            $html .= '</div>';
+            $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >See More</a> </div>';
+
+        }
+        $html .= "</div>";
+
+
+//        $recents .= $this->word_count($recent["post_content"], 18) . '...';
+//        $recents .= '<br><a href="' . get_permalink($recent["ID"]) . '" title="Look ' . esc_attr($recent["post_title"]) . '" >Details</a> </div>';
+//        dd($recent_posts);
+
+        return $html;
     }
 
     public function addAssets()
