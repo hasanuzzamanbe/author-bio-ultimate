@@ -24,10 +24,10 @@ class AdminAjaxHandler
         $route = sanitize_text_field($_REQUEST['route']);
 
         $validRoutes = array(
-            'add_bio'           => 'addBio',
-            'get_bio'           => 'getBio',
-            'update_settings'   => 'updateSettings',
-            'get_settings'      => 'getSettings',
+            'add_bio' => 'addBio',
+            'get_bio' => 'getBio',
+            'update_settings' => 'updateSettings',
+            'get_settings' => 'getSettings',
 
         );
         if (isset($validRoutes[$route])) {
@@ -56,7 +56,6 @@ class AdminAjaxHandler
         update_post_meta($authorId, 'author_bio_editorbio', $author_bio);
         update_post_meta($authorId, 'author_bio_social_option', $socialsVal);
         update_post_meta($authorId, 'author_bio_image_from_option', $imageFrom);
-
 
 
         global $wpdb;
@@ -117,23 +116,23 @@ class AdminAjaxHandler
 
         $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
         $socials = get_post_meta($authorId, 'author_bio_social_option', true);
-        if($socials === '') {
+        if ($socials === '') {
             $socials = [
                 'facebook' => true,
                 'twitter' => true,
                 'linkedin' => true,
                 'instagram' => true,
-                ];
+            ];
         };
         $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
-        if($imageFrom === '') {
+        if ($imageFrom === '') {
             $imageFrom = 'gravatar';
         };
         wp_send_json_success(array(
-            'data'        => $data,
-            'socials'     => $socials,
-            'imageFrom'   => $imageFrom,
-            'bio'         => $bioFromeditor
+            'data' => $data,
+            'socials' => $socials,
+            'imageFrom' => $imageFrom,
+            'bio' => $bioFromeditor
         ), 200);
 
     }
@@ -147,27 +146,55 @@ class AdminAjaxHandler
         $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
         $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
         return array(
-            'data'        => $data,
-            'socials'     => $socials,
-            'imageFrom'   => $imageFrom,
-            'bio'         => $bioFromeditor
+            'data' => $data,
+            'socials' => $socials,
+            'imageFrom' => $imageFrom,
+            'bio' => $bioFromeditor
         );
     }
 
-    public static function updateSettings(){
+    public static function updateSettings()
+    {
+
+        $data = wp_unslash($_REQUEST);
         $authorId = get_current_user_id();
-        update_post_meta($authorId, 'author_bio_template', $_REQUEST['data']);
+        update_post_meta($authorId, 'author_bio_template', $data['data']);
     }
 
-    public static function getSettings(){
+    public static function getSettings()
+    {
         $authorId = get_current_user_id();
-        $template = get_post_meta($authorId, 'author_bio_template', true);
-        if($template === '' || null){
-            $template = 'template2';
+        $settings = get_post_meta($authorId, 'author_bio_template', true);
+        if ($settings['useTemp'] === '') {
+            $settings = array(
+                "useTemp" => "template2",
+                "recentPost" => "enabled",
+                "postCount" => "3",
+                "excludes" => '',
+                "excludesArray" => []
+            );
         }
+
+
         wp_send_json_success(array(
-            'template'        => $template,
+            'settings' => $settings,
         ), 200);
+    }
+
+    public static function getSettingsFrontend($authorId)
+    {
+        $template = get_post_meta($authorId, 'author_bio_template', true);
+        if ($template === '' || $template === null) {
+            $template = array(
+                "useTemp" => "template2",
+                "recentPost" => "enabled",
+                "postCount" => "3",
+                "excludes" => '',
+                "excludesArray" => []
+            );
+
+        }
+        return $template;
     }
 
 }

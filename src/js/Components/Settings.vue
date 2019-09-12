@@ -6,6 +6,45 @@
                 <el-button type="primary" size="mini" @click="update">update settings</el-button>
             </el-col>
         </el-row>
+
+        <el-row class="users_details_row">
+            <el-col>
+                <h3 class="users_details_row_header">Recent Post Settings:</h3>
+            </el-col>
+        </el-row>
+        <div class="inner_box">
+            <el-row class="users_template_row" :gutter="20">
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <el-checkbox v-model="settings.recentPost" true-label="enabled" label="Show recent Posts By author"></el-checkbox>
+                </el-col>
+            </el-row>
+            <el-row v-if="this.settings.recentPost === 'enabled'" class="users_template_row" :gutter="20" style="margin-top:23px;">
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <strong><span class="demo-input-label">How many post you want to show in recent?</span></strong><br>
+                    <el-input-number size="mini" v-model="settings.postCount"  :min="1" :max="20"></el-input-number>
+                </el-col>
+            </el-row>
+        </div>
+
+        <el-row class="users_details_row">
+            <el-col>
+                <h3 class="users_details_row_header">Exclude Author Bio For Specefic Post:</h3>
+            </el-col>
+        </el-row>
+        <div class="inner_box">
+            <el-row class="users_template_row" :gutter="20" style="margin-top:23px;">
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <strong><span class="demo-input-label">Enter post Id to exclude author bio from post.</span></strong><br>
+                    <el-input
+                            placeholder="For multiple post use comma as seperator: (12,34,2)"
+                            v-model="settings.excludes"
+                            >
+                    </el-input>
+                </el-col>
+            </el-row>
+        </div>
+
+
         <el-row class="users_details_row">
             <el-col>
                 <h3 class="users_details_row_header">Social Icon Templates:</h3>
@@ -16,37 +55,22 @@
             </el-row>
             <el-row class="users_template_row" :gutter="20">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="template_radio" v-model="useTemp" label="template1">Template 1</el-radio>
+                    <el-radio class="template_radio" v-model="settings.useTemp" label="template1">Template 1</el-radio>
                     <img :src="assets_url + 'admin/templates/template1.png'"/>
                 </el-col>
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="template_radio" v-model="useTemp" label="template2">Template 2</el-radio>
+                    <el-radio class="template_radio" v-model="settings.useTemp" label="template2">Template 2</el-radio>
                     <img :src="assets_url + 'admin/templates/template2.png'"/>
                 </el-col>
             </el-row>
             <el-row class="users_template_row">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="template_radio" v-model="useTemp" label="template3">Template 3</el-radio>
+                    <el-radio class="template_radio" v-model="settings.useTemp" label="template3">Template 3</el-radio>
                     <img :src="assets_url + 'admin/templates/template3.png'"/>
                 </el-col>
             </el-row>
         </div>
 
-
-        <el-row class="users_details_row">
-            <el-col>
-                <h3 class="users_details_row_header">Recent Post Settings:</h3>
-            </el-col>
-        </el-row>
-        <div class="inner_box">
-            <el-row class="users_template_row">
-            </el-row>
-            <el-row class="users_template_row" :gutter="20">
-                <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="template_radio" v-model="useTemp" label="template1">Template 1</el-radio>
-                </el-col>
-            </el-row>
-        </div>
     </div>
 </template>
 <script>
@@ -55,13 +79,21 @@
         data() {
             return {
                 assets_url: window.authorBioAdmin.assets_url,
-                useTemp: 'template2'
+                settings: {
+                    useTemp: 'template2',
+                    recentPost: 'enabled',
+                    postCount: 3,
+                    excludes: ''
+                }
             }
         },
         methods: {
             update() {
+                this.settings.excludesArray =  this.settings.excludes.split(',');
+                console.log(this.settings)
+
                 this.$adminPost({
-                    data: this.useTemp,
+                    data: this.settings,
                     action: "author_bio_admin_ajax",
                     route: "update_settings"
                 }).then(
@@ -77,7 +109,9 @@
             this.$adminGet({
                 route: "get_settings"
             }).then((res) => {
-                this.useTemp = res.data.template;
+                console.log(res);
+                    this.settings = res.data.settings;
+
             })
         }
     }

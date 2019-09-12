@@ -22,6 +22,17 @@ class Render
         $this->addAssets();
 
         global $post;
+
+
+        $author = get_user_by('id', $post->post_author);
+
+        $template = AdminAjaxHandler::getSettingsFrontend($author->ID);
+
+
+        $hasExclude = in_array($post->ID, $template['excludesArray']);
+        if($hasExclude){
+            return $content;
+        };
         $info = AdminAjaxHandler::getUserInfos($post->post_author);
         $data = $info['data'];
         $socials = $info['socials'];
@@ -29,11 +40,11 @@ class Render
         $apost= get_author_posts_url( get_the_author_meta( 'ID' ) );
 
 
-        $author = get_user_by('id', $post->post_author);
+
         $bio = get_user_meta($author->ID, 'description', true);
-        $template = get_post_meta($author->ID, 'author_bio_template', true);
-        if($template === '' || null){
-            $template = 'template2';
+
+        if($template['useTemp'] === '' || null){
+            $template['useTemp'] = 'template2';
         }
 
         ob_start();
@@ -49,7 +60,7 @@ class Render
                     }
                     ?>
                 </div>
-                <?php if($template !== 'template1' && $template !== 'template3'){ ?>
+                <?php if($template['useTemp'] !== 'template1' && $template['useTemp'] !== 'template3'){ ?>
                     <div class="author_bio_socials socials_template2">
 
                     <?php if ($socials['facebook'] === 'true') { ?>
@@ -85,7 +96,7 @@ class Render
                 <h2 class="author_name">
                     <?php echo($data->author_name); ?>
                 </h2>
-                <?php if($template === 'template3'){ ?>
+                <?php if($template['useTemp'] === 'template3'){ ?>
                     <div class="author_bio_socials">
 
                         <?php if ($socials['facebook'] === 'true') { ?>
@@ -141,7 +152,7 @@ class Render
                     }
                     ?>
                 </div>
-                <?php if($template === 'template1'){ ?>
+                <?php if($template['useTemp'] === 'template1'){ ?>
                     <div class="author_bio_socials_template1">
                     <div class="author_bio_socials socials_template1">
                         <?php if ($socials['facebook'] === 'true') { ?>
@@ -178,8 +189,12 @@ class Render
         $bio_content = ob_get_clean();
 
         $recentPosts ='';
-        if(true){
-            $recentPosts .=   $this->getRecent($post, $data->author_name);
+
+        if($template['recentPost'] === 'enabled'){
+            $postCount = $template['postCount'];
+            $recentPosts .=   $this->getRecent($post, $data->author_name, $postCount );
+        }else{
+            return $content . $bio_content;
         }
         $tab = "<div class='auth_bio_tab_main'>";
             $tab .= "<button id='auth_bio_left_btn' class='authbiotablinks active' data-tab_name='auth_bio_tab'>Bio</button>";
@@ -202,10 +217,12 @@ class Render
         return implode(' ', array_slice($words, 0, $limit));
     }
 
-    public function getRecent($post, $authorName){
-
+    public function getRecent($post, $authorName, $postCount){
+        if($postCount === null || $postCount === ''){
+            $postCount = 3;
+        }
         $authorId=$post->post_author;
-        $query = array('author' => $authorId, 'showposts' => '3', 'post_type'=> 'post', 'post__not_in' => array( $post->ID ),'post_status' => 'publish');
+        $query = array('author' => $authorId, 'showposts' => $postCount, 'post_type'=> 'post', 'post__not_in' => array( $post->ID ),'post_status' => 'publish');
         $recent_posts = get_posts($query);
         $html = '';
         if($recent_posts){
