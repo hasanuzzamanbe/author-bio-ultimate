@@ -158,6 +158,7 @@ class AdminAjaxHandler
         $authorId = get_current_user_id();
         update_post_meta($authorId, 'author_bio_template', $_REQUEST['data']);
     }
+
     public static function getSettings(){
         $authorId = get_current_user_id();
         $template = get_post_meta($authorId, 'author_bio_template', true);
