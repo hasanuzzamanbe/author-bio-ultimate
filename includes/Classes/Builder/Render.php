@@ -305,7 +305,7 @@ class Render
         if ($recent_posts) {
             $html .= '<p class="author_bio_more_post">More Posts By ' . $authorName . ' (<a href='.$apost.'> all posts </a>)</p>';
         } else {
-            $html .= '<p class="author_bio_more_post">No more posts by' . $authorName . '</p>';
+            $html .= '<p class="author_bio_more_post">No more posts by ' . $authorName . '</p>';
         }
 
         if($template['recentType'] ==='image') {

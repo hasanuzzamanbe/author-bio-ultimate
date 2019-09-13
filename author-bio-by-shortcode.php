@@ -46,9 +46,9 @@ if (!defined('AUTHORBIO_VERSION')) {
         public function boot()
         {
             $this->loadDependecies();
-//            if (is_admin()) {
+            if (is_admin()) {
                 $this->adminHooks();
-//            }
+            }
             $this->commonHooks();
         }
 
