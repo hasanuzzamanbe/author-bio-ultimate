@@ -56,7 +56,7 @@ class Activator
                                           `author_img` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
                                           `author_gravatar` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
                                           `author_designation` varchar(255) COLLATE 'utf8mb4_general_ci' NULL,
-                                          `author_useBioFrom` varchar(255) COLLATE 'utf8mb4_general_ci' NULL
+                                          `useBioFrom` varchar(255) COLLATE 'utf8mb4_general_ci' NULL
                                         ) $charset_collate;";
 
         $this->runSQL($sql, $table_name);
