@@ -14,6 +14,7 @@ class Menu
     public function addMenus()
     {
         $menuPermission = AccessControl::hasTopLevelMenuPermission();
+//        $menuPermission = true;
         if (!$menuPermission) {
             return;
         }

@@ -10,6 +10,7 @@ class GlobalSettingsHandler
     public function registerHooks()
     {
         add_action('wp_ajax_author_bio_global_settings_handler', array($this, 'handleEndpoints'));
+        add_filter( 'user_contactmethods', array($this, 'userContactMethods') );
     }
 
     public function handleEndpoints()
@@ -21,7 +22,6 @@ class GlobalSettingsHandler
 
         if (isset($routes[$route])) {
 
-//            AccessControl::checkAndPresponseError($route, 'global');
             do_action('authorbio/doing_ajax_global_'.$route);
             $this->{$routes[$route]}();
             return;
@@ -53,6 +53,15 @@ class GlobalSettingsHandler
         } else {
             wp_send_json(__('Something is wrong when uploading the file', 'authorbio'), 423);
         }
+    }
+
+    public function userContactMethods($methods)
+    {
+            $methods['twitter'] = __( 'Twitter', 'authBio' );
+            $methods['facebook'] = __( 'Facebook', 'authBio' );
+            $methods['linkedin'] = __( 'Linkedin', 'authBio' );
+            $methods['instagram'] = __( 'Inatagram', 'authBio' );
+            return $methods;
     }
 
 }

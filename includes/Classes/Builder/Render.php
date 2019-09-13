@@ -30,20 +30,27 @@ class Render
 
 
         $hasExclude = in_array($post->ID, $template['excludesArray']);
-        if($hasExclude){
+        if ($hasExclude) {
             return $content;
         };
         $info = AdminAjaxHandler::getUserInfos($post->post_author);
         $data = $info['data'];
-        $socials = $info['socials'];
-        $image = "<img style='width:128px;' src='$data->author_img'>";
-        $apost= get_author_posts_url( get_the_author_meta( 'ID' ) );
 
+        $socials = $info['socials'];
+
+        $image = "<img style='width:128px;' src='$data->author_img'>";
+        $apost = get_author_posts_url(get_the_author_meta('ID'));
+        $user_info = get_userdata($author->ID);
+
+        $twitter = get_user_meta($author->ID, 'twitter', true);
+        $facebook = get_user_meta($author->ID, 'facebook', true);
+        $linkedin = get_user_meta($author->ID, 'linkedin', true);
+        $instagram = get_user_meta($author->ID, 'instagram', true);
 
 
         $bio = get_user_meta($author->ID, 'description', true);
 
-        if($template['useTemp'] === '' || null){
+        if ($template['useTemp'] === '' || null) {
             $template['useTemp'] = 'template2';
         }
 
@@ -60,79 +67,114 @@ class Render
                     }
                     ?>
                 </div>
-                <?php if($template['useTemp'] !== 'template1' && $template['useTemp'] !== 'template3'){ ?>
+                <?php if ($template['useTemp'] !== 'template1' && $template['useTemp'] !== 'template3') { ?>
                     <div class="author_bio_socials socials_template2">
 
-                    <?php if ($socials['facebook'] === 'true') { ?>
-                        <a href="<?php echo $data->author_fb; ?>" target="_blank">
-                            <i class="authbio-facebook"></i>
-                        </a>
-
-                    <?php }
-                    if ($socials['twitter'] === 'true') { ?>
-                        <a href="<?php echo $data->author_tw; ?> " target="_blank">
-                            <i class="authbio-twitter"></i>
-                        </a>
-                    <?php }
-                    if ($socials['linkedin'] === 'true') { ?>
-
-                        <a href="<?php echo $data->author_ln; ?> " target="_blank">
-                            <i class="authbio-linkedin"></i>
-                        </a>
-
-                    <?php }
-                    if ($socials['instagram'] === 'true') { ?>
-                        <a class="insta" href="<?php echo $data->author_ins; ?> " target="_blank">
-                            <i class="authbio-instagram"></i>
-                        </a>
-                    <?php } ?>
-
-                </div>
-                 <?php } ?>
-            </div>
-
-            <div class="author_bio_content">
-            <div class="author_bio_content_inner">
-                <h2 class="author_name">
-                    <?php echo($data->author_name); ?>
-                </h2>
-                <?php if($template['useTemp'] === 'template3'){ ?>
-                    <div class="author_bio_socials">
-
-                        <?php if ($socials['facebook'] === 'true') { ?>
-                            <a href="<?php echo $data->author_fb; ?>" target="_blank">
+                        <?php if ($data->author_ln && $socials['facebook'] === 'true') {
+                            ?>  <a href="<?php echo $data->author_fb; ?> " target="_blank">
                                 <i class="authbio-facebook"></i>
                             </a>
-
+                            <?php
+                        } elseif ($facebook !== '') {
+                            ?>  <a  href="<?php echo $facebook; ?> " target="_blank">
+                                <i class="authbio-facebook"></i>
+                            </a>
                         <?php }
-                        if ($socials['twitter'] === 'true') { ?>
-                            <a href="<?php echo $data->author_tw; ?> " target="_blank">
+                        if ($data->author_ln && $socials['twitter'] === 'true') {
+                            ?>  <a href="<?php echo $data->author_tw; ?> " target="_blank">
+                                <i class="authbio-twitter"></i>
+                            </a>
+                            <?php
+                        } elseif ($twitter !== '') {
+                            ?>  <a  href="<?php echo $twitter; ?> " target="_blank">
                                 <i class="authbio-twitter"></i>
                             </a>
                         <?php }
-                        if ($socials['linkedin'] === 'true') { ?>
-
-                            <a href="<?php echo $data->author_ln; ?> " target="_blank">
-                                <i class="authbio-linkedin"></i>
-                            </a>
-
+                            if ($data->author_ln && $socials['linkedin'] === 'true') {
+                                ?>  <a href="<?php echo $data->author_ln; ?> " target="_blank">
+                                      <i class="authbio-linkedin"></i>
+                                    </a>
+                                <?php
+                            } elseif ($linkedin !== '') {
+                                ?>  <a  href="<?php echo $linkedin; ?> " target="_blank">
+                                    <i class="authbio-linkedin"></i>
+                                    </a>
                         <?php }
-                        if ($socials['instagram'] === 'true') { ?>
-                            <a href="<?php echo $data->author_ins; ?> " target="_blank">
-                                <i class="authbio-instagram"></i>
-                            </a>
-                        <?php } ?>
+                            if ($data->author_ins && $socials['instagram'] === 'true') {
+                                ?>  <a class="insta" href="<?php echo $data->author_ins; ?> " target="_blank">
+                                       <i class="authbio-instagram"></i>
+                                    </a>
+                                <?php
+                            } elseif ($instagram !== '') {
+                                ?>  <a class="insta" href="<?php echo $instagram; ?> " target="_blank">
+                                       <i class="authbio-instagram"></i>
+                                    </a>
+                                <?php
+                            }
+                        ?>
 
                     </div>
                 <?php } ?>
             </div>
+
+            <div class="author_bio_content">
+                <div class="author_bio_content_inner">
+
+                    <h2 class="author_name">
+                        <?php
+                        if ($data !== null && $data !== '') {
+                            echo($data->author_name);
+                        } else {
+                            echo $authFullname = $user_info->display_name;
+                        }
+
+                        ?>
+                    </h2>
+
+                    <?php if ($template['useTemp'] === 'template3') { ?>
+                        <div class="author_bio_socials">
+
+                            <?php if (isset($socials) && $socials['facebook'] === 'true') { ?>
+                                <a href="<?php echo $data->author_fb; ?>" target="_blank">
+                                    <i class="authbio-facebook"></i>
+                                </a>
+
+                            <?php }
+                            if (isset($socials) && $socials['twitter'] === 'true') { ?>
+                                <a href="<?php echo $data->author_tw; ?> " target="_blank">
+                                    <i class="authbio-twitter"></i>
+                                </a>
+                            <?php }
+                            if (isset($socials) && $socials['linkedin'] === 'true') { ?>
+
+                                <a href="<?php echo $data->author_ln; ?> " target="_blank">
+                                    <i class="authbio-linkedin"></i>
+                                </a>
+
+                            <?php }
+                            if (isset($socials) && $socials['instagram'] === 'true') { ?>
+                                <a href="<?php echo $data->author_ins; ?> " target="_blank">
+                                    <i class="authbio-instagram"></i>
+                                </a>
+                            <?php } ?>
+
+                        </div>
+                    <?php } ?>
+                </div>
                 <?php
                 if ($data->author_email !== '') {
                     ?>
                     <div class="author_email">
                         <i class="authbio-mail"></i>
                         <a href="mailto:<?php echo($data->author_email); ?>">
-                            <?php echo($data->author_email); ?>
+                            <?php
+                            if ($data->author_email !== '' && $data->author_email !== null) {
+                                echo($data->author_email);
+                            } else {
+                                echo $user_info->user_email;
+                            }
+
+                            ?>
                         </a>
                     </div>
                     <?php
@@ -152,34 +194,34 @@ class Render
                     }
                     ?>
                 </div>
-                <?php if($template['useTemp'] === 'template1'){ ?>
+                <?php if ($template['useTemp'] === 'template1') { ?>
                     <div class="author_bio_socials_template1">
-                    <div class="author_bio_socials socials_template1">
-                        <?php if ($socials['facebook'] === 'true') { ?>
-                            <a href="<?php echo $data->author_fb; ?>" target="_blank">
-                                <i class="authbio-facebook"></i>
-                            </a>
+                        <div class="author_bio_socials socials_template1">
+                            <?php if (isset($socials) && $socials['facebook'] === 'true') { ?>
+                                <a href="<?php echo $data->author_fb; ?>" target="_blank">
+                                    <i class="authbio-facebook"></i>
+                                </a>
 
-                        <?php }
-                        if ($socials['twitter'] === 'true') { ?>
-                            <a href="<?php echo $data->author_tw; ?> " target="_blank">
-                                <i class="authbio-twitter"></i>
-                            </a>
-                        <?php }
-                        if ($socials['linkedin'] === 'true') { ?>
+                            <?php }
+                            if (isset($socials) && $socials['twitter'] === 'true') { ?>
+                                <a href="<?php echo $data->author_tw; ?> " target="_blank">
+                                    <i class="authbio-twitter"></i>
+                                </a>
+                            <?php }
+                            if (isset($socials) && $socials['linkedin'] === 'true') { ?>
 
-                            <a href="<?php echo $data->author_ln; ?> " target="_blank">
-                                <i class="authbio-linkedin"></i>
-                            </a>
+                                <a href="<?php echo $data->author_ln; ?> " target="_blank">
+                                    <i class="authbio-linkedin"></i>
+                                </a>
 
-                        <?php }
-                        if ($socials['instagram'] === 'true') { ?>
-                            <a class="insta" href="<?php echo $data->author_ins; ?> " target="_blank">
-                                <i class="authbio-instagram"></i>
-                            </a>
-                        <?php } ?>
+                            <?php }
+                            if (isset($socials) && $socials['instagram'] === 'true') { ?>
+                                <a class="insta" href="<?php echo $data->author_ins; ?> " target="_blank">
+                                    <i class="authbio-instagram"></i>
+                                </a>
+                            <?php } ?>
 
-                    </div>
+                        </div>
                     </div>
                 <?php } ?>
             </div>
@@ -188,24 +230,24 @@ class Render
         <?php
         $bio_content = ob_get_clean();
 
-        $recentPosts ='';
+        $recentPosts = '';
 
-        if($template['recentPost'] === 'enabled'){
+        if ($template['recentPost'] === 'enabled') {
             $postCount = $template['postCount'];
-            $recentPosts .=   $this->getRecent($post, $data->author_name, $postCount );
-        }else{
+            $recentPosts .= $this->getRecent($post, $authFullname, $postCount);
+        } else {
             return $content . $bio_content;
         }
         $tab = "<div class='auth_bio_tab_main'>";
-            $tab .= "<button id='auth_bio_left_btn' class='authbiotablinks active' data-tab_name='auth_bio_tab'>Bio</button>";
-            $tab .= "<button id='auth_bio_right_btn' class='authbiotablinks' data-tab_name='auth_recent_tab'>Recent post</button>";
+        $tab .= "<button id='auth_bio_left_btn' class='authbiotablinks active' data-tab_name='auth_bio_tab'>Bio</button>";
+        $tab .= "<button id='auth_bio_right_btn' class='authbiotablinks' data-tab_name='auth_recent_tab'>Recent post</button>";
         $tab .= "</div>";
         $tab .= "<div style='display: block;' id='auth_bio_tab' class='auth_bio_tabcontent'>";
-            $tab .= $bio_content;
+        $tab .= $bio_content;
         $tab .= "</div>";
         $tab .= "<div id='auth_recent_tab' class='auth_bio_tabcontent'>";
-            $tab .= $recentPosts;
-        $tab .= "<strong><a href='$apost'>Show all post by ".$data->author_name. "</a></strong>";
+        $tab .= $recentPosts;
+        $tab .= "<strong><a href='$apost'>See all post by " . $authFullname . "</a></strong>";
         $tab .= "</div>";
 
         return $content . $tab;
@@ -217,18 +259,19 @@ class Render
         return implode(' ', array_slice($words, 0, $limit));
     }
 
-    public function getRecent($post, $authorName, $postCount){
-        if($postCount === null || $postCount === ''){
+    public function getRecent($post, $authorName, $postCount)
+    {
+        if ($postCount === null || $postCount === '') {
             $postCount = 3;
         }
-        $authorId=$post->post_author;
-        $query = array('author' => $authorId, 'showposts' => $postCount, 'post_type'=> 'post', 'post__not_in' => array( $post->ID ),'post_status' => 'publish');
+        $authorId = $post->post_author;
+        $query = array('author' => $authorId, 'showposts' => $postCount, 'post_type' => 'post', 'post__not_in' => array($post->ID), 'post_status' => 'publish');
         $recent_posts = get_posts($query);
         $html = '';
-        if($recent_posts){
-            $html .=   '<p class="author_bio_more_post">More Posts By '.$authorName.'</p>';
-        }else {
-            $html .=   '<p class="author_bio_more_post">No more posts by'.$authorName.'</p>';
+        if ($recent_posts) {
+            $html .= '<p class="author_bio_more_post">More Posts By ' . $authorName . '</p>';
+        } else {
+            $html .= '<p class="author_bio_more_post">No more posts by' . $authorName . '</p>';
         }
 
 
@@ -238,19 +281,14 @@ class Render
 
             $html .= "<div class='author_bio_recent_inner_post'>";
             $image = wp_get_attachment_image_src(get_post_thumbnail_id($recent->ID), 'single-post-thumbnail');
-            $html .=  '<div class="auth_post_recent_img" style="background-image: url('.$image[0].');"></div>';
+            $html .= '<div class="auth_post_recent_img" style="background-image: url(' . $image[0] . ');"></div>';
             $html .= '<div class="auth_post_recent_title">';
             $title = $this->word_count($recent->post_title, 8);
-            $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >'.$title.'</a> </div>';
+            $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a> </div>';
             $html .= '</div>';
 
         }
         $html .= "</div>";
-
-
-//        $recents .= $this->word_count($recent["post_content"], 18) . '...';
-//        $recents .= '<br><a href="' . get_permalink($recent["ID"]) . '" title="Look ' . esc_attr($recent["post_title"]) . '" >Details</a> </div>';
-//        dd($recent_posts);
         return $html;
     }
 
@@ -260,7 +298,7 @@ class Render
         wp_enqueue_script(
             'author_bio_frontend_js',
             AUTHORBIO_URL . 'dist/admin/js/author-bio-frontent.js',
-            array( 'jquery' ),
+            array('jquery'),
             AUTHORBIO_VERSION,
             true
         );
