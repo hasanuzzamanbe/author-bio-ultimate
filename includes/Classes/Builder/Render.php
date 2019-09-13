@@ -39,7 +39,7 @@ class Render
         $socials = $info['socials'];
 
         $image = "<img style='width:128px;' src='$data->author_img'>";
-        $apost = get_author_posts_url(get_the_author_meta('ID'));
+
         $user_info = get_userdata($author->ID);
 
         $twitter = get_user_meta($author->ID, 'twitter', true);
@@ -268,7 +268,7 @@ class Render
 
         if ($template['recentPost'] === 'enabled') {
             $postCount = $template['postCount'];
-            $recentPosts .= $this->getRecent($post,$authFullname, $postCount);
+            $recentPosts .= $this->getRecent($post,$authFullname, $postCount,$template);
         } else {
             return $content . $bio_content;
         }
@@ -281,7 +281,6 @@ class Render
         $tab .= "</div>";
         $tab .= "<div id='auth_recent_tab' class='auth_bio_tabcontent'>";
         $tab .= $recentPosts;
-        $tab .= "<strong><a href='$apost'>See " . $authFullname . "'s all post >></a></strong>";
         $tab .= "</div>";
 
         return $content . $tab;
@@ -293,7 +292,7 @@ class Render
         return implode(' ', array_slice($words, 0, $limit));
     }
 
-    public function getRecent($post, $authorName, $postCount)
+    public function getRecent($post, $authorName, $postCount, $template)
     {
         if ($postCount === null || $postCount === '') {
             $postCount = 3;
@@ -301,28 +300,38 @@ class Render
         $authorId = $post->post_author;
         $query = array('author' => $authorId, 'showposts' => $postCount, 'post_type' => 'post', 'post__not_in' => array($post->ID), 'post_status' => 'publish');
         $recent_posts = get_posts($query);
+        $apost = get_author_posts_url(get_the_author_meta('ID'));
         $html = '';
         if ($recent_posts) {
-            $html .= '<p class="author_bio_more_post">More Posts By ' . $authorName . '</p>';
+            $html .= '<p class="author_bio_more_post">More Posts By ' . $authorName . ' (<a href='.$apost.'> all posts </a>)</p>';
         } else {
             $html .= '<p class="author_bio_more_post">No more posts by' . $authorName . '</p>';
         }
 
-
-        $html .= "<div class='author_bio_recent_main'>";
-
-        foreach ($recent_posts as $recent) {
-
-            $html .= "<div class='author_bio_recent_inner_post'>";
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($recent->ID), 'single-post-thumbnail');
-            $html .= '<div class="auth_post_recent_img" style="background-image: url(' . $image[0] . ');"></div>';
-            $html .= '<div class="auth_post_recent_title">';
-            $title = $this->word_count($recent->post_title, 8);
-            $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a> </div>';
-            $html .= '</div>';
-
+        if($template['recentType']==='image') {
+            $html .= "<div class='author_bio_recent_main'>";
+            foreach ($recent_posts as $recent) {
+                $html .= "<div class='author_bio_recent_inner_post'>";
+                $image = wp_get_attachment_image_src(get_post_thumbnail_id($recent->ID), 'single-post-thumbnail');
+                $html .= '<div class="auth_post_recent_img" style="background-image: url(' . $image[0] . ');"></div>';
+                $html .= '<div class="auth_post_recent_title">';
+                $title = $this->word_count($recent->post_title, 8);
+                $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a> </div>';
+                $html .= '</div>';
+            }
+            $html .= "</div>";
+        }else {
+            $html .= "<div class='author_bio_recent_main_links'>";
+            foreach ($recent_posts as $recent) {
+                $html .= "<div class='author_bio_recent_inner_post_links'>";
+                $html .= '<div class="auth_post_recent_title">';
+                $title = $this->word_count($recent->post_title, 12);
+                $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a> </div>';
+                $html .= '</div>';
+            }
+            $html .= "</div>";
         }
-        $html .= "</div>";
+
         return $html;
     }
 

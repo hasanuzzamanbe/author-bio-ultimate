@@ -20,8 +20,20 @@
             </el-row>
             <el-row v-if="this.settings.recentPost === 'enabled'" class="users_template_row" :gutter="20" style="margin-top:23px;">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <strong><span class="demo-input-label">How many post you want to show in recent?</span></strong><br>
+                    <strong><p class="demo-input-label">How many post you want to show in recent?</p></strong><br>
+                </el-col>
+                <el-col class="inner_column" :sm=22 :lg=10>
                     <el-input-number size="mini" v-model="settings.postCount"  :min="1" :max="20"></el-input-number>
+                </el-col>
+
+            </el-row>
+            <el-row class="users_template_row" :gutter="20" style="margin-top:23px">
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <strong><p style="margin-top: 0px;" class="demo-input-label">Choose a recent post template type:</p></strong><br>
+                </el-col>
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <el-radio class="recent_type_radio" v-model="settings.recentType" label="image">Title with Image</el-radio>
+                    <el-radio class="recent_type_radio" v-model="settings.recentType" label="titleonly">Title only</el-radio>
                 </el-col>
             </el-row>
         </div>
@@ -84,7 +96,8 @@
                     useTemp: 'template2',
                     recentPost: 'enabled',
                     postCount: 3,
-                    excludes: ''
+                    excludes: '',
+                    recentType:''
                 }
             }
         },

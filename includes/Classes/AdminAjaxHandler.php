@@ -145,13 +145,7 @@ class AdminAjaxHandler
         $socials = get_post_meta($authorId, 'author_bio_social_option', true);
         $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
         $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
-//        if ($socials === '' || $socials === null ) {
-//            $socials = array("facebook" => "false",
-//                  "twitter" => "false",
-//                  "linkedin" => "false",
-//                  "instagram" => "false"
-//            );
-//        }
+
         return array(
             'data' => $data,
             'socials' => $socials,
@@ -178,7 +172,8 @@ class AdminAjaxHandler
                 "recentPost" => "enabled",
                 "postCount" => "3",
                 "excludes" => '',
-                "excludesArray" => []
+                "excludesArray" => [],
+                "recentType" => 'titleonly'
             );
         }
 
@@ -200,7 +195,8 @@ class AdminAjaxHandler
                 "recentPost" => "enabled",
                 "postCount" => "3",
                 "excludes" => '',
-                "excludesArray" => []
+                "excludesArray" => [],
+                "recentType" => 'titleonly'
             );
 
         }
