@@ -289,9 +289,7 @@
             this.$adminGet({
                 route: "get_bio"
             }).then((res) => {
-
                 if(res.data.data){
-                    console.log(res.data.socials)
                         this.isShow= res.data.socials
                         this.authorDetails.authorId = res.data.data.author_id,
                         this.authorDetails.name = res.data.data.author_name,

@@ -145,13 +145,13 @@ class AdminAjaxHandler
         $socials = get_post_meta($authorId, 'author_bio_social_option', true);
         $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
         $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
-        if ($socials === '' || $socials === null ) {
-            $socials = array("facebook" => "false",
-                  "twitter" => "false",
-                  "linkedin" => "false",
-                  "instagram" => "false"
-            );
-        }
+//        if ($socials === '' || $socials === null ) {
+//            $socials = array("facebook" => "false",
+//                  "twitter" => "false",
+//                  "linkedin" => "false",
+//                  "instagram" => "false"
+//            );
+//        }
         return array(
             'data' => $data,
             'socials' => $socials,
@@ -164,15 +164,15 @@ class AdminAjaxHandler
     {
 
         $data = wp_unslash($_REQUEST);
-        $authorId = get_current_user_id();
-        update_post_meta($authorId, 'author_bio_template', $data['data']);
+        update_option( 'author_bio_template', $data, false );
+
     }
 
     public static function getSettings()
     {
-        $authorId = get_current_user_id();
-        $settings = get_post_meta($authorId, 'author_bio_template', true);
-        if ($settings['useTemp'] === '') {
+        $getGettings = get_option( 'author_bio_template' );
+        $settings = $getGettings[data];
+        if (!$settings || $settings['useTemp'] === '') {
             $settings = array(
                 "useTemp" => "template2",
                 "recentPost" => "enabled",
@@ -188,9 +188,12 @@ class AdminAjaxHandler
         ), 200);
     }
 
-    public static function getSettingsFrontend($authorId)
+    public static function getSettingsFrontend()
     {
-        $template = get_post_meta($authorId, 'author_bio_template', true);
+
+        $getGettings = get_option( 'author_bio_template' );
+        $template = $getGettings['data'];
+
         if ($template === '' || $template === null) {
             $template = array(
                 "useTemp" => "template2",

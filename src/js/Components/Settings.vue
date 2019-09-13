@@ -34,9 +34,10 @@
         <div class="inner_box">
             <el-row class="users_template_row" :gutter="20" style="margin-top:23px;">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <strong><span class="demo-input-label">Enter post Id to exclude author bio from post.</span></strong><br>
+                    <strong><span class="demo-input-label">Enter post Id to exclude author bio from post.
+                        <br>For multiple post use comma as seperator:</span></strong><br>
                     <el-input
-                            placeholder="For multiple post use comma as seperator: (12,34,2)"
+                            placeholder="1,2,3...."
                             v-model="settings.excludes"
                             >
                     </el-input>
@@ -90,8 +91,6 @@
         methods: {
             update() {
                 this.settings.excludesArray =  this.settings.excludes.split(',');
-                console.log(this.settings)
-
                 this.$adminPost({
                     data: this.settings,
                     action: "author_bio_admin_ajax",
@@ -99,7 +98,7 @@
                 }).then(
                     this.$message({
                         showClose: true,
-                        message: 'Congrats, Data updated successfully',
+                        message: 'Congrats, Settings updated successfully',
                         type: 'success'
                     })
                 )
@@ -109,9 +108,7 @@
             this.$adminGet({
                 route: "get_settings"
             }).then((res) => {
-                console.log(res);
                     this.settings = res.data.settings;
-
             })
         }
     }
