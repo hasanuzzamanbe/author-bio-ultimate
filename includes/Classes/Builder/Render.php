@@ -35,11 +35,10 @@ class Render
         };
 
 
-
         $data = $info['data'];
 
         $socials = $info['socials'];
-        if(!!$data){
+        if (!!$data) {
             $image = "<img style='width:128px;' src='$data->author_img'>";
         }
 
@@ -50,7 +49,7 @@ class Render
         $facebook = get_user_meta($author->ID, 'facebook', true);
         $linkedin = get_user_meta($author->ID, 'linkedin', true);
         $instagram = get_user_meta($author->ID, 'instagram', true);
-        $authFullname =  '';
+        $authFullname = '';
         if ($data !== null) {
             $authFullname = $data->author_name;
         } else {
@@ -58,10 +57,6 @@ class Render
         }
 
         $bio = get_user_meta($author->ID, 'description', true);
-//
-//        if ($template['useTemp'] === '' || null) {
-//            $template['useTemp'] = 'template2';
-//        }
 
         ob_start();
         ?>
@@ -85,7 +80,7 @@ class Render
                             </a>
                             <?php
                         } elseif ($facebook !== '') {
-                            ?>  <a  href="<?php echo $facebook; ?> " target="_blank">
+                            ?>  <a href="<?php echo $facebook; ?> " target="_blank">
                                 <i class="authbio-facebook"></i>
                             </a>
                         <?php }
@@ -95,7 +90,7 @@ class Render
                             </a>
                             <?php
                         } elseif ($twitter !== '') {
-                            ?>  <a  href="<?php echo $twitter; ?> " target="_blank">
+                            ?>  <a href="<?php echo $twitter; ?> " target="_blank">
                                 <i class="authbio-twitter"></i>
                             </a>
                         <?php }
@@ -105,7 +100,7 @@ class Render
                             </a>
                             <?php
                         } elseif ($linkedin !== '') {
-                            ?>  <a  href="<?php echo $linkedin; ?> " target="_blank">
+                            ?>  <a href="<?php echo $linkedin; ?> " target="_blank">
                                 <i class="authbio-linkedin"></i>
                             </a>
                         <?php }
@@ -143,7 +138,7 @@ class Render
                                 </a>
                                 <?php
                             } elseif ($facebook !== '') {
-                                ?>  <a  href="<?php echo $facebook; ?> " target="_blank">
+                                ?>  <a href="<?php echo $facebook; ?> " target="_blank">
                                     <i class="authbio-facebook"></i>
                                 </a>
                             <?php }
@@ -153,7 +148,7 @@ class Render
                                 </a>
                                 <?php
                             } elseif ($twitter !== '') {
-                                ?>  <a  href="<?php echo $twitter; ?> " target="_blank">
+                                ?>  <a href="<?php echo $twitter; ?> " target="_blank">
                                     <i class="authbio-twitter"></i>
                                 </a>
                             <?php }
@@ -163,7 +158,7 @@ class Render
                                 </a>
                                 <?php
                             } elseif ($linkedin !== '') {
-                                ?>  <a  href="<?php echo $linkedin; ?> " target="_blank">
+                                ?>  <a href="<?php echo $linkedin; ?> " target="_blank">
                                     <i class="authbio-linkedin"></i>
                                 </a>
                             <?php }
@@ -204,7 +199,7 @@ class Render
 
                 <p class="author_bio_desig">
                     <?php
-                    if(!!$data){
+                    if (!!$data) {
                         echo($data->author_designation);
                     }
                     ?>
@@ -221,13 +216,13 @@ class Render
                 </div>
                 <?php if ($template['useTemp'] === 'template1') { ?>
                     <div class="author_bio_socials socials_template1">
-                        <?php if ( !!$data && $data->author_ln !== null && $socials['facebook'] === 'true') {
+                        <?php if (!!$data && $data->author_ln !== null && $socials['facebook'] === 'true') {
                             ?>  <a href="<?php echo $data->author_fb; ?> " target="_blank">
                                 <i class="authbio-facebook"></i>
                             </a>
                             <?php
                         } elseif ($facebook !== '') {
-                            ?>  <a  href="<?php echo $facebook; ?> " target="_blank">
+                            ?>  <a href="<?php echo $facebook; ?> " target="_blank">
                                 <i class="authbio-facebook"></i>
                             </a>
                         <?php }
@@ -237,7 +232,7 @@ class Render
                             </a>
                             <?php
                         } elseif ($twitter !== '') {
-                            ?>  <a  href="<?php echo $twitter; ?> " target="_blank">
+                            ?>  <a href="<?php echo $twitter; ?> " target="_blank">
                                 <i class="authbio-twitter"></i>
                             </a>
                         <?php }
@@ -247,7 +242,7 @@ class Render
                             </a>
                             <?php
                         } elseif ($linkedin !== '') {
-                            ?>  <a  href="<?php echo $linkedin; ?> " target="_blank">
+                            ?>  <a href="<?php echo $linkedin; ?> " target="_blank">
                                 <i class="authbio-linkedin"></i>
                             </a>
                         <?php }
@@ -276,13 +271,21 @@ class Render
 
         if ($template['recentPost'] === 'enabled') {
             $postCount = $template['postCount'];
-            $recentPosts .= $this->getRecent($post,$authFullname, $postCount,$template);
+            $params = array(
+                "post" => $post,
+                "authFullname" => $authFullname,
+                "postCount" => $postCount,
+                "template" => $template,
+                "info" => $info,
+                "image" => $image
+            );
+            $recentPosts .= $this->getRecent($params);
         } else {
             return $content . $bio_content;
         }
         $tab = "<div class='auth_bio_tab_main'>";
-        $tab .= "<button id='auth_bio_left_btn' class='authbiotablinks active' data-tab_name='auth_bio_tab'>Bio</button>";
-        $tab .= "<button id='auth_bio_right_btn' class='authbiotablinks' data-tab_name='auth_recent_tab'>Latest posts</button>";
+        $tab .= "<button id='auth_bio_left_btn' class='authbiotablinks active' data-tab_name='auth_bio_tab'><i class=\"authbio-user\"></i>  Bio</button>";
+        $tab .= "<button id='auth_bio_right_btn' class='authbiotablinks' data-tab_name='auth_recent_tab'><i class=\"authbio-align-right\"></i></i>  Latest posts </button>";
         $tab .= "</div>";
         $tab .= "<div style='display: block;' id='auth_bio_tab' class='auth_bio_tabcontent'>";
         $tab .= $bio_content;
@@ -300,23 +303,24 @@ class Render
         return implode(' ', array_slice($words, 0, $limit));
     }
 
-    public function getRecent($post, $authorName, $postCount, $template)
+    public function getRecent($params)
     {
-        if ($postCount === null || $postCount === '') {
-            $postCount = 3;
+
+        if ($params['postCount'] === null || $params['postCount'] === '') {
+            $params['postCount'] = 3;
         }
-        $authorId = $post->post_author;
-        $query = array('author' => $authorId, 'showposts' => $postCount, 'post_type' => 'post', 'post__not_in' => array($post->ID), 'post_status' => 'publish');
+        $authorId = $params['post']->post_author;
+        $query = array('author' => $authorId, 'showposts' => $params['postCount'], 'post_type' => 'post', 'post__not_in' => array($params['post']->ID), 'post_status' => 'publish');
         $recent_posts = get_posts($query);
         $apost = get_author_posts_url(get_the_author_meta('ID'));
         $html = '';
         if ($recent_posts) {
-            $html .= '<p class="author_bio_more_post">More Posts By ' . $authorName . ' (<a href='.$apost.'> all posts </a>)</p>';
+            $html .= '<p class="author_bio_more_post">More Posts By ' . $params['authFullname'] . ' (<a href=' . $apost . '> all posts </a>)</p>';
         } else {
-            $html .= '<p class="author_bio_more_post">No more posts by ' . $authorName . '</p>';
+            $html .= '<p class="author_bio_more_post">No more posts by ' . $params['authFullname'] . '</p>';
         }
 
-        if($template['recentType'] ==='image') {
+        if ($params['template']['recentType'] === 'image') {
             $html .= "<div class='author_bio_recent_main'>";
             foreach ($recent_posts as $recent) {
                 $html .= "<div class='author_bio_recent_inner_post'>";
@@ -328,19 +332,26 @@ class Render
                 $html .= '</div>';
             }
             $html .= "</div>";
-        }else {
+        } else {
 
             $html .= "<div class='author_bio_recent_main_links'>";
+            $html .= "<div class='auth_bio_recent_left'><div class='auth_bio_avatar'>";
+            if ($params['info']['imageFrom'] === 'upload') {
+                $html .= $params['image'];
+                    } else {
+                $html .=  get_avatar(get_the_author_meta('ID'), 256);
+                    }
+              $html .=  "</div></div>";
+            $html .=  "<div class='auth_bio_recent_right_col'>";
             foreach ($recent_posts as $recent) {
-
-                $date =  substr($recent->post_date,0,10);
-
+                $date = substr($recent->post_date, 0, 10);
                 $html .= "<div class='author_bio_recent_inner_post_links'>";
                 $html .= '<div class="auth_post_recent_title">';
-                $title = $this->word_count($recent->post_title, 12);
-                $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a><span> ('.$date.') </span> </div>';
+                $title = $this->word_count($recent->post_title, 10);
+                $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a><span> (' . $date . ') </span> </div>';
                 $html .= '</div>';
             }
+            $html .=  "</div>";
             $html .= "</div>";
         }
 

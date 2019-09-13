@@ -12,6 +12,7 @@
 
 }
 
+
 [data-icon]:before {
   font-family: "author-bio" !important;
   content: attr(data-icon);
@@ -85,4 +86,19 @@
 }
 .authbio-instagrem:before {
   content: "\70";
+}
+.authbio-user:before {
+  content: "\71";
+}
+.authbio-man-people-streamline-user:before {
+  content: "\72";
+}
+.authbio-user-1:before {
+  content: "\73";
+}
+.authbio-align-right:before {
+  content: "\74";
+}
+.authbio-align-left:before {
+  content: "\75";
 }

@@ -122,6 +122,33 @@
 }
 
 //recent content CSS
+
+.author_bio_recent_main_links {
+  .auth_bio_recent_left {
+    -webkit-box-flex: 1;
+    flex: 1 0 0px;
+    padding: 7px 0 0 0;
+  }
+  .auth_bio_avatar {
+    width: 99px;
+    float: left;
+    margin-right: 23px;
+    margin-top: -20px;
+  }
+  .auth_bio_avatar img{
+    border-radius: 83px;
+  }
+  .auth_bio_recent_right_col {
+    -webkit-box-flex: 3;
+    flex: 3 0 0;
+    padding: 0 0 0 14px;
+    box-shadow: none !important;
+    text-decoration: none !important;
+  }
+
+}
+
+
 p.author_bio_more_post {
   font-weight: bold;
 }
@@ -146,7 +173,7 @@ p.author_bio_more_post {
 .auth_bio_tab_main button {
   font-size: 12px;
   padding: 1px 12px;
-  background-color: #ccc;
+  background-color: #ecf0f4;
   float: left;
   border: none;
   outline: none;
@@ -161,6 +188,9 @@ p.author_bio_more_post {
   margin-top: 100px;
   margin-left: 29px;
   margin-bottom: -6px;
+  button{
+    color:black;
+  }
   #auth_bio_left_btn{
     border-top-left-radius: 9px;
   }
@@ -181,7 +211,7 @@ div#auth_recent_tab {
 /* Create an active/current tablink class */
 .auth_bio_tab_main button.active {
   background-color: #aaa;
-  color: #252525;
+  color: white;
 }
 
 /* Style the tab content */
