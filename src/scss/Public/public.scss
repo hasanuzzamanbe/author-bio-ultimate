@@ -37,10 +37,11 @@
 
     box-shadow: none !important;
     text-decoration: none !important;
-
+    .author_bio_descr p{
+      font-size: 14px !important;
+    }
     .author_bio_content_inner {
       position: relative;
-
       .author_bio_socials {
         text-align: center;
         position: absolute;
@@ -83,6 +84,10 @@
   }
 
   .author_bio_left_col {
+    .avater-image {
+      width: 140px;
+      margin: auto;
+    }
     .author_bio_socials {
       justify-content: space-around;
       padding: 7px 0px 0px 0px;
@@ -96,13 +101,16 @@
       display: flex;
     }
   }
+  .socials_template1{
+    margin-top: -12px;
+  }
 
   .author_bio_socials {
-   i {
-      font-size: 20px;
+    i {
+      font-size: 18px;
       background: #7d7da5;
       border-radius: 19px;
-      padding: 7px 7px 1px 6px;
+      padding: 5px 5px 1px 5px;
       color: white;
     }
     a {

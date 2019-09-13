@@ -125,11 +125,11 @@ class Render
             <div class="author_bio_content">
                 <div class="author_bio_content_inner">
 
-                    <h2 class="author_name">
+                    <h3 class="author_name">
                         <?php
                             echo $authFullname;
                         ?>
-                    </h2>
+                    </h3>
 
                     <?php if ($template['useTemp'] === 'template3') { ?>
                         <div class="author_bio_socials socials_template3">
@@ -308,7 +308,7 @@ class Render
             $html .= '<p class="author_bio_more_post">No more posts by' . $authorName . '</p>';
         }
 
-        if($template['recentType']==='image') {
+        if($template['recentType'] ==='image') {
             $html .= "<div class='author_bio_recent_main'>";
             foreach ($recent_posts as $recent) {
                 $html .= "<div class='author_bio_recent_inner_post'>";
@@ -321,12 +321,16 @@ class Render
             }
             $html .= "</div>";
         }else {
+
             $html .= "<div class='author_bio_recent_main_links'>";
             foreach ($recent_posts as $recent) {
+
+                $date =  substr($recent->post_date,0,10);
+
                 $html .= "<div class='author_bio_recent_inner_post_links'>";
                 $html .= '<div class="auth_post_recent_title">';
                 $title = $this->word_count($recent->post_title, 12);
-                $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a> </div>';
+                $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a><span> ('.$date.') </span> </div>';
                 $html .= '</div>';
             }
             $html .= "</div>";
