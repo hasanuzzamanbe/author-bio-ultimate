@@ -323,8 +323,8 @@ class Render
             $hasPost .= '<p class="author_bio_more_post">No more posts by ' . $params['authFullname'] . '</p>';
         }
         $html = '';
-        $html .= $hasPost;
         if ($params['template']['recentType'] === 'image') {
+            $html .= $hasPost;
             $html .= "<div class='author_bio_recent_main'>";
             foreach ($recent_posts as $recent) {
                 $html .= "<div class='author_bio_recent_inner_post'>";
@@ -346,6 +346,7 @@ class Render
                 $html .= get_avatar(get_the_author_meta('ID'), 256);
             }
             $html .= "</div></div>";
+
             $html .= "<div class='auth_bio_recent_right_col'>";
             $html .= $hasPost;
             foreach ($recent_posts as $recent) {
