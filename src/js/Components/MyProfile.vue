@@ -24,7 +24,7 @@
 
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_name_label"><strong>{{ $t("NameEmail Address*") }}</strong></span>
+                    <span class="users_name_label"><strong>{{ $t("Email Address*") }}</strong></span>
                     <el-input
                             placeholder="Input Your email address"
                             v-model="authorDetails.email"
@@ -34,7 +34,7 @@
             </el-row>
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_designation_label"><strong>{{ $t("Your Designation") }}</strong></span>
+                    <span class="users_designation_label"><strong>{{ $t("Designation") }}</strong></span>
                     <el-input
                             placeholder="Input your designation"
                             v-model="authorDetails.designation"

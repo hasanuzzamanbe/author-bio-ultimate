@@ -35,7 +35,7 @@ if (!defined('ABSPATH')) {
 }
 if (!defined('AUTHORBIO_VERSION')) {
     define('AUTHORBIO_VERSION_LITE', true);
-    define('AUTHORBIO_VERSION', '1.1.0');
+    define('AUTHORBIO_VERSION', '1.0.0');
     define('AUTHORBIO_MAIN_FILE', __FILE__);
     define('AUTHORBIO_URL', plugin_dir_url(__FILE__));
     define('AUTHORBIO_DIR', plugin_dir_path(__FILE__));
