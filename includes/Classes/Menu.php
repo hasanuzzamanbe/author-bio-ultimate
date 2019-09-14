@@ -84,7 +84,7 @@ class Menu
         $avatar_link = get_avatar_url( $user_id, ['size' => '178'] );
         $authorBioAdminVars = apply_filters('authorbio/admin_app_vars', array(
             'i18n'                => array(
-                'All Events' => __('All Events', 'authorbio')
+                'All Author' => __('All Author', 'authorbio')
             ),
             'assets_url'          => AUTHORBIO_URL . 'dist/',
             'ajaxurl'             => admin_url('admin-ajax.php'),

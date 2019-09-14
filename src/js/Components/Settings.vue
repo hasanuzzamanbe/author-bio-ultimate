@@ -3,13 +3,13 @@
     <div class="main-profile-container">
         <el-row class="update_button_row">
             <el-col>
-                <el-button type="primary" size="mini" @click="update">update settings</el-button>
+                <el-button type="primary" size="mini" @click="update">{{ $t("update settings") }}</el-button>
             </el-col>
         </el-row>
 
         <el-row class="users_details_row">
             <el-col>
-                <h3 class="users_details_row_header">Recent Post Settings:</h3>
+                <h3 class="users_details_row_header">{{ $t("Recent Post Settings:") }}</h3>
             </el-col>
         </el-row>
         <div class="inner_box">
@@ -20,7 +20,7 @@
             </el-row>
             <el-row v-if="this.settings.recentPost === 'enabled'" class="users_template_row" :gutter="20" style="margin-top:23px;">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <strong><p class="demo-input-label">How many post you want to show in recent?</p></strong><br>
+                    <strong><p class="demo-input-label">{{ $t("How many post you want to show in recent?") }}</p></strong><br>
                 </el-col>
                 <el-col class="inner_column" :sm=22 :lg=10>
                     <el-input-number size="mini" v-model="settings.postCount"  :min="1" :max="20"></el-input-number>
@@ -29,18 +29,18 @@
             </el-row>
             <el-row class="users_template_row" :gutter="20" style="margin-top:23px">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <strong><p style="margin-top: 0px;" class="demo-input-label">Choose a recent post template type:</p></strong><br>
+                    <strong><p style="margin-top: 0px;" class="demo-input-label">{{ $t("Choose a recent post template type:") }}</p></strong><br>
                 </el-col>
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="recent_type_radio" v-model="settings.recentType" label="image">Title with Image</el-radio>
-                    <el-radio class="recent_type_radio" v-model="settings.recentType" label="titleonly">Title only</el-radio>
+                    <el-radio class="recent_type_radio" v-model="settings.recentType" label="image">{{ $t("Title with Image") }}</el-radio>
+                    <el-radio class="recent_type_radio" v-model="settings.recentType" label="titleonly">{{ $t("Title only") }}</el-radio>
                 </el-col>
             </el-row>
         </div>
 
         <el-row class="users_details_row">
             <el-col>
-                <h3 class="users_details_row_header">Exclude Author Bio For Specefic Post:</h3>
+                <h3 class="users_details_row_header">{{ $t("Exclude Author Bio For Specefic Post:") }}</h3>
             </el-col>
         </el-row>
         <div class="inner_box">
@@ -60,7 +60,7 @@
 
         <el-row class="users_details_row">
             <el-col>
-                <h3 class="users_details_row_header">Social Icon Templates:</h3>
+                <h3 class="users_details_row_header">{{ $t("Social Icon Templates:") }}</h3>
             </el-col>
         </el-row>
         <div class="inner_box">
@@ -68,17 +68,17 @@
             </el-row>
             <el-row class="users_template_row" :gutter="20">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="template_radio" v-model="settings.useTemp" label="template1">Template 1</el-radio>
+                    <el-radio class="template_radio" v-model="settings.useTemp" label="template1">{{ $t("Template 1") }}</el-radio>
                     <img :src="assets_url + 'admin/templates/template1.png'"/>
                 </el-col>
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="template_radio" v-model="settings.useTemp" label="template2">Template 2</el-radio>
+                    <el-radio class="template_radio" v-model="settings.useTemp" label="template2">{{ $t("Template 2") }}</el-radio>
                     <img :src="assets_url + 'admin/templates/template2.png'"/>
                 </el-col>
             </el-row>
             <el-row class="users_template_row">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-radio class="template_radio" v-model="settings.useTemp" label="template3">Template 3</el-radio>
+                    <el-radio class="template_radio" v-model="settings.useTemp" label="template3">{{ $t("Template 3") }}</el-radio>
                     <img :src="assets_url + 'admin/templates/template3.png'"/>
                 </el-col>
             </el-row>

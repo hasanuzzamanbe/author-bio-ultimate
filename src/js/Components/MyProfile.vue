@@ -13,7 +13,7 @@
         <div class="inner_box">
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_name_label"><strong>Full Name*</strong></span>
+                    <span class="users_name_label"><strong>{{ $t("Full Name*") }}</strong></span>
                     <el-input
                             placeholder="Input Your Name"
                             v-model="authorDetails.name"
@@ -24,7 +24,7 @@
 
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_name_label"><strong>Email Address*</strong></span>
+                    <span class="users_name_label"><strong>{{ $t("NameEmail Address*") }}</strong></span>
                     <el-input
                             placeholder="Input Your email address"
                             v-model="authorDetails.email"
@@ -34,7 +34,7 @@
             </el-row>
             <el-row class="users_details_row">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_designation_label"><strong>Your Designation*</strong></span>
+                    <span class="users_designation_label"><strong>{{ $t("Your Designation") }}</strong></span>
                     <el-input
                             placeholder="Input your designation"
                             v-model="authorDetails.designation"
@@ -117,7 +117,7 @@
 
             <el-row class="users_details_row" v-if="isShow.facebook">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_name_label"><strong>Facebook</strong></span>
+                    <span class="users_name_label"><strong>{{ $t("Facebook") }}</strong></span>
                     <el-input
                             placeholder="Your facebook profile link"
                             v-model="authorDetails.facebook"
@@ -127,7 +127,7 @@
             </el-row>
             <el-row class="users_details_row" v-if="isShow.twitter">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_name_label"><strong>Twitter</strong></span>
+                    <span class="users_name_label"><strong>{{ $t("Twitter") }}</strong></span>
                     <el-input
                             placeholder="Your twitter profile link"
                             v-model="authorDetails.twitter"
@@ -137,7 +137,7 @@
             </el-row>
             <el-row class="users_details_row" v-if="isShow.linkedin">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_name_label"><strong>Linkedin</strong></span>
+                    <span class="users_name_label"><strong>{{ $t("Linkedin") }}</strong></span>
                     <el-input
                             placeholder="Your linkedin profile link"
                             v-model="authorDetails.linkedin"
@@ -147,7 +147,7 @@
             </el-row>
             <el-row class="users_details_row" v-if="isShow.instagram">
                 <el-col :sm=22 :lg=12>
-                    <span class="users_name_label"><strong>Instagram</strong></span>
+                    <span class="users_name_label"><strong>{{ $t("Instagram") }}</strong></span>
                     <el-input
                             placeholder="Your Instagram profile link"
                             v-model="authorDetails.instagram"
@@ -171,8 +171,8 @@
         <div class="inner_box">
             <el-row>
                 <el-col :span="12">
-                    <el-radio v-model="imageFrom" label="gravatar">Use Gravatar image</el-radio>
-                    <el-radio v-model="imageFrom" label="upload">Upload image</el-radio>
+                    <el-radio v-model="imageFrom" label="gravatar">{{ $t("Use Gravatar image") }}</el-radio>
+                    <el-radio v-model="imageFrom" label="upload">{{ $t("Upload image") }}</el-radio>
                 </el-col>
             </el-row>
 

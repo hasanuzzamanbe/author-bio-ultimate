@@ -9,7 +9,14 @@ window.AuthorBio.Vue.mixin({
         $get: window.AuthorBio.$get,
         $adminGet: window.AuthorBio.$adminGet,
         $adminPost: window.AuthorBio.$adminPost,
-        $post: window.AuthorBio.$post
+        $post: window.AuthorBio.$post,
+        $t(str) {
+            let transString = authorBioAdmin.i18n[str];
+            if (transString) {
+                return transString;
+            }
+            return str;
+        },
     }
 });
 

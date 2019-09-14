@@ -49,6 +49,7 @@ class Render
         $facebook = get_user_meta($author->ID, 'facebook', true);
         $linkedin = get_user_meta($author->ID, 'linkedin', true);
         $instagram = get_user_meta($author->ID, 'instagram', true);
+        $designation = get_user_meta($author->ID, 'designation', true);
         $authFullname = '';
         if ($data !== null) {
             $authFullname = $data->author_name;
@@ -178,29 +179,31 @@ class Render
                         </div>
                     <?php } ?>
                 </div>
-                <?php
-                if (!!$data && $data->author_email !== '') {
-                    ?>
-                    <div class="author_email">
-                        <i class="authbio-mail"></i>
-                        <a href="mailto:<?php echo($data->author_email); ?>">
-                            <?php
-                            if (!!$data && $data->author_email !== '' && $data->author_email !== null) {
-                                echo($data->author_email);
-                            } else {
-                                echo $user_info->user_email;
-                            }
-                            ?>
-                        </a>
-                    </div>
-                    <?php
-                }
-                ?>
+                <div class="author_email">
+                    <i class="authbio-mail"></i>
+                    <a href="mailto:<?php
+                    if (false && !!$data && $data->author_email !== '' && $data->author_email !== null) {
+                        echo($data->author_email);
+                    } else {
+                        echo $user_info->user_email;
+                    }
+                    ?>">
+                        <?php
+                        if (false && !!$data && $data->author_email !== '' && $data->author_email !== null) {
+                            echo($data->author_email);
+                        } else {
+                            echo $user_info->user_email;
+                        }
+                        ?>
+                    </a>
+                </div>
 
                 <p class="author_bio_desig">
                     <?php
-                    if (!!$data) {
+                    if (!!$data && $data->author_designation !== '') {
                         echo($data->author_designation);
+                    } elseif ($designation !== '') {
+                        echo $designation;
                     }
                     ?>
                 </p>
@@ -313,13 +316,14 @@ class Render
         $query = array('author' => $authorId, 'showposts' => $params['postCount'], 'post_type' => 'post', 'post__not_in' => array($params['post']->ID), 'post_status' => 'publish');
         $recent_posts = get_posts($query);
         $apost = get_author_posts_url(get_the_author_meta('ID'));
-        $html = '';
+        $hasPost = '';
         if ($recent_posts) {
-            $html .= '<p class="author_bio_more_post">More Posts By ' . $params['authFullname'] . ' (<a href=' . $apost . '> all posts </a>)</p>';
+            $hasPost .= '<p class="author_bio_more_post">More Posts By ' . $params['authFullname'] . ' (<a href=' . $apost . '> all posts </a>)</p>';
         } else {
-            $html .= '<p class="author_bio_more_post">No more posts by ' . $params['authFullname'] . '</p>';
+            $hasPost .= '<p class="author_bio_more_post">No more posts by ' . $params['authFullname'] . '</p>';
         }
-
+        $html = '';
+        $html .= $hasPost;
         if ($params['template']['recentType'] === 'image') {
             $html .= "<div class='author_bio_recent_main'>";
             foreach ($recent_posts as $recent) {
@@ -338,11 +342,12 @@ class Render
             $html .= "<div class='auth_bio_recent_left'><div class='auth_bio_avatar'>";
             if ($params['info']['imageFrom'] === 'upload') {
                 $html .= $params['image'];
-                    } else {
-                $html .=  get_avatar(get_the_author_meta('ID'), 256);
-                    }
-              $html .=  "</div></div>";
-            $html .=  "<div class='auth_bio_recent_right_col'>";
+            } else {
+                $html .= get_avatar(get_the_author_meta('ID'), 256);
+            }
+            $html .= "</div></div>";
+            $html .= "<div class='auth_bio_recent_right_col'>";
+            $html .= $hasPost;
             foreach ($recent_posts as $recent) {
                 $date = substr($recent->post_date, 0, 10);
                 $html .= "<div class='author_bio_recent_inner_post_links'>";
@@ -351,7 +356,7 @@ class Render
                 $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a><span> (' . $date . ') </span> </div>';
                 $html .= '</div>';
             }
-            $html .=  "</div>";
+            $html .= "</div>";
             $html .= "</div>";
         }
 

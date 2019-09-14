@@ -57,6 +57,7 @@ class GlobalSettingsHandler
 
     public function userContactMethods($methods)
     {
+            $methods['designation'] = __( 'Designation', 'authBio' );
             $methods['twitter'] = __( 'Twitter', 'authBio' );
             $methods['facebook'] = __( 'Facebook', 'authBio' );
             $methods['linkedin'] = __( 'Linkedin', 'authBio' );
