@@ -182,14 +182,14 @@ class Render
                 <div class="author_email">
                     <i class="authbio-mail"></i>
                     <a href="mailto:<?php
-                    if (false && !!$data && $data->author_email !== '' && $data->author_email !== null) {
+                    if (!!$data && $data->author_email !== '' && $data->author_email !== null) {
                         echo($data->author_email);
                     } else {
                         echo $user_info->user_email;
                     }
                     ?>">
                         <?php
-                        if (false && !!$data && $data->author_email !== '' && $data->author_email !== null) {
+                        if (!!$data && $data->author_email !== '' && $data->author_email !== null) {
                             echo($data->author_email);
                         } else {
                             echo $user_info->user_email;
