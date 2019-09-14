@@ -40,6 +40,7 @@ class AdminAjaxHandler
     protected function addBio()
     {
         $data = $_REQUEST[data];
+
         $socials = $_REQUEST[socials];
         $imageFrom = $_REQUEST[imageFrom];
 
@@ -51,7 +52,6 @@ class AdminAjaxHandler
         ));
         $author_bio = wp_unslash($data[bio]);
         $authorId = get_current_user_id();
-
 
         update_post_meta($authorId, 'author_bio_editorbio', $author_bio);
         update_post_meta($authorId, 'author_bio_social_option', $socialsVal);
@@ -65,16 +65,16 @@ class AdminAjaxHandler
                 $table_name,
                 array(
                     "author_id" => $authorId,
-                    "author_name" => $data[name],
-                    "author_email" => $data[email],
-                    "author_fb" => $data[facebook],
-                    "author_tw" => $data[twitter],
-                    "author_ln" => $data[linkedin],
-                    "author_ins" => $data[instagram],
-                    "author_img" => $data[profile][image],
-                    "author_gravatar" => $data[profile][gravatar],
-                    "author_designation" => $data[designation],
-                    "useBioFrom" => $data[useBioFrom],
+                    "author_name" => $data['name'],
+                    "author_email" => $data['email'],
+                    "author_fb" => $data['facebook'],
+                    "author_tw" => $data['twitter'],
+                    "author_ln" => $data['linkedin'],
+                    "author_ins" => $data['instagram'],
+                    "author_img" => $data['profile']['image'],
+                    "author_gravatar" => $data['profile']['gravatar'],
+                    "author_designation" => $data['designation'],
+                    "useBioFrom" => $data['useBioFrom'],
                 ),
                 array('author_id' => $authorId)
             );
@@ -83,16 +83,16 @@ class AdminAjaxHandler
                 $table_name,
                 array(
                     "author_id" => $authorId,
-                    "author_name" => $data[name],
-                    "author_email" => $data[email],
-                    "author_fb" => $data[facebook],
-                    "author_tw" => $data[twitter],
-                    "author_ln" => $data[linkedin],
-                    "author_ins" => $data[instagram],
-                    "author_img" => $data[profile][img],
-                    "author_gravatar" => $data[profile][gravatar],
-                    "author_designation" => $data[designation],
-                    "useBioFrom" => $data[useBioFrom],
+                    "author_name" => $data['name'],
+                    "author_email" => $data['email'],
+                    "author_fb" => $data['facebook'],
+                    "author_tw" => $data['twitter'],
+                    "author_ln" => $data['linkedin'],
+                    "author_ins" => $data['instagram'],
+                    "author_img" => $data['profile']['img'],
+                    "author_gravatar" => $data['profile']['gravatar'],
+                    "author_designation" => $data['designation'],
+                    "useBioFrom" => $data['useBioFrom'],
                 ),
                 array(
                     '%s',

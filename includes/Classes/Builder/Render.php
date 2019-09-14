@@ -51,7 +51,7 @@ class Render
         $instagram = get_user_meta($author->ID, 'instagram', true);
         $designation = get_user_meta($author->ID, 'designation', true);
         $authFullname = '';
-        if ($data !== null) {
+        if ($data !== null && $data->author_name !== '0') {
             $authFullname = $data->author_name;
         } else {
             $authFullname = $user_info->display_name;

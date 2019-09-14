@@ -1,11 +1,10 @@
 <?php
 
 /*
-Plugin Name: Author Bio- Show Author Bio easily
-Plugin URI: https://github.com/hasanuzzamanbe/Chart-Maker
+Plugin Name: author-bio-ultimate
 Description: Create your data Author Bio within a minute.
 Version: 1.0.0
-Author: Xaaman
+Author: Hasanuzzaman
 Author URI: https://github.com/hasanuzzamanbe
 License: A "Slug" license name e.g. GPL2
 Text Domain: authorbio
