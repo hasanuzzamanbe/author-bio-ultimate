@@ -52,24 +52,27 @@ e.g.
 = Does it need any coding to know? =
 No, there is no coding required to use this plugin. Even non-technical people can manage this very well.
 
-= Does this plugin regularly updates =
-Yes , we people behind this plugin regularly working to improve this plugin and also the features based on customer experience .
+= Does this plugin regularly updates? =
+Yes, we people behind this plugin regularly working to improve this plugin and also the features based on customer experience.
 
-= How the non-admin user can update their bio. =
-It's also very easy for the non-admin user, On the WP user profile page it will show some custom fields to update their bio, designation, and socials. They can edit their bio from their own profile page anytime.
+= How the non-admin user can update their bio? =
+It's also very easy for the non-admin user, On the WP user profile page it will show some custom fields to update their bio, designation and socials. They can edit their bio from their own profile page anytime.
 
-= Why we should use this =
-In a single word it's very easy to use, and it will match your site's template very well.
+= Why we should use this? =
+In a single word it's very easy to use and it will match your site's template very well.
 
 == Screenshots ==
-1. Woo Sales Booster Settings
-2. Show timer on frontend
-3. Hide Price Option on Frontend
+1. Author Bio showing with latest post tab
+2. Showing latest post title only
+3. Another template to show bio
+4. Showing latest post with image
+5. Admin panel to update bio
+6. Image option for profile
+7. Settings page
+8. User profile with extended fields
 
 
 == Changelog ==
 
 = 1.0.0 =
 * Init First version
-
-== Upgrade Notice ==
