@@ -15,31 +15,31 @@ Easily show author bio and recent posts with a custom template.
 Author Bio Ultimate will allow you to show the author information next to the post, with extended features of show recent posts by the author without a single line of coding.
 ### Features:
 
-##### HTML Editor
+#### HTML Editor
 You can use HTML editor or text fields to add your bio, which will offer you to use the link, image, and other HTML tags to make your content better.
 
-##### Multiple Image Options
+#### Multiple Image Options
 This feature will give you to show profile image from a different source. You can get your own image from Gravatar or can add by uploading new.
 
-##### Popular Socials with Logo
+#### Popular Socials with Logo
 No worry to add your socials on bio, Just enter your social link will show the frontend with nice logo and interface.
 
-##### Showing Recent Posts
+#### Showing Recent Posts
 It's about a second to show author recent posts with a bio. just enabling this feature will show recent post by the specific author.
 
-##### A selective number of Post
+#### A selective number of Post
 This is one of the best features of recent posts in this plugin. Which will take a permission with you to show how many of them are need to show in frontend.
 
-##### Recent Post Template
+#### Recent Post Template
 This feature is implemented, thinking about a different kind of user choice. Just clicking a button you can choose recent post template, User show post as a link style or a block style with the image.
 
-##### Hide Post Author for Specific Post
+#### Hide Post Author for Specific Post
 Yes, Its also very easy to hide author bio for specific posts. Just adding the post Id will exclude the bio content.
 
-##### Shortcode to show anywhere
+#### Shortcode to show anywhere
 You can show your profile bio anywhere in wordpress also. using single shortcode.
 
-##### Custom Template
+#### Custom Template
 This is another awesome feature of this plugin, This will help you to choose different template style for bio content. Just selecting a template will change the content styling different. This plugin has no need to set up anything to use. Just install and activate.
 Isn't that crazy! Just install and check the feature that it offers.
 
