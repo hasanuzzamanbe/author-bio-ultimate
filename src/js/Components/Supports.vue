@@ -16,7 +16,7 @@
                                 Report bugs (with steps to reproduce) or <a target="_blank" href="https://github.com/hasanuzzamanbe/Author-Bio-by-Shortcode">submit pull requests on GitHub</a>
                             </li>
                             <li>
-                                Have a question? or Need Expert Support? <a target="_blank" href="mailto:'hasanuzzamanbe@gmail.com'">Mail to developer</a>
+                                Have a question? or Need Expert Support? <a target="_blank" href="mailto:hasanuzzamanbe@gmail.com?subject=Author Bio Ultimate support and Feedback">Mail to developer</a>
                             </li>
                         </ul>
                     </div>

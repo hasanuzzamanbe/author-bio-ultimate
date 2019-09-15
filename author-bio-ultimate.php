@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: author-bio-ultimate
+Plugin Name: Author Bio Ultimate
 Description: Create your data Author Bio within a minute.
 Version: 1.0.0
 Author: Hasanuzzaman
