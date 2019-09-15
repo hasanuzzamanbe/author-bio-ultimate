@@ -84,6 +84,21 @@
             </el-row>
         </div>
 
+        <el-row class="users_details_row">
+            <el-col>
+                <h3 class="users_details_row_header">{{ $t("Extended feature:") }}</h3>
+            </el-col>
+        </el-row>
+        <div class="inner_box">
+            <el-row class="users_template_row" :gutter="20">
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <p>You can show your simple profile bio by shortcode also. Just copy your shortcode and paste where you want to show it.</p>
+                </el-col>
+                <el-col class="inner_column" :sm=22 :lg=10>
+                    <code>[authorbio id="{{this.author_id}}"]</code>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 <script>
@@ -92,6 +107,7 @@
         data() {
             return {
                 assets_url: window.authorBioAdmin.assets_url,
+                author_id: window.authorBioAdmin.author_id,
                 settings: {
                     useTemp: 'template2',
                     recentPost: 'enabled',

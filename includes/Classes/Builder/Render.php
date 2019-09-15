@@ -23,7 +23,6 @@ class Render
 
         global $post;
 
-
         $author = get_user_by('id', $post->post_author);
 
         $template = AdminAjaxHandler::getSettingsFrontend();
@@ -374,6 +373,17 @@ class Render
             AUTHORBIO_VERSION,
             true
         );
+    }
+
+    public function shortcodeRender($id){
+        $user_info = get_userdata($id);
+        $gravatar =  get_avatar($id, 128);
+        $bio = get_user_meta($id, 'description', true);
+        $html= "<div class='authbio_short_main'>";
+        $html .= "<div class='authbio_short_left_col'>$gravatar</div>";
+        $html .= "<div class='authbio_short_right_col'><h3>$user_info->display_name</h3><p>$user_info->user_email</p><p class='authbio_short_bio'>$bio</p></div>";
+        $html .= '</div>';
+        return $html;
     }
 
 

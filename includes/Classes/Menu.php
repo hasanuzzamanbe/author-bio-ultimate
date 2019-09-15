@@ -91,6 +91,7 @@ class Menu
             'avatar'              => $avatar_link,
             'ace_path_url'        => AUTHORBIO_URL.'dist/libs/ace',
             'author_des'          => $author_des,
+            'author_id'          => $user_id,
             'image_upload_url'    => admin_url('admin-ajax.php?action=author_bio_global_settings_handler&route=author_bio_upload_image')
         ));
         wp_localize_script('author_bio_settings_boot', 'authorBioAdmin', $authorBioAdminVars);

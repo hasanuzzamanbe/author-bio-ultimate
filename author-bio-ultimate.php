@@ -49,6 +49,7 @@ if (!defined('AUTHORBIO_VERSION')) {
                 $this->adminHooks();
             }
             $this->commonHooks();
+            $this->registerShortcodes();
         }
 
         public function adminHooks()
@@ -82,6 +83,23 @@ if (!defined('AUTHORBIO_VERSION')) {
         public function commonHooks(){
             $builder = new \AuthorBio\Classes\Builder\Render();
             $builder->Render();
+        }
+        public function registerShortcodes()
+        {
+
+            // Register the shortcode
+            add_shortcode('authorbio', function ($args) {
+                $args = shortcode_atts(array(
+                    'id'               => '',
+                ), $args);
+
+                if (!$args['id']) {
+                    return;
+                }
+
+                $builder = new \AuthorBio\Classes\Builder\Render();
+                return $builder->shortcodeRender($args['id']);
+            });
         }
 
         public function loadDependecies()

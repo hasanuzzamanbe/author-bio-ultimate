@@ -215,3 +215,24 @@ div#auth_recent_tab {
   padding: 6px 12px;
   border-top: none;
 }
+/* Style for shortcode content */
+.authbio_short_main {
+  display:flex;
+  .authbio_short_left_col {
+    margin-right: 23px;
+    img {
+      width: 120px;
+      border-radius: 69px;
+    }
+  }
+  .authbio_short_right_col {
+    h3{
+      margin: 0px !important;
+    }
+    p{
+      margin: 0px !important;
+    }
+  }
+
+}
+
