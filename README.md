@@ -65,7 +65,7 @@ It's also very easy for the non-admin user, On the WP user profile page it will 
 ##### Why we should use this?
 In a single word it's very easy to use and it will match your site's template very well.
 
-####Screenshots
+#### Screenshots
 1. Author Bio showing with latest post tab
 2. Showing latest post title only
 3. Another template to show bio
@@ -76,7 +76,7 @@ In a single word it's very easy to use and it will match your site's template ve
 8. User profile with extended fields
 
 
-#####Changelog
+##### Changelog
 
 version 1.0.0 
 * Init First version
