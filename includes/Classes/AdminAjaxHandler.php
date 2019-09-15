@@ -93,10 +93,6 @@ class AdminAjaxHandler
                     "author_gravatar" => $data['profile']['gravatar'],
                     "author_designation" => $data['designation'],
                     "useBioFrom" => $data['useBioFrom'],
-                ),
-                array(
-                    '%s',
-                    '%d'
                 )
             );
 

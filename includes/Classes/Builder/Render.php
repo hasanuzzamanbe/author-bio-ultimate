@@ -39,6 +39,8 @@ class Render
         $socials = $info['socials'];
         if (!!$data) {
             $image = "<img style='width:128px;' src='$data->author_img'>";
+        }else {
+            $image = "";
         }
 
 
@@ -50,7 +52,7 @@ class Render
         $instagram = get_user_meta($author->ID, 'instagram', true);
         $designation = get_user_meta($author->ID, 'designation', true);
         $authFullname = '';
-        if ($data !== null && $data->author_name !== '0') {
+        if ($data !== null && $data->author_name !== '0' && $data->author_name !== '') {
             $authFullname = $data->author_name;
         } else {
             $authFullname = $user_info->display_name;

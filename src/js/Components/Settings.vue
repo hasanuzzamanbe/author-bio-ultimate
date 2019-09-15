@@ -27,7 +27,7 @@
                 </el-col>
 
             </el-row>
-            <el-row class="users_template_row" :gutter="20" style="margin-top:23px">
+            <el-row v-if="this.settings.recentPost === 'enabled'" class="users_template_row" :gutter="20" style="margin-top:23px">
                 <el-col class="inner_column" :sm=22 :lg=10>
                     <strong><p style="margin-top: 0px;" class="demo-input-label">{{ $t("Choose a recent post template type:") }}</p></strong><br>
                 </el-col>
