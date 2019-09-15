@@ -8,7 +8,7 @@
   flex-wrap: wrap;
 
   h3.author_name {
-    margin-bottom: 0px;
+    margin: 0px !important;
   }
 
   .author_bio_left_col {
@@ -23,6 +23,8 @@
     img {
       border-radius: 83px;
       margin-top: 0px;
+      min-width: 128px;
+      min-height: 128px;
     }
 
   }
@@ -40,6 +42,7 @@
     text-decoration: none !important;
     .author_bio_descr p{
       font-size: 14px !important;
+      margin: 0px !important;
     }
     .author_bio_content_inner {
       position: relative;
@@ -82,6 +85,7 @@
   .author_bio_desig {
     font-weight: bold;
     margin-bottom: 2px !important;
+    margin-top: 0px !important;
   }
 
   .author_bio_left_col {
@@ -103,7 +107,7 @@
     }
   }
   .socials_template1{
-    margin-top: -4px;
+    margin-top: 4px;
   }
 
   .author_bio_socials {
@@ -146,8 +150,8 @@
 
 
 p.author_bio_more_post {
+  margin: 0px 0px 10px 0px !important;
   font-weight: bold;
-    margin-bottom: 10px;
 }
 .author_bio_recent_main {
   display: flex;
@@ -166,35 +170,36 @@ p.author_bio_more_post {
 }
 
 /* Style the buttons inside the tab */
-.auth_bio_tab_main button {
-  font-size: 12px;
-  padding: 1px 12px;
-  background-color: #ecf0f4;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-
-.auth_bio_tab_main{
+.auth_bio_tab_main {
   overflow: hidden;
   margin-top: 100px;
   margin-left: 29px;
   margin-bottom: -6px;
-  button{
+  .authbiotablinks {
+    font-size: 12px;
+    padding: 1px 12px;
+    background-color: #ecf0f4;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
     color:black;
+  }
+  .authbiotablinks:hover {
+    color: #252525;
+  }
+  .authbiotablinks.active {
+    background-color: #aaa;
+    color: white;
   }
   #auth_bio_left_btn{
     border-top-left-radius: 9px;
+    max-width: 85px !important;
   }
   #auth_bio_right_btn{
     border-top-right-radius: 9px;
-  }
-  button:hover {
-    color: #252525;
+    max-width: 150px !important;
   }
 }
 div#auth_recent_tab {
@@ -202,12 +207,6 @@ div#auth_recent_tab {
   border-radius: 8px;
   margin-top: 6px;
   padding: 23px;
-}
-
-/* Create an active/current tablink class */
-.auth_bio_tab_main button.active {
-  background-color: #aaa;
-  color: white;
 }
 
 /* Style the tab content */

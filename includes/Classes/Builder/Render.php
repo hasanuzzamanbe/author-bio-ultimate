@@ -68,7 +68,7 @@ class Render
                     <?php if ($info['imageFrom'] === 'upload') {
                         echo $image;
                     } else {
-                        echo get_avatar(get_the_author_meta('ID'), 256);
+                        echo get_avatar(get_the_author_meta('ID'), 128);
                     }
 
                     ?>
