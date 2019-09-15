@@ -56,7 +56,7 @@ e.g.
 ##### Does it need any coding to know? 
 No, there is no coding required to use this plugin. Even non-technical people can manage this very well.
 
-#####Does this plugin regularly updates? 
+##### Does this plugin regularly updates? 
 Yes, we people behind this plugin regularly working to improve this plugin and also the features based on customer experience.
 
 ##### How the non-admin user can update their bio? 
