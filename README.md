@@ -93,6 +93,7 @@ version 1.0.0
 
 
 #### This plugin is dedicated to some awesome people:
-Mahmudul Hasan and Saroar Jahan by whom I know about WordPress.
-And thanks from my heart to help, motivate and support Sazzadul Bari, Lahin, Ruhel & Kamrul vai.
+<a href="https://github.com/adreastrian">Mahmudul Hasan</a> and Saroar Jahan by whom I know about WordPress.
+
+And thanks from my heart to help, motivate and support Sazzadul Bari, <a href="https://github.com/lahin31">Lahin</a>, <a href="https://github.com/ruhel241">Ruhel</a> & Kamrul vai.
 
