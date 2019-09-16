@@ -87,3 +87,12 @@ In a single word it's very easy to use and it will match your site's template ve
 
 version 1.0.0 
 * Init First version
+
+
+
+
+
+#### This plugin is dedicated to some awesome people:
+Mahmudul Hasan and Saroar Jahan by whom I know about WordPress.
+And thanks from my heart to help, motivate and support Sazzadul Bari, Lahin, Ruhel & Kamrul vai.
+
