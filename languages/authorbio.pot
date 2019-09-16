@@ -1,0 +1,100 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Author Bio Ultimate\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-16 03:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.0; wp-5.2.3"
+
+#: includes/Classes/Menu.php:87
+msgid "All Author"
+msgstr ""
+
+#: includes/Classes/Menu.php:22
+msgid "Author Bio"
+msgstr ""
+
+#. Name of the plugin
+msgid "Author Bio Ultimate"
+msgstr ""
+
+#. Description of the plugin
+msgid "Create your data Author Bio within a minute."
+msgstr ""
+
+#: includes/Classes/GlobalSettingsHandler.php:60
+msgid "Designation"
+msgstr ""
+
+#: includes/Classes/GlobalSettingsHandler.php:62
+msgid "Facebook"
+msgstr ""
+
+#. Author of the plugin
+msgid "Hasanuzzaman"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/hasanuzzamanbe"
+msgstr ""
+
+#: includes/Classes/GlobalSettingsHandler.php:64
+msgid "Inatagram"
+msgstr ""
+
+#: includes/Classes/Integrations/TinyMceBlock.php:42
+msgid "Insert Event Shortcode"
+msgstr ""
+
+#: includes/Classes/Integrations/TinyMceBlock.php:44
+msgid "Insert Shortcode"
+msgstr ""
+
+#: includes/Classes/GlobalSettingsHandler.php:63
+msgid "Linkedin"
+msgstr ""
+
+#: includes/Classes/Menu.php:35
+msgid "My Profile"
+msgstr ""
+
+#: includes/Classes/Integrations/TinyMceBlock.php:43
+msgid "Please select a Form"
+msgstr ""
+
+#: includes/Classes/GlobalSettingsHandler.php:44
+msgid "Please upload only jpg/png format files"
+msgstr ""
+
+#: includes/Classes/Integrations/TinyMceBlock.php:41
+msgid "Select an Event to insert"
+msgstr ""
+
+#: includes/Classes/Menu.php:40
+msgid "Settings"
+msgstr ""
+
+#: includes/Classes/GlobalSettingsHandler.php:54
+msgid "Something is wrong when uploading the file"
+msgstr ""
+
+#: includes/Classes/AccessControl.php:35
+msgid "Sorry, You do not have permission to do this action: "
+msgstr ""
+
+#: includes/Classes/Menu.php:45
+msgid "Supports"
+msgstr ""
+
+#: includes/Classes/GlobalSettingsHandler.php:61
+msgid "Twitter"
+msgstr ""

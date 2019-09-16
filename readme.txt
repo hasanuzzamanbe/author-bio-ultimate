@@ -1,6 +1,6 @@
 === Author Bio Ultimate ===
 Contributors: hasanuzzamanshamim
-Tags:  Author bio, Post author, author, post ultimate, recent post, author recent post
+Tags:  Author bio, Post author, post ultimate, recent post, author recent post, author.
 Requires at least: 4.5
 Requires PHP: 5.4 or greater
 Tested up to: 5.2.3
@@ -38,6 +38,9 @@ Yes, Its also very easy to hide author bio for specific posts. Just adding the p
 ### Custom Template
 This is another awesome feature of this plugin, This will help you to choose different template style for bio content. Just selecting a template will change the content styling different. This plugin has no need to set up anything to use. Just install and activate.
 Isn't that crazy! Just install and check the feature that it offers.
+
+### Extended shortcode
+You can also use a shortcode which will show your bio anywhere you want.
 
 == Installation ==
 

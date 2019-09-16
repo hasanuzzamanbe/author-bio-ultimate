@@ -94,10 +94,14 @@
       margin: auto;
     }
     .author_bio_socials {
-      justify-content: space-around;
+      justify-content: center;
       padding: 7px 0px 0px 0px;
       display: flex;
+      a{
+        margin-right:5px;
+      }
     }
+
   }
 
   .author_bio_socials_template1 {
@@ -139,6 +143,8 @@
   }
   .auth_bio_avatar img{
     border-radius: 83px;
+    min-width: 100px!important;
+    min-height: 100px!important;
   }
   .auth_bio_recent_right_col {
     padding: 0 0 0 14px;

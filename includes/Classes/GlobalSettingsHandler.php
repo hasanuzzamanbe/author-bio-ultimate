@@ -57,11 +57,11 @@ class GlobalSettingsHandler
 
     public function userContactMethods($methods)
     {
-            $methods['designation'] = __( 'Designation', 'authBio' );
-            $methods['twitter'] = __( 'Twitter', 'authBio' );
-            $methods['facebook'] = __( 'Facebook', 'authBio' );
-            $methods['linkedin'] = __( 'Linkedin', 'authBio' );
-            $methods['instagram'] = __( 'Inatagram', 'authBio' );
+            $methods['designation'] = __( 'Designation', 'authorbio' );
+            $methods['twitter'] = __( 'Twitter', 'authorbio' );
+            $methods['facebook'] = __( 'Facebook', 'authorbio' );
+            $methods['linkedin'] = __( 'Linkedin', 'authorbio' );
+            $methods['instagram'] = __( 'Inatagram', 'authorbio' );
             return $methods;
     }
 
