@@ -76,7 +76,7 @@ class Render
                 </div>
                 <?php if ($template['useTemp'] !== 'template1' && $template['useTemp'] !== 'template3') { ?>
                     <div class="author_bio_socials socials_template2">
-                        <?php if (!!$data && $data->author_ln !== null && $socials['facebook'] === 'true') {
+                        <?php if (!!$data && $data->author_fb !== '' && $socials['facebook'] === 'true') {
                             ?>  <a href="<?php echo $data->author_fb; ?> " target="_blank">
                                 <i class="authbio-facebook"></i>
                             </a>
@@ -86,7 +86,7 @@ class Render
                                 <i class="authbio-facebook"></i>
                             </a>
                         <?php }
-                        if (!!$data && $data->author_ln && $socials['twitter'] === 'true') {
+                        if (!!$data && $data->author_tw && $socials['twitter'] === 'true') {
                             ?>  <a href="<?php echo $data->author_tw; ?> " target="_blank">
                                 <i class="authbio-twitter"></i>
                             </a>
@@ -134,7 +134,7 @@ class Render
 
                     <?php if ($template['useTemp'] === 'template3') { ?>
                         <div class="author_bio_socials socials_template3">
-                            <?php if (!!$data && $data->author_ln !== null && $socials['facebook'] === 'true') {
+                            <?php if (!!$data && $data->author_fb !== null && $socials['facebook'] === 'true') {
                                 ?>  <a href="<?php echo $data->author_fb; ?> " target="_blank">
                                     <i class="authbio-facebook"></i>
                                 </a>
@@ -144,7 +144,7 @@ class Render
                                     <i class="authbio-facebook"></i>
                                 </a>
                             <?php }
-                            if (!!$data && $data->author_ln && $socials['twitter'] === 'true') {
+                            if (!!$data && $data->author_tw && $socials['twitter'] === 'true') {
                                 ?>  <a href="<?php echo $data->author_tw; ?> " target="_blank">
                                     <i class="authbio-twitter"></i>
                                 </a>
@@ -220,7 +220,7 @@ class Render
                 </div>
                 <?php if ($template['useTemp'] === 'template1') { ?>
                     <div class="author_bio_socials socials_template1">
-                        <?php if (!!$data && $data->author_ln !== null && $socials['facebook'] === 'true') {
+                        <?php if (!!$data && $data->author_fb !== null && $socials['facebook'] === 'true') {
                             ?>  <a href="<?php echo $data->author_fb; ?> " target="_blank">
                                 <i class="authbio-facebook"></i>
                             </a>
@@ -230,7 +230,7 @@ class Render
                                 <i class="authbio-facebook"></i>
                             </a>
                         <?php }
-                        if (!!$data && $data->author_ln && $socials['twitter'] === 'true') {
+                        if (!!$data && $data->author_tw && $socials['twitter'] === 'true') {
                             ?>  <a href="<?php echo $data->author_tw; ?> " target="_blank">
                                 <i class="authbio-twitter"></i>
                             </a>
