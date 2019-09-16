@@ -1,11 +1,18 @@
 ### Author Bio Ultimate
-Contributors: hasanuzzamanshamim
+Contributors: Hasanuzzaman shamim
+
 Tags:  Author bio, Post author, author, post ultimate, recent post, author recent post
+
 Requires at least: 4.5
+
 Requires PHP: 5.4 or greater
+
 Tested up to: 5.2.3
+
 Stable tag: 1.0.0
+
 License: GPLv2 or later
+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Easily show author bio and recent posts with a custom template.
