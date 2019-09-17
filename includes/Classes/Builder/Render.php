@@ -276,12 +276,12 @@ class Render
         if ($template['recentPost'] === 'enabled') {
             $postCount = $template['postCount'];
             $params = array(
-                "post" => $post,
-                "authFullname" => $authFullname,
-                "postCount" => $postCount,
-                "template" => $template,
-                "info" => $info,
-                "image" => $image
+                "post"          => $post,
+                "authFullname"  => $authFullname,
+                "postCount"     => $postCount,
+                "template"      => $template,
+                "info"          => $info,
+                "image"         => $image
             );
             $recentPosts .= $this->getRecent($params);
         } else {

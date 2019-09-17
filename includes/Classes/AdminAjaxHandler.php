@@ -19,10 +19,10 @@ class AdminAjaxHandler
         $route = sanitize_text_field($_REQUEST['route']);
 
         $validRoutes = array(
-            'add_bio' => 'addBio',
-            'get_bio' => 'getBio',
-            'update_settings' => 'updateSettings',
-            'get_settings' => 'getSettings',
+            'add_bio'           => 'addBio',
+            'get_bio'           => 'getBio',
+            'update_settings'   => 'updateSettings',
+            'get_settings'      => 'getSettings',
 
         );
         if (isset($validRoutes[$route])) {
@@ -108,9 +108,9 @@ class AdminAjaxHandler
         $socials = get_post_meta($authorId, 'author_bio_social_option', true);
         if ($socials === '') {
             $socials = [
-                'facebook' => 'true',
-                'twitter' => 'true',
-                'linkedin' => 'true',
+                'facebook'  => 'true',
+                'twitter'   => 'true',
+                'linkedin'  => 'true',
                 'instagram' => 'true',
             ];
         };
@@ -119,10 +119,10 @@ class AdminAjaxHandler
             $imageFrom = 'gravatar';
         };
         wp_send_json_success(array(
-            'data' => $data,
-            'socials' => $socials,
+            'data'      => $data,
+            'socials'   => $socials,
             'imageFrom' => $imageFrom,
-            'bio' => $bioFromeditor
+            'bio'       => $bioFromeditor
         ), 200);
 
     }
@@ -132,15 +132,15 @@ class AdminAjaxHandler
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
         $data = $wpdb->get_row("SELECT * FROM $table_name WHERE author_id = $authorId");
-        $socials = get_post_meta($authorId, 'author_bio_social_option', true);
-        $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
-        $bioFromeditor = get_post_meta($authorId, 'author_bio_editorbio', true);
+        $socials = get_post_meta(absint($authorId), 'author_bio_social_option', true);
+        $imageFrom = get_post_meta(absint($authorId), 'author_bio_image_from_option', true);
+        $bioFromeditor = get_post_meta(absint($authorId), 'author_bio_editorbio', true);
 
         return array(
-            'data' => $data,
-            'socials' => $socials,
+            'data'      => $data,
+            'socials'   => $socials,
             'imageFrom' => $imageFrom,
-            'bio' => $bioFromeditor
+            'bio'       => $bioFromeditor
         );
     }
 
@@ -166,12 +166,12 @@ class AdminAjaxHandler
 
         if (!$settings || $settings['useTemp'] === '') {
             $settings = array(
-                "useTemp" => "template2",
-                "recentPost" => "enabled",
-                "postCount" => "3",
-                "excludes" => '',
+                "useTemp"       => "template2",
+                "recentPost"    => "enabled",
+                "postCount"     => "3",
+                "excludes"      => '',
                 "excludesArray" => [],
-                "recentType" => 'titleonly'
+                "recentType"    => 'titleonly'
             );
         }
 
@@ -188,12 +188,12 @@ class AdminAjaxHandler
 
         if ($template === '' || $template === null) {
             $template = array(
-                "useTemp" => "template2",
-                "recentPost" => "enabled",
-                "postCount" => "3",
-                "excludes" => '',
+                "useTemp"       => "template2",
+                "recentPost"    => "enabled",
+                "postCount"     => "3",
+                "excludes"      => '',
                 "excludesArray" => [],
-                "recentType" => 'titleonly'
+                "recentType"    => 'titleonly'
             );
 
         }

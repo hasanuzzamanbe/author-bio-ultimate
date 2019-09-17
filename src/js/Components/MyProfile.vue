@@ -26,7 +26,7 @@
                 <el-col :sm=22 :lg=12>
                     <span class="users_name_label"><strong>{{ $t("Email Address*") }}</strong></span>
                     <el-input
-                            placeholder="Input Your email address"
+                            placeholder="Input a valid email address"
                             v-model="authorDetails.email"
                             size="small"
                     ></el-input>

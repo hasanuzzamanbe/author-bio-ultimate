@@ -177,6 +177,10 @@ p.author_bio_more_post {
 
 /* Style the buttons inside the tab */
 .auth_bio_tab_main {
+  button i {
+    position: relative;
+    top: 1px;
+  }
   overflow: hidden;
   margin-top: 100px;
   margin-left: 29px;
