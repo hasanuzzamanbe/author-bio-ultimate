@@ -34,27 +34,24 @@ class AdminAjaxHandler
 
     protected function addBio()
     {
-        $data = $_REQUEST[data];
-        $socials = $_REQUEST[socials];
-        $imageFrom = wp_unslash($_REQUEST[imageFrom]);
-
-        $socialsVal = wp_unslash(array(
-            'facebook'  => sanitize_text_field($socials[facebook]),
-            'twitter'   => sanitize_text_field($socials[twitter]),
-            'linkedin'  => sanitize_text_field($socials[linkedin]),
-            'instagram' => sanitize_text_field($socials[instagram])
-        ));
-        $author_bio = wp_unslash($data[bio]);
+        $data = wp_unslash($_REQUEST['data']);
+        $socialsVal = array(
+            'facebook'  => sanitize_text_field($_REQUEST['socials']['facebook']),
+            'twitter'   => sanitize_text_field($_REQUEST['socials']['twitter']),
+            'linkedin'  => sanitize_text_field($_REQUEST['socials']['linkedin']),
+            'instagram' => sanitize_text_field($_REQUEST['socials']['instagram'])
+        );
+        $author_bio = wp_unslash($data['bio']);
         $authorId   = get_current_user_id();
 
         update_post_meta($authorId, 'author_bio_editorbio', $author_bio);
         update_post_meta($authorId, 'author_bio_social_option', $socialsVal);
-        update_post_meta($authorId, 'author_bio_image_from_option', sanitize_text_field($imageFrom));
+        update_post_meta($authorId, 'author_bio_image_from_option', sanitize_text_field($_REQUEST['imageFrom']));
 
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
-        if ($data[authorId] !== '') {
+        if ($data['authorId'] !== '') {
             $wpdb->update(
                 $table_name,
                 array(
