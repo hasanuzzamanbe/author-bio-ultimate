@@ -35,10 +35,9 @@ class Render
 
 
         $data = $info['data'];
-        $author_img = esc_url($data->author_img);
         $socials = $info['socials'];
         if (!!$data) {
-            $image = "<img style='width:128px;' src='$author_img'>";
+            $image = "<img style='width:128px;' src='$data->author_img'>";
         }else {
             $image = "";
         }
