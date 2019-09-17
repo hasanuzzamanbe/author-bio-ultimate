@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ah1
- * Date: 2019-09-09
- * Time: 16:03
- */
+
 
 namespace AuthorBio\Classes;
 if (!defined('ABSPATH')) {
@@ -40,22 +35,21 @@ class AdminAjaxHandler
     protected function addBio()
     {
         $data = $_REQUEST[data];
-
         $socials = $_REQUEST[socials];
-        $imageFrom = $_REQUEST[imageFrom];
+        $imageFrom = wp_unslash($_REQUEST[imageFrom]);
 
         $socialsVal = wp_unslash(array(
-            'facebook' => $socials[facebook],
-            'twitter' => $socials[twitter],
-            'linkedin' => $socials[linkedin],
-            'instagram' => $socials[instagram]
+            'facebook'  => sanitize_text_field($socials[facebook]),
+            'twitter'   => sanitize_text_field($socials[twitter]),
+            'linkedin'  => sanitize_text_field($socials[linkedin]),
+            'instagram' => sanitize_text_field($socials[instagram])
         ));
         $author_bio = wp_unslash($data[bio]);
-        $authorId = get_current_user_id();
+        $authorId   = get_current_user_id();
 
         update_post_meta($authorId, 'author_bio_editorbio', $author_bio);
         update_post_meta($authorId, 'author_bio_social_option', $socialsVal);
-        update_post_meta($authorId, 'author_bio_image_from_option', $imageFrom);
+        update_post_meta($authorId, 'author_bio_image_from_option', sanitize_text_field($imageFrom));
 
 
         global $wpdb;
@@ -64,17 +58,17 @@ class AdminAjaxHandler
             $wpdb->update(
                 $table_name,
                 array(
-                    "author_id" => $authorId,
-                    "author_name" => $data['name'],
-                    "author_email" => $data['email'],
-                    "author_fb" => $data['facebook'],
-                    "author_tw" => $data['twitter'],
-                    "author_ln" => $data['linkedin'],
-                    "author_ins" => $data['instagram'],
-                    "author_img" => $data['profile']['image'],
-                    "author_gravatar" => $data['profile']['gravatar'],
-                    "author_designation" => $data['designation'],
-                    "useBioFrom" => $data['useBioFrom'],
+                    "author_id"         => sanitize_text_field($authorId),
+                    "author_name"       => sanitize_text_field( $data['name']),
+                    "author_email"      => sanitize_email($data['email']),
+                    "author_fb"         => esc_url_raw( $data['facebook']),
+                    "author_tw"         => esc_url_raw( $data['twitter']),
+                    "author_ln"         => esc_url_raw( $data['linkedin']),
+                    "author_ins"        => esc_url_raw( $data['instagram']),
+                    "author_img"        => sanitize_text_field( $data['profile']['image']),
+                    "author_gravatar"   => esc_url_raw( $data['profile']['gravatar']),
+                    "author_designation"=> sanitize_text_field( $data['designation']),
+                    "useBioFrom"        => sanitize_text_field( $data['useBioFrom'])
                 ),
                 array('author_id' => $authorId)
             );
@@ -82,17 +76,17 @@ class AdminAjaxHandler
             $wpdb->insert(
                 $table_name,
                 array(
-                    "author_id" => $authorId,
-                    "author_name" => $data['name'],
-                    "author_email" => $data['email'],
-                    "author_fb" => $data['facebook'],
-                    "author_tw" => $data['twitter'],
-                    "author_ln" => $data['linkedin'],
-                    "author_ins" => $data['instagram'],
-                    "author_img" => $data['profile']['img'],
-                    "author_gravatar" => $data['profile']['gravatar'],
-                    "author_designation" => $data['designation'],
-                    "useBioFrom" => $data['useBioFrom'],
+                    "author_id"         => sanitize_text_field($authorId),
+                    "author_name"       => sanitize_text_field( $data['name']),
+                    "author_email"      => sanitize_email($data['email']),
+                    "author_fb"         => esc_url_raw( $data['facebook']),
+                    "author_tw"         => esc_url_raw( $data['twitter']),
+                    "author_ln"         => esc_url_raw( $data['linkedin']),
+                    "author_ins"        => esc_url_raw( $data['instagram']),
+                    "author_img"        => sanitize_text_field( $data['profile']['image']),
+                    "author_gravatar"   => esc_url_raw( $data['profile']['gravatar']),
+                    "author_designation"=> sanitize_text_field( $data['designation']),
+                    "useBioFrom"        => sanitize_text_field( $data['useBioFrom'])
                 )
             );
 
@@ -114,10 +108,10 @@ class AdminAjaxHandler
         $socials = get_post_meta($authorId, 'author_bio_social_option', true);
         if ($socials === '') {
             $socials = [
-                'facebook' => true,
-                'twitter' => true,
-                'linkedin' => true,
-                'instagram' => true,
+                'facebook' => 'true',
+                'twitter' => 'true',
+                'linkedin' => 'true',
+                'instagram' => 'true',
             ];
         };
         $imageFrom = get_post_meta($authorId, 'author_bio_image_from_option', true);
@@ -153,15 +147,23 @@ class AdminAjaxHandler
     public static function updateSettings()
     {
 
-        $data = wp_unslash($_REQUEST);
+        $settingsData = wp_unslash($_REQUEST['data']);
+            $data = array(
+                "useTemp"       => sanitize_text_field( $settingsData['useTemp'] ),
+                "postCount"     => sanitize_text_field( $settingsData['postCount'] ) ,
+                "excludes"      => sanitize_text_field( $settingsData['excludes'] ),
+                "excludesArray" => $settingsData['excludesArray'],
+                "recentType"    => sanitize_text_field($settingsData['recentType'] ),
+                "recentPost"    => sanitize_text_field( $settingsData['recentPost'] )
+            );
         update_option( 'author_bio_template', $data, false );
 
     }
 
     public static function getSettings()
     {
-        $getGettings = get_option( 'author_bio_template' );
-        $settings = $getGettings[data];
+        $settings = get_option( 'author_bio_template' );
+
         if (!$settings || $settings['useTemp'] === '') {
             $settings = array(
                 "useTemp" => "template2",
@@ -182,8 +184,7 @@ class AdminAjaxHandler
     public static function getSettingsFrontend()
     {
 
-        $getGettings = get_option( 'author_bio_template' );
-        $template = $getGettings['data'];
+        $template = get_option( 'author_bio_template' );
 
         if ($template === '' || $template === null) {
             $template = array(
