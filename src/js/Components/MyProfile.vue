@@ -267,9 +267,33 @@
                     imageFrom: this.imageFrom,
                     action: "author_bio_admin_ajax",
                     route: "add_bio"
-                }).then(
-                    this.success()
+                }).then(()=>{
+                    this.success();
+                    this.get_data();
+                    }
                 )
+            },
+            get_data(){
+                this.$adminGet({
+                    route: "get_bio"
+                }).then((res) => {
+                    if(res.data.data){
+                        this.isShow= res.data.socials
+                        this.authorDetails.authorId = res.data.data.author_id,
+                            this.authorDetails.name = res.data.data.author_name,
+                            this.authorDetails.email = res.data.data.author_email,
+                            this.authorDetails.designation = res.data.data.author_designation,
+                            this.authorDetails.bio = res.data.bio,
+                            this.authorDetails.facebook = res.data.data.author_fb,
+                            this.authorDetails.twitter = res.data.data.author_tw,
+                            this.authorDetails.linkedin = res.data.data.author_ln,
+                            this.authorDetails.instagram = res.data.data.author_ins,
+                            this.authorDetails.useBioFrom = res.data.data.useBioFrom,
+                            this.profile.image = res.data.data.author_img
+                        this.imageFrom = res.data.imageFrom
+                    }
+
+                })
             },
             handleUploadSuccess(response) {
                 this.profile.image = response.data.file.url;
@@ -286,26 +310,7 @@
             },
         },
         mounted() {
-            this.$adminGet({
-                route: "get_bio"
-            }).then((res) => {
-                if(res.data.data){
-                        this.isShow= res.data.socials
-                        this.authorDetails.authorId = res.data.data.author_id,
-                        this.authorDetails.name = res.data.data.author_name,
-                        this.authorDetails.email = res.data.data.author_email,
-                        this.authorDetails.designation = res.data.data.author_designation,
-                        this.authorDetails.bio = res.data.bio,
-                        this.authorDetails.facebook = res.data.data.author_fb,
-                        this.authorDetails.twitter = res.data.data.author_tw,
-                        this.authorDetails.linkedin = res.data.data.author_ln,
-                        this.authorDetails.instagram = res.data.data.author_ins,
-                        this.authorDetails.useBioFrom = res.data.data.useBioFrom,
-                        this.profile.image = res.data.data.author_img
-                        this.imageFrom = res.data.imageFrom
-                }
-
-            })
+           this.get_data();
         }
     }
 </script>

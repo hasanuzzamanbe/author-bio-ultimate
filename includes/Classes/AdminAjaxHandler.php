@@ -51,11 +51,11 @@ class AdminAjaxHandler
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
-        if ($data['authorId'] !== '') {
+        if ($data['authorId'] ) {
             $wpdb->update(
                 $table_name,
                 array(
-                    "author_id" => sanitize_text_field($authorId),
+                    "author_id" => $authorId,
                     "author_name" => sanitize_text_field($data['name']),
                     "author_email" => sanitize_email($data['email']),
                     "author_fb" => esc_url_raw($data['facebook']),
@@ -73,7 +73,7 @@ class AdminAjaxHandler
             $wpdb->insert(
                 $table_name,
                 array(
-                    "author_id" => sanitize_text_field($authorId),
+                    "author_id" => $authorId,
                     "author_name" => sanitize_text_field($data['name']),
                     "author_email" => sanitize_email($data['email']),
                     "author_fb" => esc_url_raw($data['facebook']),
@@ -86,7 +86,6 @@ class AdminAjaxHandler
                     "useBioFrom" => sanitize_text_field($data['useBioFrom'])
                 )
             );
-
             wp_send_json_success(array(
                 'response' => 'success',
             ), 200);

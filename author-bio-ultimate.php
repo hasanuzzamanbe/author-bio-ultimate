@@ -85,6 +85,7 @@ if (!defined('AUTHORBIO_VERSION')) {
             $builder = new \AuthorBio\Classes\Builder\Render();
             $builder->Render();
         }
+
         public function registerShortcodes()
         {
 
