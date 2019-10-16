@@ -24,23 +24,23 @@
       methods: {
           setTopmenu() {
               this.topMenus = this.applyFilters('chartmaker_top_level_menu', [
-                  {
-                      route: 'my-profile',
-                      title: 'My Profile'
-                  },
-                  {
-                      route: 'settings',
-                      title: 'Settings'
-                  },
-                  {
-                      route: 'supports',
-                      title: 'Supports'
-                  }
+                {
+                    route: 'my-profile',
+                    title: 'My Profile'
+                },
+                {
+                    route: 'settings',
+                    title: 'Settings'
+                },
+                {
+                    route: 'supports',
+                    title: 'Supports'
+                }
               ])
           }
       },
       mounted() {
-          this.setTopmenu();
+        this.setTopmenu();
       }
   }
 </script>

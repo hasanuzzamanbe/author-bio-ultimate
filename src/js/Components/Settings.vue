@@ -137,7 +137,7 @@
             this.$adminGet({
                 route: "get_settings"
             }).then((res) => {
-                    this.settings = res.data.settings;
+                this.settings = res.data.settings;
             })
         }
     }
@@ -161,6 +161,5 @@
         }
 
     }
-
 </style>
 
