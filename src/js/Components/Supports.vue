@@ -31,6 +31,7 @@
         name: 'Supports'
     }
 </script>
+
 <style>
     .supports_block.inner_box {
         background: white;

@@ -1,4 +1,4 @@
-### Author Bio Ultimate
+# Author Bio Ultimate
 Contributors: Hasanuzzaman shamim
 
 Tags:  Author bio, Post author, author, post ultimate, recent post, author recent post
@@ -17,10 +17,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Easily show author bio and recent posts with a custom template.
 
-### Description 
+## Description 
 
 Author Bio Ultimate will allow you to show the author information next to the post, with extended features of show recent posts by the author without a single line of coding.
-### Features:
+## Features:
 
 #### HTML Editor
 You can use HTML editor or text fields to add your bio, which will offer you to use the link, image, and other HTML tags to make your content better.
