@@ -15,8 +15,10 @@ License: GPLv2 or later
 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+WordPress link: https://wordpress.org/plugins/author-bio-ultimate/
+
 Easily show author bio and recent posts with a custom template.
-wordpress.org link: https://wordpress.org/plugins/author-bio-ultimate/
+
 
 ## Description 
 
