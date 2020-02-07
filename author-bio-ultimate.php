@@ -4,7 +4,7 @@
 Plugin Name: Author Bio Ultimate
 Plugin URI:  https://hasanuzzamanbe.github.io/author-bio-ultimate/
 Description: Create your data Author Bio within a minute.
-Version: 1.0.0
+Version: 1.0.1
 Author: Hasanuzzaman
 Author URI: https://github.com/hasanuzzamanbe
 License: A "Slug" license name e.g. GPL2
