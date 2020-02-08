@@ -23,10 +23,6 @@ export default class AuthorBio {
         return window.jQuery.get(window.authorBioAdmin.ajaxurl, options);
     }
 
-    $post(options) {
-        return window.jQuery.post(window.authorBioAdmin.ajaxurl, options);
-    }
-
     $adminPost(options) {
         options.action = 'author_bio_admin_ajax';
         return window.jQuery.post(window.authorBioAdmin.ajaxurl, options);
@@ -38,13 +34,5 @@ export default class AuthorBio {
 
     $post(options) {
         return window.jQuery.post(window.authorBioAdmin.ajaxurl, options);
-    }
-
-    $adminPost(options) {
-        options.action = 'author_bio_admin_ajax';
-        return window.jQuery.post(window.authorBioAdmin.ajaxurl, options);
-    }
-    $getJSON(options) {
-        return window.jQuery.getJSON(window.authorBioAdmin.ajaxurl, options);
     }
 }
