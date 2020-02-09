@@ -97,8 +97,7 @@ class Menu
         wp_localize_script('author_bio_settings_boot', 'authorBioAdmin', $authorBioAdminVars);
 
     }
-
-
+    
     public function render() {
         do_action('authorbio/render_admin_app');
     }

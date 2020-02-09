@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ah1
- * Date: 2019-06-28
- * Time: 16:02
- */
 
 namespace AuthorBio\Classes;
 
