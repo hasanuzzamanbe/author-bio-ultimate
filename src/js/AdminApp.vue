@@ -1,13 +1,11 @@
 <template>
     <div id="authorbioapp">
         <div class="chartmaker_main_nav">
-
             <div class="topnav">
                 <router-link v-for="menuItem in topMenus" :key="menuItem.route" active-class="ninja-tab-active" exact :class="['ninja-tab']" :to="{ name: menuItem.route }">
                     {{ menuItem.title }}
                 </router-link>
             </div>
-
         </div>
        <router-view></router-view>
     </div>
