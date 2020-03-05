@@ -1,6 +1,6 @@
 <template>
     <div id="authorbioapp">
-        <div class="chartmaker_main_nav">
+        <div class="authorbio_main_nav">
             <div class="topnav">
                 <router-link v-for="menuItem in topMenus" :key="menuItem.route" active-class="ninja-tab-active" exact :class="['ninja-tab']" :to="{ name: menuItem.route }">
                     {{ menuItem.title }}
@@ -21,7 +21,7 @@
       },
       methods: {
           setTopmenu() {
-              this.topMenus = this.applyFilters('chartmaker_top_level_menu', [
+              this.topMenus = this.applyFilters('authorbio_top_level_menu', [
                 {
                     route: 'my-profile',
                     title: 'My Profile'
@@ -73,7 +73,7 @@
         background-color: #0173aa;
         color: white;
     }
-    .chartmaker_main_nav {
+    .authorbio_main_nav {
         margin-top: -3px;
     }
 </style>
