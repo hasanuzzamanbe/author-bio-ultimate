@@ -110,7 +110,7 @@
                 author_id: window.authorBioAdmin.author_id,
                 settings: {
                     useTemp: 'template2',
-                    recentPost: 'enabled',
+                    recentPost: 'disabled',
                     postCount: 3,
                     excludes: '',
                     recentType:''
