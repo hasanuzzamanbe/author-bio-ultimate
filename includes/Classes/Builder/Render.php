@@ -22,6 +22,10 @@ class Render
         $this->addAssets();
 
         global $post;
+        if($post->post_type !== 'post'){
+            return $content;
+        };
+       
 
         $author = get_user_by('id', $post->post_author);
 
