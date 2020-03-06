@@ -382,7 +382,7 @@ class Render
 
     public function shortcodeRender($id){
         $user_info = get_userdata($id);
-        $gravatar =  esc_html(get_avatar($id, 128)) ;
+        $gravatar =  get_avatar($id, 128);
         $bio = get_user_meta($id, 'description', true);
         $html= "<div class='authbio_short_main'>";
         $html .= "<div class='authbio_short_left_col'>$gravatar</div>";
