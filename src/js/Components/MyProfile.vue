@@ -280,16 +280,16 @@
                     if(res.data.data){
                         this.isShow= res.data.socials
                         this.authorDetails.authorId = res.data.data.author_id,
-                            this.authorDetails.name = res.data.data.author_name,
-                            this.authorDetails.email = res.data.data.author_email,
-                            this.authorDetails.designation = res.data.data.author_designation,
-                            this.authorDetails.bio = res.data.bio,
-                            this.authorDetails.facebook = res.data.data.author_fb,
-                            this.authorDetails.twitter = res.data.data.author_tw,
-                            this.authorDetails.linkedin = res.data.data.author_ln,
-                            this.authorDetails.instagram = res.data.data.author_ins,
-                            this.authorDetails.useBioFrom = res.data.data.useBioFrom,
-                            this.profile.image = res.data.data.author_img
+                        this.authorDetails.name = res.data.data.author_name,
+                        this.authorDetails.email = res.data.data.author_email,
+                        this.authorDetails.designation = res.data.data.author_designation,
+                        this.authorDetails.bio = res.data.bio,
+                        this.authorDetails.facebook = res.data.data.author_fb,
+                        this.authorDetails.twitter = res.data.data.author_tw,
+                        this.authorDetails.linkedin = res.data.data.author_ln,
+                        this.authorDetails.instagram = res.data.data.author_ins,
+                        this.authorDetails.useBioFrom = res.data.data.useBioFrom,
+                        this.profile.image = res.data.data.author_img
                         this.imageFrom = res.data.imageFrom
                     }
 
