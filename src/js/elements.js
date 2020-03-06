@@ -13,14 +13,14 @@ import {
     Checkbox,
     RadioGroup,
     Radio,
-    Select,
     Option,
     OptionGroup,
     RadioButton,
     Row,
     Col,
     InputNumber,
-    Tooltip
+    Tooltip,
+    Upload
 } from 'element-ui';
 
 Vue.use(Button);
@@ -38,7 +38,7 @@ Vue.use(Radio);
 Vue.use(RadioButton);
 Vue.use(Row);
 Vue.use(Col);
-
+Vue.use(Upload);
 
 Vue.prototype.$message = Message;
 Vue.prototype.$msgbox = MessageBox;
