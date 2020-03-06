@@ -15,7 +15,7 @@
         <div class="inner_box">
             <el-row class="users_template_row" :gutter="20">
                 <el-col class="inner_column" :sm=22 :lg=10>
-                    <el-checkbox v-model="settings.recentPost" true-label="enabled" label="Show recent Posts By author"></el-checkbox>
+                    <el-checkbox v-model="settings.recentPost" false-label="disabled" true-label="enabled" label="Show recent Posts By author"></el-checkbox>
                 </el-col>
             </el-row>
             <el-row v-if="this.settings.recentPost === 'enabled'" class="users_template_row" :gutter="20" style="margin-top:23px;">
@@ -119,6 +119,7 @@
         },
         methods: {
             update() {
+                console.log(this.settings);
                 this.settings.excludesArray =  this.settings.excludes.split(',');
                 this.$adminPost({
                     data: this.settings,
