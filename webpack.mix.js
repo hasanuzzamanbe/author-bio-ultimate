@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
 
+mix.setPublicPath('dist/admin');
 mix.setResourceRoot('../');
 mix
     .js('src/js/Boot.js', 'dist/js/boot.js')
