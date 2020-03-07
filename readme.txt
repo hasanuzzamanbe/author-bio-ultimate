@@ -3,8 +3,8 @@ Contributors: hasanuzzamanshamim
 Tags:  Author bio, Post author, post ultimate, recent post, author recent post, author.
 Requires at least: 4.5
 Requires PHP: 5.4 or greater
-Tested up to: 5.2.3
-Stable tag: 1.0.0
+Tested up to: 5.3.2
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,11 @@ In a single word it's very easy to use and it will match your site's template ve
 
 
 == Changelog ==
+= 2.0.0 =
+* Page will exclude from author bio
+* Shortcode bug fixed
+* Author post disabled by default
+
 
 = 1.0.0 =
 * Init First version

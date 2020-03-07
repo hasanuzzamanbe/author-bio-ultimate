@@ -88,8 +88,16 @@ In a single word it's very easy to use and it will match your site's template ve
 
 ##### Changelog
 
+= 2.0.0 =
+* Page will exclude from author bio
+* Shortcode bug fixed
+* Author post disabled by default
+
 version 1.0.0 
 * Init First version
+
+
+
 
 
 
