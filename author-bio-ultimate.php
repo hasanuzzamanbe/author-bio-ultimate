@@ -7,7 +7,7 @@ Description: Create your data Author Bio within a minute.
 Version: 2.0.0
 Author: Hasanuzzaman
 Author URI: https://github.com/hasanuzzamanbe
-License: A "Slug" license name e.g. GPL2
+License: GPLv2 or later
 Text Domain: authorbio
 */
 
