@@ -333,7 +333,9 @@ class Render
             foreach ($recent_posts as $recent) {
                 $html .= "<div class='author_bio_recent_inner_post'>";
                 $image = wp_get_attachment_image_src(get_post_thumbnail_id($recent->ID), 'single-post-thumbnail');
-                $html .= '<div class="auth_post_recent_img" style="background-image: url(' . $image[0] . ');"></div>';
+                if ($image) {
+                    $html .= '<div class="auth_post_recent_img" style="background-image: url(' . $image[0] . ');"></div>';
+                };
                 $html .= '<div class="auth_post_recent_title">';
                 $title = $this->word_count($recent->post_title, 8);
                 $html .= '<a href="' . get_permalink($recent->ID) . '" title="Look ' . esc_attr($recent->post_title) . '" >' . $title . '</a> </div>';
