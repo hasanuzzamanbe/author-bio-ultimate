@@ -2,7 +2,6 @@
 
 namespace AuthorBio\Classes;
 
-
 class AccessControl
 {
     public static function hasTopLevelMenuPermission()
@@ -22,7 +21,7 @@ class AccessControl
 
     public static function checkAndPresponseError($endpoint = false, $group = false, $message = '')
     {
-        if(self::hasEndPointPermission($endpoint, $group)) {
+        if (self::hasEndPointPermission($endpoint, $group)) {
             return true;
         }
         wp_send_json_error(array(

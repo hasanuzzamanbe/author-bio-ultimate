@@ -1,7 +1,6 @@
-<?php 
+<?php
 namespace AuthorBio\Classes;
 
-class HelperClass {
-	
-
+class HelperClass
+{
 }

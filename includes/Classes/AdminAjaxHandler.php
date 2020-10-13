@@ -2,13 +2,13 @@
 
 
 namespace AuthorBio\Classes;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 class AdminAjaxHandler
 {
-
     public function registerEndpoints()
     {
         add_action('wp_ajax_author_bio_admin_ajax', array($this, 'handleEndPoint'));
@@ -29,7 +29,6 @@ class AdminAjaxHandler
             do_action('authorbio/doing_ajax_events_' . $route);
             return $this->{$validRoutes[$route]}();
         }
-
     }
 
     protected function addBio()
@@ -51,7 +50,7 @@ class AdminAjaxHandler
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'author_bio';
-        if ($data['authorId'] ) {
+        if ($data['authorId']) {
             $wpdb->update(
                 $table_name,
                 array(
@@ -90,7 +89,6 @@ class AdminAjaxHandler
                 'response' => 'success',
             ), 200);
         }
-
     }
 
     public function getBio()
@@ -120,7 +118,6 @@ class AdminAjaxHandler
             'imageFrom' => $imageFrom,
             'bio' => $bioFromeditor
         ), 200);
-
     }
 
     public static function getUserInfos($authorId)
@@ -142,7 +139,6 @@ class AdminAjaxHandler
 
     public static function updateSettings()
     {
-
         $settingsData = wp_unslash($_REQUEST['data']);
         $data = array(
             "useTemp" => sanitize_text_field($settingsData['useTemp']),
@@ -153,7 +149,6 @@ class AdminAjaxHandler
             "recentPost" => sanitize_text_field($settingsData['recentPost'])
         );
         update_option('author_bio_template', $data, false);
-
     }
 
     public static function getSettings()
@@ -179,7 +174,6 @@ class AdminAjaxHandler
 
     public static function getSettingsFrontend()
     {
-
         $template = get_option('author_bio_template');
 
         if (!$template || $template === '' || $template === null) {
@@ -191,9 +185,7 @@ class AdminAjaxHandler
                 "excludesArray" => [],
                 "recentType" => 'titleonly'
             );
-
         }
         return $template;
     }
-
 }

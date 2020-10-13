@@ -2,12 +2,11 @@
 
 namespace AuthorBio\Classes;
 
-
 class Menu
 {
     public function register()
     {
-        add_action( 'admin_menu', array($this, 'addMenus') );
+        add_action('admin_menu', array($this, 'addMenus'));
         add_action('admin_enqueue_scripts', array($this, 'enqueueAssets'));
     }
 
@@ -72,16 +71,18 @@ class Menu
             AUTHORBIO_VERSION,
             true
         );
-        wp_enqueue_style('authorbio_admin_app',
+        wp_enqueue_style(
+            'authorbio_admin_app',
             AUTHORBIO_URL.'dist/admin/css/author-bio-admin.css',
-            array(), AUTHORBIO_VERSION
+            array(),
+            AUTHORBIO_VERSION
         );
 
 
         $user_id = get_current_user_id();
 
         $author_des = get_the_author_meta('user_description', $user_id);
-        $avatar_link = get_avatar_url( $user_id, ['size' => '178'] );
+        $avatar_link = get_avatar_url($user_id, ['size' => '178']);
         $authorBioAdminVars = apply_filters('authorbio/admin_app_vars', array(
             'i18n'                => array(
                 'All Author' => __('All Author', 'authorbio')
@@ -95,11 +96,10 @@ class Menu
             'image_upload_url'    => admin_url('admin-ajax.php?action=author_bio_global_settings_handler&route=author_bio_upload_image')
         ));
         wp_localize_script('author_bio_settings_boot', 'authorBioAdmin', $authorBioAdminVars);
-
     }
-    
-    public function render() {
+
+    public function render()
+    {
         do_action('authorbio/render_admin_app');
     }
-
 }

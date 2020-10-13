@@ -37,7 +37,7 @@ class TinyMceBlock
         }
 
         // We are adding localized vars here
-        wp_localize_script('jquery','auth_bio_tinymce_vars', array(
+        wp_localize_script('jquery', 'auth_bio_tinymce_vars', array(
             "label" => __('Select an Event to insert', 'authorbio'),
             "title" => __('Insert Event Shortcode', 'authorbio'),
             "select_error" => __('Please select a Form', 'authorbio'),
@@ -65,7 +65,7 @@ class TinyMceBlock
     private function getAllEventsForMce()
     {
         $user_id = get_current_user_id();
-            $formatted[] = array(
+        $formatted[] = array(
                 'text' => 'Add author shortcode',
                 'value' => $user_id
             );

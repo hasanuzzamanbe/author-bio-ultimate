@@ -5,11 +5,11 @@
  * @package WPPayForm
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit;
 }
 include 'global_functions.php';
-if ( ! function_exists( 'AuthorBioAutoload' ) ) {
+if (! function_exists('AuthorBioAutoload')) {
     /**
      * Plugin autoloader.
      *
@@ -21,27 +21,28 @@ if ( ! function_exists( 'AuthorBioAutoload' ) ) {
      *
      * @param $class
      */
-    function AuthorBioAutoload( $class ) {
+    function AuthorBioAutoload($class)
+    {
 
         // Do not load unless in plugin domain.
         $namespace = 'AuthorBio';
-        if ( strpos( $class, $namespace ) !== 0 ) {
+        if (strpos($class, $namespace) !== 0) {
             return;
         }
 
         // Converts Class_Name (class convention) to class-name (file convention).
 
         // Remove the root namespace.
-        $unprefixed = substr( $class, strlen( $namespace ) );
+        $unprefixed = substr($class, strlen($namespace));
 
         // Build the file path.
-        $file_path = str_replace( '\\', DIRECTORY_SEPARATOR, $unprefixed );
+        $file_path = str_replace('\\', DIRECTORY_SEPARATOR, $unprefixed);
 
-        $file      = dirname( __FILE__ ) . $file_path . '.php';
-        if ( file_exists( $file ) ) {
+        $file      = dirname(__FILE__) . $file_path . '.php';
+        if (file_exists($file)) {
             require $file;
         }
     }
     // Register the autoloader.
-    spl_autoload_register( 'AuthorBioAutoload' );
+    spl_autoload_register('AuthorBioAutoload');
 }

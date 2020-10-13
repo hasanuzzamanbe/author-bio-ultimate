@@ -3,24 +3,24 @@ import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
 
 import {
-    Button,
-    ButtonGroup,
-    Message,
-    MessageBox,
-    Icon,
-    ColorPicker,
-    Input,
-    Checkbox,
-    RadioGroup,
-    Radio,
-    Option,
-    OptionGroup,
-    RadioButton,
-    Row,
-    Col,
-    InputNumber,
-    Tooltip,
-    Upload
+	Button,
+	ButtonGroup,
+	Message,
+	MessageBox,
+	Icon,
+	ColorPicker,
+	Input,
+	Checkbox,
+	RadioGroup,
+	Radio,
+	Option,
+	OptionGroup,
+	RadioButton,
+	Row,
+	Col,
+	InputNumber,
+	Tooltip,
+	Upload
 } from 'element-ui';
 
 Vue.use(Button);

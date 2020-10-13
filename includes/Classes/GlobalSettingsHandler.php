@@ -1,6 +1,7 @@
 <?php
 
 namespace AuthorBio\Classes;
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -10,7 +11,7 @@ class GlobalSettingsHandler
     public function registerHooks()
     {
         add_action('wp_ajax_author_bio_global_settings_handler', array($this, 'handleEndpoints'));
-        add_filter( 'user_contactmethods', array($this, 'userContactMethods') );
+        add_filter('user_contactmethods', array($this, 'userContactMethods'));
     }
 
     public function handleEndpoints()
@@ -21,7 +22,6 @@ class GlobalSettingsHandler
         $route = sanitize_text_field($_REQUEST['route']);
 
         if (isset($routes[$route])) {
-
             do_action('authorbio/doing_ajax_global_'.$route);
             $this->{$routes[$route]}();
             return;
@@ -57,12 +57,11 @@ class GlobalSettingsHandler
 
     public function userContactMethods($methods)
     {
-            $methods['designation'] = __( 'Designation', 'authorbio' );
-            $methods['twitter'] = __( 'Twitter', 'authorbio' );
-            $methods['facebook'] = __( 'Facebook', 'authorbio' );
-            $methods['linkedin'] = __( 'Linkedin', 'authorbio' );
-            $methods['instagram'] = __( 'Inatagram', 'authorbio' );
-            return $methods;
+        $methods['designation'] = __('Designation', 'authorbio');
+        $methods['twitter'] = __('Twitter', 'authorbio');
+        $methods['facebook'] = __('Facebook', 'authorbio');
+        $methods['linkedin'] = __('Linkedin', 'authorbio');
+        $methods['instagram'] = __('Inatagram', 'authorbio');
+        return $methods;
     }
-
 }

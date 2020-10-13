@@ -31,7 +31,6 @@ class Activator
         } else {
             $this->migrate();
         }
-
     }
 
     private function migrate()

@@ -81,7 +81,8 @@ if (!defined('AUTHORBIO_VERSION')) {
             load_plugin_textdomain('authorbio', false, basename(dirname(__FILE__)) . '/languages');
         }
 
-        public function commonHooks(){
+        public function commonHooks()
+        {
             $builder = new \AuthorBio\Classes\Builder\Render();
             $builder->Render();
         }
@@ -108,7 +109,6 @@ if (!defined('AUTHORBIO_VERSION')) {
         {
             require_once(AUTHORBIO_DIR . 'includes/autoload.php');
         }
-
     }
 
     add_action('plugins_loaded', function () {
@@ -120,7 +120,6 @@ if (!defined('AUTHORBIO_VERSION')) {
         $activator = new \AuthorBio\Classes\Activator();
         $activator->migrateDatabases($newWorkWide);
     });
-
 } else {
     add_action('admin_init', function () {
         deactivate_plugins(plugin_basename(__FILE__));
